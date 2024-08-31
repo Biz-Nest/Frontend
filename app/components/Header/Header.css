@@ -1,0 +1,22 @@
+:root {
+    --color-one: #5680E9;
+    --color-two: #84CEEB;
+    --color-three: #5AB9EA;
+    --color-four: #C1C8E4;
+    --color-five: #8860D0;
+}
+
+
+#user-dropdown-parent {
+    position: relative;
+}
+
+#user-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 5px;
+}
+
+#navbar-user ul li {
+    margin-bottom: 5px;
+}
