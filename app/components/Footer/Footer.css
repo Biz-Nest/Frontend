@@ -1,0 +1,14 @@
+footer {
+  /* margin-top: 500px; */
+  background: linear-gradient(
+    135deg,
+    var(--color-one) 0%,
+    var(--color-two) 25%,
+    var(--color-three) 50%,
+    var(--color-four) 75%,
+    var(--color-five) 100%
+  ) !important;
+
+  /* color: #1D4ED8; ; */
+
+}
