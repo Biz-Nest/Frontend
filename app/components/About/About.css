@@ -1,0 +1,5 @@
+h1.container {
+    color: var(--color-three);
+    font-size: 50px;
+    font-weight: 900;
+}

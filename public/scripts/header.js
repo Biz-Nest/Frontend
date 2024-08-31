@@ -7,6 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const userDropMenu = document.getElementById("user-dropdown");
   const userMenuButton = document.getElementById("user-menu-button");
 
+  const darkToggle = document.getElementById("dark-toggle");
+  const sun = document.getElementById("sun");
+  const moon = document.getElementById("moon");
+
+  darkToggle.onclick = () => {
+    console.log("ABCABC")
+    sun.classList.toggle("active");
+    moon.classList.toggle("active");
+  }
+
   sideMenuButton.onclick = () => {
     sideMenu.classList.toggle("hidden");
   };

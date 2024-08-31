@@ -1,17 +1,16 @@
-import LoginPage from "./components/Authantication/Login";
+'use client';
 import ThemeWrapper from "./context/Theme";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
+
+
   return (
     <html lang="en">
       <body>
-        <ThemeWrapper>
-          <main>
-            <LoginPage />{" "}
-            {/* Make sure you include the LoginPage component here */}
-            {children}
-          </main>
-        </ThemeWrapper>
+      <ThemeWrapper>
+      <main>{children}</main>
+      </ThemeWrapper>
       </body>
     </html>
   );
