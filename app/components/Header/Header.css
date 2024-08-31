@@ -1,11 +1,7 @@
-:root {
-    --color-one: #5680E9;
-    --color-two: #84CEEB;
-    --color-three: #5AB9EA;
-    --color-four: #C1C8E4;
-    --color-five: #8860D0;
-}
+nav.header {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjust for desired shadow */
 
+}
 
 #user-dropdown-parent {
     position: relative;
@@ -19,4 +15,36 @@
 
 #navbar-user ul li {
     margin-bottom: 5px;
+}
+
+#dark-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
+@media(min-width: 767px) {
+    #dark-toggle {
+        margin-right: 15px;
+    }
+}
+
+#dark-toggle i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -0%);
+
+    /* visibility: hidden; */
+    opacity: 0;
+    transition: transform 0.3s;
+}
+
+#dark-toggle i.active {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    /* visibility: visible; */
 }

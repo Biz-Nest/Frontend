@@ -9,7 +9,7 @@ export default function ThemeWrapper({ children }) {
 
   function initialThemeHandler() {
     if (!localStorage.getItem("isDarkTheme")) {
-      localStorage.setItem("isDarkTheme", "true");
+      localStorage.setItem("isDarkTheme", "false");
       document.querySelector("body").classList.add("dark");
       setIsDarkTheme(true);
     } else {
