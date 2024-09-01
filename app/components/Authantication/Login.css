@@ -17,9 +17,13 @@ body {
 
 .form-parent {
     font-family: 'Montserrat', sans-serif;
-    padding: 100px 0;
+    padding: 20px;
     font-size: 30px;
     font-weight: bold;
+    width: fit-content;
+    margin: 50px auto;
+    overflow: auto;
+    max-width: 100%;
 }
 
 .auth-container {
@@ -31,6 +35,7 @@ body {
     width: 768px;
     max-width: 100%;
     min-height: 480px;
+    min-width: 670px;
 }
 
 .auth-container p {
