@@ -10,5 +10,37 @@ footer {
   ) !important; */
 
   /* color: #1D4ED8; ; */
-
+  /* background-color: #1d2f5e; */
+  padding: 20px 0;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  /* color: white; */
 }
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer ul {
+  display: flex;
+}
+
+
+footer ul li {
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+footer ul li i {
+  font-size: 25px;
+  transition: 0.3s;
+}
+
+footer ul li:hover i {
+  color: var(--color-five);
+}
+
+/* footer img {
+  height: 32px;
+} */
