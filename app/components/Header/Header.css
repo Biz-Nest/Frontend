@@ -1,6 +1,5 @@
 nav.header {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjust for desired shadow */
-
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #user-dropdown-parent {
@@ -11,6 +10,7 @@ nav.header {
     position: absolute;
     top: calc(100% + 5px);
     right: 5px;
+    z-index: 100000;
 }
 
 #navbar-user ul li {

@@ -11,18 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const sun = document.getElementById("sun");
   const moon = document.getElementById("moon");
 
-  darkToggle.onclick = () => {
-    console.log("ABCABC")
-    sun.classList.toggle("active");
-    moon.classList.toggle("active");
-  }
+  // darkToggle.onclick = () => {
+  //   sun.classList.toggle("active");
+  //   moon.classList.toggle("active");
+  // }
 
-  sideMenuButton.onclick = () => {
-    sideMenu.classList.toggle("hidden");
-  };
+  // sideMenuButton.onclick = () => {
+  //   sideMenu.classList.toggle("hidden");
+  // };
 
-  userMenuButton.onclick = ()=> {
-    userDropMenu.classList.toggle("hidden");
-  }
+  // userMenuButton.onclick = ()=> {
+  //   userDropMenu.classList.toggle("hidden");
+  // }
 
 });
