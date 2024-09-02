@@ -19,8 +19,6 @@
 
 # remaining fuck ups
 
-## the delete is working and giving me 200 status but does not actually delete i don't know how
-## i didn't do anything related to the update, we need a form to be poped up from the button and have inital values from the object it selfr
 ## redirect the user to the login process if he is not logged in
 ## does not refresh automatically we have to use mutate/useEffect
-## 
+## conditional rendering
