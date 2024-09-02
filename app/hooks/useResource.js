@@ -4,10 +4,10 @@ import useSWR from "swr";
 import { useToast } from "@chakra-ui/react";
 
 export default function useResource() {
-    const { tokens } = useContext(AuthContext);
- 
+  const { tokens } = useContext(AuthContext);
+
   const toast = useToast();
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}things/`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
 
   const fetchResource = useCallback(
     async (url) => {
@@ -84,33 +84,33 @@ export default function useResource() {
   );
 
   const createResource = useCallback(
-    async (url, data) => {  // Removed tokens from parameters
-        if (!tokens) {
-            console.error("Tokens are undefined, cannot create resource.");
-            return;
+    async (url, data) => {
+     
+      if (!tokens) {
+        console.error("Tokens are undefined, cannot create resource.");
+        return;
+      }
+      try {
+        const options = config();
+        options.method = "POST";
+        options.body = JSON.stringify(data);
+
+        const res = await fetch(url, options);
+        console.log("Response status:", res.status);
+
+        if (!res.ok) {
+          const errorDetails = await res.json();
+          throw new Error(`Failed to create resource: ${errorDetails.message}`);
         }
-        try {
-            const options = config();
-            options.method = "POST";
-            options.body = JSON.stringify(data);
 
-            const res = await fetch(url, options);
-            console.log("Response status:", res.status);
-
-            if (!res.ok) {
-                const errorDetails = await res.json();
-                throw new Error(`Failed to create resource: ${errorDetails.message}`);
-            }
-
-            handleSuccess("Resource created successfully.");
-        } catch (err) {
-            console.error("Error creating resource:", err);
-            handleError(err);
-        }
+        handleSuccess("Resource created successfully.");
+      } catch (err) {
+        console.error("Error creating resource:", err);
+        handleError(err);
+      }
     },
     [tokens, handleError, handleSuccess]
-);
-
+  );
 
   const updateResource = useCallback(
     async (data) => {
@@ -130,7 +130,7 @@ export default function useResource() {
         handleError(err);
       }
     },
-    [apiUrl, config, mutate, handleSuccess, handleError, tokens]
+    [ config, mutate, handleSuccess, handleError, tokens]
   );
 
   return {
