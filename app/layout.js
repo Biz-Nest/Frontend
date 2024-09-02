@@ -9,7 +9,7 @@ import "./globals.css";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="dark:bg-gray-800">
         <ChakraProvider>
           <AuthProvider>
             <ThemeWrapper>
