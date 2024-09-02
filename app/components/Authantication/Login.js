@@ -2,7 +2,7 @@
 import { useState } from "react";
 import "./Login.css";
 import { useContext } from "react";
-import { AuthContext } from "../../context/Auth";
+import { AuthContext } from "@/app/context/Auth";
 
 export default function LoginPage() {
   const [isActive, setIsActive] = useState(false);
@@ -37,7 +37,7 @@ export default function LoginPage() {
     const password = e.target.password.value;
 
     register({ username, email, password });
-
+    
     console.log(username, email, password);
   }
 
