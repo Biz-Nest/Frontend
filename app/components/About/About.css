@@ -93,8 +93,19 @@
   border-color: #1877f2 #333 #0a66c2 #e01563;
 
   animation: rotate 10s linear infinite;
-
+  transition: 0.3s;
   z-index: 1;
+}
+
+.team-members .container .member .pic:hover .helper {
+  animation: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  
+
+
 }
 
 @keyframes rotate {

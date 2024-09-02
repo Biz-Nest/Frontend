@@ -5,7 +5,7 @@ export default function About() {
   return (
     <>
       <div className="about-us">
-        <h2 className="main-title">
+        <h2 className="main-title dark:text-white">
           Team Members<span></span>
         </h2>
         <div className="team-members">

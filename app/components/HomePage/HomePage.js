@@ -10,10 +10,10 @@ export default function HomePage() {
         <div className="container">
           <div className="home-section">
             <div className="info">
-              <h2 className="main-title">
+              <h2 className="main-title  dark:!text-white">
                 Explore Ideas<span></span>
               </h2>
-              <p>
+              <p className="dark:!text-[#c1c8e4]">
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
@@ -50,10 +50,10 @@ export default function HomePage() {
 
           <div className="home-section">
             <div className="info">
-              <h2 className="main-title">
+              <h2 className="main-title  dark:!text-white">
                 Explore Stores<span></span>
               </h2>
-              <p>
+              <p className="dark:!text-[#c1c8e4]">
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
@@ -85,10 +85,10 @@ export default function HomePage() {
 
           <div className="home-section">
             <div className="info">
-              <h2 className="main-title">
+              <h2 className="main-title  dark:!text-white">
                 New Ideas<span></span>
               </h2>
-              <p>
+              <p className="dark:!text-[#c1c8e4]">
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
@@ -125,10 +125,10 @@ export default function HomePage() {
 
           <div className="home-section">
             <div className="info">
-              <h2 className="main-title">
+              <h2 className="main-title  dark:!text-white">
                 Market Gap<span></span>
               </h2>
-              <p>
+              <p className="dark:!text-[#c1c8e4]">
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
                 lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
