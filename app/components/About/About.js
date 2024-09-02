@@ -10,10 +10,7 @@ export default function About() {
         </h2>
         <div className="team-members">
           <div className="container">
-
-
             <div className="member">
-
               <div className="pic">
                 <Image
                   src="/images/team_member.jpeg"
@@ -22,23 +19,19 @@ export default function About() {
                   alt="img"
                 />
                 <div className="helper">
-                  <i class="ri-linkedin-box-fill one"></i>
-                  <i class="ri-github-fill two"></i>
-                  <i class="ri-facebook-circle-fill three"></i>
-                  <i class="ri-slack-line four"></i>
+                  <i className="ri-linkedin-box-fill one"></i>
+                  <i className="ri-github-fill two"></i>
+                  <i className="ri-facebook-circle-fill three"></i>
+                  <i className="ri-slack-line four"></i>
                 </div>
               </div>
-
               <div className="info">
                 <h3>Yaman Katalan</h3>
                 <p>Full-Stack Web Developer</p>
               </div>
-
             </div>
 
-
             <div className="member">
-
               <div className="pic">
                 <Image
                   src="/images/team_member.jpeg"
@@ -47,23 +40,19 @@ export default function About() {
                   alt="img"
                 />
                 <div className="helper">
-                  <i class="ri-linkedin-box-fill one"></i>
-                  <i class="ri-github-fill two"></i>
-                  <i class="ri-facebook-circle-fill three"></i>
-                  <i class="ri-slack-line four"></i>
+                  <i className="ri-linkedin-box-fill one"></i>
+                  <i className="ri-github-fill two"></i>
+                  <i className="ri-facebook-circle-fill three"></i>
+                  <i className="ri-slack-line four"></i>
                 </div>
               </div>
-
               <div className="info">
                 <h3>Member Name</h3>
                 <p>Full-Stack</p>
               </div>
-
             </div>
 
-
             <div className="member">
-
               <div className="pic">
                 <Image
                   src="/images/team_member.jpeg"
@@ -72,23 +61,19 @@ export default function About() {
                   alt="img"
                 />
                 <div className="helper">
-                  <i class="ri-linkedin-box-fill one"></i>
-                  <i class="ri-github-fill two"></i>
-                  <i class="ri-facebook-circle-fill three"></i>
-                  <i class="ri-slack-line four"></i>
+                  <i className="ri-linkedin-box-fill one"></i>
+                  <i className="ri-github-fill two"></i>
+                  <i className="ri-facebook-circle-fill three"></i>
+                  <i className="ri-slack-line four"></i>
                 </div>
               </div>
-
               <div className="info">
                 <h3>Member Name</h3>
                 <p>Full-Stack</p>
               </div>
-
             </div>
 
-
             <div className="member">
-
               <div className="pic">
                 <Image
                   src="/images/team_member.jpeg"
@@ -97,21 +82,17 @@ export default function About() {
                   alt="img"
                 />
                 <div className="helper">
-                  <i class="ri-linkedin-box-fill one"></i>
-                  <i class="ri-github-fill two"></i>
-                  <i class="ri-facebook-circle-fill three"></i>
-                  <i class="ri-slack-line four"></i>
+                  <i className="ri-linkedin-box-fill one"></i>
+                  <i className="ri-github-fill two"></i>
+                  <i className="ri-facebook-circle-fill three"></i>
+                  <i className="ri-slack-line four"></i>
                 </div>
               </div>
-
               <div className="info">
                 <h3>Member Name</h3>
                 <p>Full-Stack</p>
               </div>
-
             </div>
-
-
           </div>
         </div>
       </div>
