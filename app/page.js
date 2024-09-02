@@ -1,11 +1,8 @@
-"use client";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import About from "./components/About/About";
 import HomePage from "./components/HomePage/HomePage";
 import LoginPage from "./components/Authantication/Login";
-import AddIdea from "./components/addIdea/addIdea";
-
 
 export default function Home() {
   return (
@@ -17,9 +14,10 @@ export default function Home() {
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
       />
+
       <Header />
-     
-     
+      <HomePage />
+      <LoginPage />
       <Footer />
     </>
   );
