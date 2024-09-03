@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/Auth";
 export default function LoginPage() {
   const [isActive, setIsActive] = useState(false);
   const { login, register } = useContext(AuthContext);
+  const {tokens} = useContext(AuthContext)
 
   const toggleToSignUp = (event) => {
     event.preventDefault();
@@ -27,6 +28,8 @@ export default function LoginPage() {
     login({ username, password });
 
     console.log(username, password);
+    console.log(tokens);
+    
   }
 
   // to handle sign up

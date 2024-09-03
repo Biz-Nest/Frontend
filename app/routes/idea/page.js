@@ -10,10 +10,11 @@ export default function IdeaDetail() {
     const [idea, setIdea] = useState(null);
     const [relatedCat, setRelatedCat] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [showUpdateForm, setShowUpdateForm] = useState(false); // State to manage form visibility
+    const [showUpdateForm, setShowUpdateForm] = useState(false);
     const router = useRouter();
-    const { id } = router.query || { id: "7" };
+    const { id } = router.query || { id: "16" };
     const { tokens } = useContext(AuthContext)
+    const [tempToken, setTempToken] = useState({})
 
     const fetcher = async (url, token, method = 'GET', body = null) => {
         const options = {
@@ -26,7 +27,6 @@ export default function IdeaDetail() {
         };
 
         const res = await fetch(url, options);
-
         if (!res.ok) {
             const error = await res.text();
             return Promise.reject(error || 'Failed to fetch');
@@ -36,13 +36,14 @@ export default function IdeaDetail() {
     };
 
     const handleDelete = async () => {
-        const token = /*tokens.access ||*/ 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1Mjg3OTc2LCJpYXQiOjE3MjUyODc2NzYsImp0aSI6ImRkZmYyZmQwYjliMDRiNGY4MzkzMTNkNGU3ODMwMzRhIiwidXNlcl9pZCI6Mn0.VDVfVjlbtjBZqNV5m7v-DeggN5m7GsXt-jebqLhurFA';
+        const token = tempToken.access;
         try {
             if (!id) throw new Error("ID not available for deletion");
 
-            await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token, "DELETE");
+            const ll = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token, "DELETE");
+            alert(ll)
+
             alert('Idea deleted successfully');
-            router.push('/'); // Redirect after deletion
         } catch (error) {
             console.error('Error deleting idea:', error);
             alert('Failed to delete idea');
@@ -50,17 +51,18 @@ export default function IdeaDetail() {
     };
 
     const handleUpdate = async (updatedData) => {
-        const token = /*tokens.access ||*/ 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1Mjg3OTc2LCJpYXQiOjE3MjUyODc2NzYsImp0aSI6ImRkZmYyZmQwYjliMDRiNGY4MzkzMTNkNGU3ODMwMzRhIiwidXNlcl9pZCI6Mn0.VDVfVjlbtjBZqNV5m7v-DeggN5m7GsXt-jebqLhurFA';
+        const token = tempToken.access;
         try {
-            await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token, 'PATCH', updatedData);
+            const updatedIdea = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token, 'PATCH', updatedData);
+            setIdea(updatedIdea);  // Update the idea state with the new data
             alert('Idea updated successfully');
-            setShowUpdateForm(false); // Hide the form after successful update
-            mutate(`http://127.0.0.1:8000/idea/${id}/`); // Revalidate the idea data
+            setShowUpdateForm(false);
         } catch (error) {
             console.error('Error updating idea:', error);
             alert('Failed to update idea');
         }
     };
+
 
     const UpdateIdeaForm = ({ idea, onUpdate }) => {
         const [formData, setFormData] = useState({
@@ -159,22 +161,24 @@ export default function IdeaDetail() {
     };
 
     useEffect(() => {
+        const temp = JSON.parse(localStorage.getItem('tokens'));
+        setTempToken(temp);
+
         const fetchIdea = async () => {
             if (!id) return;
 
-            const token = /*tokens.access ||*/ 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1Mjg5MjEyLCJpYXQiOjE3MjUyODg5MTIsImp0aSI6ImJmZTgyNzdjMjI1MjQ2MmQ4MzNlYzBhMmNkZWEwMTEwIiwidXNlcl9pZCI6Mn0.rJWn9juI2CA5qTBdGScwSYCS2HtDvxy7jLyB2BplfjY';
+            const token = temp.access;
 
             try {
                 const data = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token);
                 setIdea(data);
-
+                
                 const relatedData = await fetcher('http://127.0.0.1:8000/idea/', token);
                 const filteredRelated = relatedData
                     .filter(currentIdea => currentIdea.category === data.category && currentIdea.id !== data.id);
 
                 setRelatedCat(filteredRelated.slice(0, 3));
 
-                // Trigger revalidation of the idea data
                 mutate(`http://127.0.0.1:8000/idea/${id}/`);
             } catch (error) {
                 console.error('Error fetching idea:', error);
@@ -184,12 +188,11 @@ export default function IdeaDetail() {
         };
 
         fetchIdea();
-    }, [id]); // Ensure the effect depends on the `id`
+    }, [id, tempToken.access]);
 
     if (loading) {
         return <div>Loading...</div>;
     }
-
     if (!idea) {
         return <div>Idea not found.</div>;
     }
@@ -206,50 +209,73 @@ export default function IdeaDetail() {
                     <p>Cost: {idea.cost}</p>
                     <p>Location: {idea.location}</p>
                     <p>Expenses: {idea.expenses}</p>
-
-                    <button
-                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                        onClick={handleDelete}
-                    >
-                        Delete Idea
-                    </button>
-                    <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
-                        onClick={() => setShowUpdateForm(true)} // Show the form when clicked
-                    >
-                        Update Idea
-                    </button>
                 </div>
 
-                {/* Related Ideas Section */}
-                <div className="mt-8">
-                    <h2 className="text-2xl font-bold">Related Ideas</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                        {relatedCat.map((relatedIdea, index) => (
-                            <div key={index} className="p-4 border rounded-lg shadow">
-                                <p><strong>Name:</strong> {relatedIdea.name}</p>
-                                <p><strong>id field for test:</strong> {relatedIdea.id}</p>
-                                <p><strong>Description:</strong> {relatedIdea.description}</p>
-                                <p><strong>Category:</strong> {relatedIdea.category}</p>
-                                <p><strong>Owner:</strong> {relatedIdea.owner}</p>
-                                <p><strong>Cost:</strong> ${relatedIdea.cost}</p>
-                                <p><strong>Location:</strong> {relatedIdea.location}</p>
-                                <p><strong>Expenses:</strong> ${relatedIdea.expenses}</p>
-                                <p><strong>Date:</strong> {relatedIdea.date}</p>
-                            </div>
-                        ))}
-                    </div>
-                    </div>
-                </div>
-
-                {/* Show Update Form */}
-                {showUpdateForm && (
-                    <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                        <UpdateIdeaForm idea={idea} onUpdate={handleUpdate} />
-                    </div>
-                )}
-
-                <Footer />
+                {/* Right Section */}
+                {tempToken.user.id == idea.owner ? (
+                    <>
+                        <button
+                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                            onClick={async () => {
+                                const token = tempToken.access || '';
+                                try {
+                                    await fetch(`http://127.0.0.1:8000/idea/${id}/`, {
+                                        method: 'DELETE',
+                                        headers: {
+                                            "Authorization": `Bearer ${token}`,
+                                            "Content-Type": "application/json",
+                                        },
+                                    });
+                                    alert('Idea deleted successfully');
+                                    router.push('/');
+                                } catch (error) {
+                                    console.error('Error deleting idea:', error);
+                                    alert('Failed to delete idea');
+                                }
+                            }}
+                        >
+                            Delete Idea
+                        </button>
+                        <button
+                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
+                            onClick={() => setShowUpdateForm(true)} // Show the form when clicked
+                        >
+                            Update Idea
+                        </button>
+                    </>
+                ) : null}
             </div>
-            );
+            {/* Related Ideas Section */}
+            <div className="mt-8">
+                <h2 className="text-2xl font-bold">Related Ideas</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    {relatedCat.map((relatedIdea, index) => (
+                        <div key={index} className="p-4 border rounded-lg shadow">
+                            <p><strong>Name:</strong> {relatedIdea.name}</p>
+                            <p><strong>id field for test:</strong> {relatedIdea.id}</p>
+                            <p><strong>Description:</strong> {relatedIdea.description}</p>
+                            <p><strong>Category:</strong> {relatedIdea.category}</p>
+                            <p><strong>Owner:</strong> {relatedIdea.owner}</p>
+                            <p><strong>Cost:</strong> ${relatedIdea.cost}</p>
+                            <p><strong>Location:</strong> {relatedIdea.location}</p>
+                            <p><strong>Expenses:</strong> ${relatedIdea.expenses}</p>
+                            <p><strong>Date:</strong> {relatedIdea.date}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {/* Update Idea Form */}
+            {
+                showUpdateForm && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
+                        <div className="bg-white p-6 rounded-lg shadow-lg">
+                            <UpdateIdeaForm idea={idea} onUpdate={handleUpdate} />
+                        </div>
+                    </div>
+                )
+            }
+
+            <Footer />
+        </div >
+    );
 }
