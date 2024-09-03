@@ -13,11 +13,11 @@ export default function Footer() {
             alt="logo"
           />
           <ul className="list-none p-0">
-            <li className="py-1"><i class="fa-brands fa-square-facebook"></i></li>
-            <li className="py-1"><i class="fa-brands fa-square-github"></i></li>
-            <li className="py-1"><i class="fa-brands fa-discord"></i></li>
-            <li className="py-1"><i class="fa-brands fa-linkedin"></i></li>
-            <li className="py-1"><i class="fa-brands fa-bluesky"></i></li>
+            <li className="py-1"><i className="fa-brands fa-square-facebook"></i></li>
+            <li className="py-1"><i className="fa-brands fa-square-github"></i></li>
+            <li className="py-1"><i className="fa-brands fa-discord"></i></li>
+            <li className="py-1"><i className="fa-brands fa-linkedin"></i></li>
+            <li className="py-1"><i className="fa-brands fa-bluesky"></i></li>
           </ul>
         </div>
       </footer>

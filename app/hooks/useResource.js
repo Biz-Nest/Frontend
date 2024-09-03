@@ -1,30 +1,11 @@
 import { useContext, useCallback } from "react";
-import { AuthContext } from "../context/Auth";
-import useSWR from "swr";
+
 import { useToast } from "@chakra-ui/react";
+import { AuthContext } from "../context/Auth";
 
-export default function useResource() {
+export default function useResource(baseUrl) {
   const { tokens } = useContext(AuthContext);
-
   const toast = useToast();
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
-
-  const fetchResource = useCallback(
-    async (url) => {
-      if (!tokens) return;
-      try {
-        const res = await fetch(url, config());
-        if (!res.ok) throw new Error("Failed to fetch resource");
-        const resJSON = await res.json();
-        return resJSON;
-      } catch (err) {
-        handleError(err);
-      }
-    },
-    [tokens]
-  );
-
-  const { data, error, mutate } = useSWR(tokens ? apiUrl : null, fetchResource);
 
   const config = useCallback(
     () => ({
@@ -46,7 +27,6 @@ export default function useResource() {
         duration: 5000,
         isClosable: true,
       });
-      // Optionally: logout();
     },
     [toast]
   );
@@ -64,28 +44,8 @@ export default function useResource() {
     [toast]
   );
 
-  const deleteResource = useCallback(
-    async (id,url) => {
-      try {
-        const url = `${url}/${id}/`;
-        const options = config();
-        options.method = "DELETE";
-
-        const res = await fetch(url, options);
-        if (!res.ok) throw new Error("Failed to delete resource");
-
-        mutate();
-        handleSuccess("Resource deleted successfully.");
-      } catch (err) {
-        handleError(err);
-      }
-    },
-    [config, mutate, handleSuccess, handleError]
-  );
-
   const createResource = useCallback(
-    async (url, data) => {
-     
+    async (data) => {
       if (!tokens) {
         console.error("Tokens are undefined, cannot create resource.");
         return;
@@ -95,12 +55,18 @@ export default function useResource() {
         options.method = "POST";
         options.body = JSON.stringify(data);
 
-        const res = await fetch(url, options);
+        const res = await fetch(baseUrl, options);
         console.log("Response status:", res.status);
+        const responseBody = await res.text();
+        console.log("Response body:", responseBody);
 
         if (!res.ok) {
-          const errorDetails = await res.json();
-          throw new Error(`Failed to create resource: ${errorDetails.message}`);
+          if (res.headers.get("content-type")?.includes("application/json")) {
+            const errorDetails = JSON.parse(responseBody);
+            throw new Error(`Failed to create resource: ${errorDetails.message}`);
+          } else {
+            throw new Error("Failed to create resource: Unexpected response format");
+          }
         }
 
         handleSuccess("Resource created successfully.");
@@ -109,35 +75,13 @@ export default function useResource() {
         handleError(err);
       }
     },
-    [tokens, handleError, handleSuccess]
+    [baseUrl, tokens, config, handleError, handleSuccess]
   );
 
-  const updateResource = useCallback(
-    async (data,url) => {
-      if (!tokens) return;
-      try {
-        const url = `${url}/${data.id}/`;
-        const options = config();
-        options.method = "PATCH";
-        options.body = JSON.stringify(data);
-
-        const res = await fetch(url, options);
-        if (!res.ok) throw new Error("Failed to update resource");
-
-        mutate();
-        handleSuccess("Resource updated successfully.");
-      } catch (err) {
-        handleError(err);
-      }
-    },
-    [ config, mutate, handleSuccess, handleError, tokens]
-  );
+  // Similar methods for `updateResource`, `deleteResource`, etc., can be added here.
 
   return {
-    resource: data,
-    deleteResource,
     createResource,
-    updateResource,
-    loading: !!tokens && !error && !data,
+    // Add other methods like `updateResource`, `deleteResource`, etc.
   };
 }

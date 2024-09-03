@@ -1,20 +1,17 @@
 'use client';
-import { useEffect, useState, useContext } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import useSWR, { mutate } from 'swr';
-import Header from '@/app/components/Header/Header';
-import Footer from '@/app/components/Footer/Footer';
-import { AuthContext } from '@/app/context/Auth';
 
 export default function IdeaDetail() {
     const [idea, setIdea] = useState(null);
     const [relatedCat, setRelatedCat] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
+    const [tokens, setTokens] = useState(null); // State to hold tokens
     const router = useRouter();
-    const { id } = router.query || { id: "16" };
-    const { tokens } = useContext(AuthContext)
-    const [tempToken, setTempToken] = useState({})
+    const searchParams = useSearchParams();
+    const id = searchParams.get('id'); // Get the ID from query parameters
 
     const fetcher = async (url, token, method = 'GET', body = null) => {
         const options = {
@@ -36,22 +33,25 @@ export default function IdeaDetail() {
     };
 
     const handleDelete = async () => {
-        const token = tempToken.access;
+        if (!tokens || !tokens.access) {
+           
+            return;
+        }
+
         try {
             if (!id) throw new Error("ID not available for deletion");
 
-            const ll = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token, "DELETE");
-            alert(ll)
-
-            alert('Idea deleted successfully');
+            await fetcher(`http://127.0.0.1:8000/idea/${id}/`, tokens.access, "DELETE");
+         
+            router.push('/routes/Ideas'); // Redirect to another page after deletion
         } catch (error) {
             console.error('Error deleting idea:', error);
-            alert('Failed to delete idea');
+           
         }
     };
 
     const handleUpdate = async (updatedData) => {
-        const token = tempToken.access;
+        const token = tokens.access;
         try {
             const updatedIdea = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token, 'PATCH', updatedData);
             setIdea(updatedIdea);  // Update the idea state with the new data
@@ -62,7 +62,6 @@ export default function IdeaDetail() {
             alert('Failed to update idea');
         }
     };
-
 
     const UpdateIdeaForm = ({ idea, onUpdate }) => {
         const [formData, setFormData] = useState({
@@ -84,7 +83,7 @@ export default function IdeaDetail() {
 
         const handleSubmit = async (e) => {
             e.preventDefault();
-            onUpdate(formData);
+            await onUpdate(formData); // Ensure that the update is awaited
         };
 
         return (
@@ -161,25 +160,23 @@ export default function IdeaDetail() {
     };
 
     useEffect(() => {
-        const temp = JSON.parse(localStorage.getItem('tokens'));
-        setTempToken(temp);
+        // Load tokens from localStorage
+        const storedTokens = JSON.parse(localStorage.getItem('tokens'));
+        setTokens(storedTokens);
 
         const fetchIdea = async () => {
-            if (!id) return;
-
-            const token = temp.access;
+            if (!id || !storedTokens || !storedTokens.access) return;
 
             try {
-                const data = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token);
+                const data = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, storedTokens.access);
                 setIdea(data);
-                
-                const relatedData = await fetcher('http://127.0.0.1:8000/idea/', token);
+
+                const relatedData = await fetcher('http://127.0.0.1:8000/idea/', storedTokens.access);
                 const filteredRelated = relatedData
                     .filter(currentIdea => currentIdea.category === data.category && currentIdea.id !== data.id);
 
                 setRelatedCat(filteredRelated.slice(0, 3));
-
-                mutate(`http://127.0.0.1:8000/idea/${id}/`);
+                mutate(`http://127.0.0.1:8000/idea/${id}/`); // Revalidate data after fetching
             } catch (error) {
                 console.error('Error fetching idea:', error);
             } finally {
@@ -188,7 +185,7 @@ export default function IdeaDetail() {
         };
 
         fetchIdea();
-    }, [id, tempToken.access]);
+    }, [id]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -199,7 +196,6 @@ export default function IdeaDetail() {
 
     return (
         <div>
-            <Header />
             <div className="rounded-xl overflow-hidden flex shadow hover:shadow-md bg-white cursor-pointer">
                 {/* Left Section */}
                 <div className="flex-1 p-8 text-text1 flex flex-col justify-between">
@@ -212,12 +208,12 @@ export default function IdeaDetail() {
                 </div>
 
                 {/* Right Section */}
-                {tempToken.user.id == idea.owner ? (
+                {tokens && tokens.user && tokens.user.id === idea.owner ? (
                     <>
                         <button
                             className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                             onClick={async () => {
-                                const token = tempToken.access || '';
+                                const token = tokens.access || '';
                                 try {
                                     await fetch(`http://127.0.0.1:8000/idea/${id}/`, {
                                         method: 'DELETE',
@@ -226,11 +222,11 @@ export default function IdeaDetail() {
                                             "Content-Type": "application/json",
                                         },
                                     });
-                                    alert('Idea deleted successfully');
-                                    router.push('/');
+                                   alert('Deleted ')
+                                    router.push('/routes/Ideas/');
                                 } catch (error) {
                                     console.error('Error deleting idea:', error);
-                                    alert('Failed to delete idea');
+                                    
                                 }
                             }}
                         >
@@ -238,7 +234,10 @@ export default function IdeaDetail() {
                         </button>
                         <button
                             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
-                            onClick={() => setShowUpdateForm(true)} // Show the form when clicked
+                            onClick={() => {
+                                setShowUpdateForm(true);
+                                
+                            }}
                         >
                             Update Idea
                         </button>
@@ -265,17 +264,13 @@ export default function IdeaDetail() {
                 </div>
             </div>
             {/* Update Idea Form */}
-            {
-                showUpdateForm && (
-                    <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
-                        <div className="bg-white p-6 rounded-lg shadow-lg">
-                            <UpdateIdeaForm idea={idea} onUpdate={handleUpdate} />
-                        </div>
+            {showUpdateForm && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <UpdateIdeaForm idea={idea} onUpdate={handleUpdate} />
                     </div>
-                )
-            }
-
-            <Footer />
-        </div >
+                </div>
+            )}
+        </div>
     );
 }

@@ -5,7 +5,8 @@ import React, { useContext, useState } from 'react';
 
 function AddIdea() {
     const { tokens } = useContext(AuthContext);
-    const { createResource } = useResource();
+    const baseUrl = 'http://localhost:8000/idea/';
+    const { createResource } = useResource(baseUrl);
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -22,6 +23,7 @@ function AddIdea() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+    
         const data = {
             owner: tokens.user.id,
             name: formData.name,
@@ -29,10 +31,10 @@ function AddIdea() {
             category: formData.category,
             cost: formData.cost,
             location: formData.location,
-            expenses: formData.expenses
+            expenses: formData.expenses,
         };
-        const url = 'http://localhost:8000/idea/';
-        createResource(url, data, tokens);
+    
+        createResource(data);
     };
 
     if (!tokens) {
@@ -61,7 +63,7 @@ function AddIdea() {
                         Add New Idea
                     </h1>
                     <p className="mb-6 text-center text-gray-600 md:text-left">
-                        Let's make something cool
+                        Lets make something cool
                     </p>
                     <h2 className="mb-4 text-xl font-semibold text-center text-gray-800 md:text-left">
                         Get started by adding your idea

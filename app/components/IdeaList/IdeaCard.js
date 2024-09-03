@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import useSWR, { mutate } from 'swr';
 import { AuthContext } from '@/app/context/Auth';
+import { useRouter } from 'next/navigation';
 
 // Fetcher function for SWR
 const fetcher = (url, token) =>
@@ -16,6 +17,7 @@ const IdeaCard = ({ idea }) => {
     const { tokens } = useContext(AuthContext);
     const [isAnimating, setIsAnimating] = useState(false);
     const [liked, setLiked] = useState(false); // Track if idea is liked
+    const router = useRouter(); // Initialize useRouter
 
     // Fetch likes without token
     const { data: likes, error } = useSWR(
@@ -79,7 +81,10 @@ const IdeaCard = ({ idea }) => {
                     ❤️
                 </button>
             )}
-            <a className="" >
+            <a
+                onClick={() => router.push(`/routes/idea?id=${idea.id}`)} // Use query parameter to navigate
+                className="text-blue-500 hover:underline cursor-pointer"
+            >
                 More Details
             </a>
         </div>
