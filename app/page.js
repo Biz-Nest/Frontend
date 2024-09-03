@@ -6,7 +6,7 @@ import HomePage from "./components/HomePage/HomePage";
 import LoginPage from "./components/Authantication/Login";
 import GabMarket from "./components/GabMarket/GabMarket";
 import AddIdea from "./components/addIdea/addIdea";
-
+import ProductCard from "./components/CardT/CardT";
 
 
 export default function Home() {
@@ -14,6 +14,7 @@ export default function Home() {
     <>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <Header />
+    <ProductCard />
     <Footer />
     </>
   );
