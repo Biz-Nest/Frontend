@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import useSWR, { mutate } from 'swr';
+
 
 export default function IdeaDetail() {
     const [idea, setIdea] = useState(null);
@@ -87,7 +87,7 @@ export default function IdeaDetail() {
         };
 
         return (
-            <form onSubmit={handleSubmit} className="bg-gray-200 p-4 rounded shadow-md">
+            <form onSubmit={handleSubmit} className="p-4 bg-gray-200 rounded shadow-md">
                 <div>
                     <label>Name</label>
                     <input
@@ -152,7 +152,7 @@ export default function IdeaDetail() {
                         className="w-full p-2 mt-2 mb-4"
                     />
                 </div>
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                <button type="submit" className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
                     Update Idea
                 </button>
             </form>
@@ -176,7 +176,7 @@ export default function IdeaDetail() {
                     .filter(currentIdea => currentIdea.category === data.category && currentIdea.id !== data.id);
 
                 setRelatedCat(filteredRelated.slice(0, 3));
-                mutate(`http://127.0.0.1:8000/idea/${id}/`); // Revalidate data after fetching
+                
             } catch (error) {
                 console.error('Error fetching idea:', error);
             } finally {
@@ -196,9 +196,9 @@ export default function IdeaDetail() {
 
     return (
         <div>
-            <div className="rounded-xl overflow-hidden flex shadow hover:shadow-md bg-white cursor-pointer">
+            <div className="flex overflow-hidden bg-white shadow cursor-pointer rounded-xl hover:shadow-md">
                 {/* Left Section */}
-                <div className="flex-1 p-8 text-text1 flex flex-col justify-between">
+                <div className="flex flex-col justify-between flex-1 p-8 text-text1">
                     <p className="text-[22px] font-bold text-gray-900">Name: {idea.name}</p>
                     <p>Description: {idea.description}</p>
                     <p>Category: {idea.category}</p>
@@ -211,7 +211,7 @@ export default function IdeaDetail() {
                 {tokens && tokens.user && tokens.user.id === idea.owner ? (
                     <>
                         <button
-                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                            className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
                             onClick={async () => {
                                 const token = tokens.access || '';
                                 try {
@@ -233,7 +233,7 @@ export default function IdeaDetail() {
                             Delete Idea
                         </button>
                         <button
-                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
+                            className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600"
                             onClick={() => {
                                 setShowUpdateForm(true);
                                 
@@ -247,7 +247,7 @@ export default function IdeaDetail() {
             {/* Related Ideas Section */}
             <div className="mt-8">
                 <h2 className="text-2xl font-bold">Related Ideas</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
                     {relatedCat.map((relatedIdea, index) => (
                         <div key={index} className="p-4 border rounded-lg shadow">
                             <p><strong>Name:</strong> {relatedIdea.name}</p>
@@ -266,7 +266,7 @@ export default function IdeaDetail() {
             {/* Update Idea Form */}
             {showUpdateForm && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <div className="p-6 bg-white rounded-lg shadow-lg">
                         <UpdateIdeaForm idea={idea} onUpdate={handleUpdate} />
                     </div>
                 </div>

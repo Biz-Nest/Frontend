@@ -68,11 +68,11 @@ const IdeaCard = ({ idea }) => {
     };
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-6 m-4 max-w-sm relative">
-            <h3 className="text-xl font-bold mb-2">{idea.name}</h3>
-            <p className="text-gray-600 mb-2"><strong>Category:</strong> {idea.category}</p>
-            <p className="text-gray-600 mb-2"><strong>Cost:</strong> ${idea.cost}</p>
-            <p className="text-gray-600 mb-2"><strong>Location:</strong> {idea.location}</p>
+        <div className="relative max-w-sm p-6 m-4 bg-white rounded-lg shadow-md">
+            <h3 className="mb-2 text-xl font-bold">{idea.name}</h3>
+            <p className="mb-2 text-gray-600"><strong>Category:</strong> {idea.category}</p>
+            <p className="mb-2 text-gray-600"><strong>Cost:</strong> ${idea.cost}</p>
+            <p className="mb-2 text-gray-600"><strong>Location:</strong> {idea.location}</p>
             {!liked && tokens && (
                 <button 
                     onClick={likeIdea} 
@@ -83,7 +83,7 @@ const IdeaCard = ({ idea }) => {
             )}
             <a
                 onClick={() => router.push(`/routes/idea?id=${idea.id}`)} // Use query parameter to navigate
-                className="text-blue-500 hover:underline cursor-pointer"
+                className="text-blue-500 cursor-pointer hover:underline"
             >
                 More Details
             </a>

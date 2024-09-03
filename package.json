@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "github:fortawesome/react-fontawesome",
     "@react-three/drei": "^9.111.5",
     "@react-three/fiber": "^8.17.6",
     "axios": "^1.7.7",
