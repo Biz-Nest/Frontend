@@ -1,58 +1,106 @@
 'use client';
-import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import { AuthContext } from "@/app/context/Auth";
+import React, { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
+import useSWR, { mutate } from 'swr';
+import { AuthContext } from '@/app/context/Auth';
+import { useRouter } from 'next/navigation';  // Added import for navigation
+
+// Fetcher function for SWR
+const fetcher = (url, token) =>
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token ? `Bearer ${token}` : undefined,
+    },
+  }).then((res) => res.json());
 
 function GabMarketList() {
-  const { tokens } = useContext(AuthContext);
   const [reports, setReports] = useState([]);
-  const [error, setError] = useState(null);
-  const baseUrl = "http://localhost:8000/reports/";
+  const { tokens } = useContext(AuthContext);
+  const [likedReports, setLikedReports] = useState({});
+  const router = useRouter();  // Initialize router
 
+  // Fetch reports
   useEffect(() => {
     const fetchReports = async () => {
-      if (!tokens || !tokens.access) {
-        console.error("No access token available");
-        setError("No access token available");
-        return;
-      }
       try {
-        const response = await axios.get(baseUrl, {
+        const response = await axios.get('http://localhost:8000/reports/', {
           headers: {
-            Authorization: `Bearer ${tokens.access}`,
+            'Content-Type': 'application/json',
           },
         });
 
         if (Array.isArray(response.data)) {
           setReports(response.data);
         } else {
-          console.error("Unexpected data format:", response.data);
-          setError("Unexpected data format");
+          console.error('Unexpected data format:', response.data);
           setReports([]);
         }
       } catch (error) {
-        console.error("Error fetching reports:", error);
-        setError("Error fetching reports");
+        console.error('Error fetching reports:', error);
         setReports([]);
       }
     };
 
     fetchReports();
-  }, [tokens]);
+  }, []);
 
-  if (!tokens || !tokens.access) {
+  // Fetch likes without token
+  const { data: likes, error } = useSWR(
+    'http://127.0.0.1:8000/like/',
+    (url) => fetcher(url, null)
+  );
+
+  // Update likedReports state when likes data is available
+  useEffect(() => {
+    if (likes) {
+      const updatedLikedReports = {};
+      reports.forEach((report) => {
+        const userLiked = likes.some((like) => like.object_id === report.id);
+        updatedLikedReports[report.id] = userLiked;
+      });
+      setLikedReports(updatedLikedReports);
+    }
+  }, [likes, reports]);
+
+  const likeReport = async (reportId) => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/like/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${tokens?.access}`,
+        },
+        body: JSON.stringify({
+          "user": tokens.user.id,  // Use tokens to get the user ID
+          "content_type": 10,  // Replace with the actual content type ID for Report
+          "object_id": reportId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to like the report');
+      }
+
+      // Revalidate the SWR cache for likes
+      mutate('http://127.0.0.1:8000/like/');
+    } catch (error) {
+      console.error('Error liking report:', error);
+    }
+  };
+
+  if (!reports) {
     return <div>Loading...</div>;
   }
 
   if (error) {
     return <div>{error}</div>;
   }
-  console.log(reports);
-  
 
   return (
     <div>
-      {/* intro Section */}
+      {/* Intro Section */}
       <div className="bg-black">
         <section
           id="features"
@@ -80,15 +128,15 @@ function GabMarketList() {
         {reports.length > 0 ? (
           reports.map((report) => (
             <div
-              key={report.id} // Using report ID as a key
+              key={report.id}
               className="p-8 text-center border rounded-md shadow border-neutral-800 bg-neutral-900/50"
             >
               <div
                 className="flex items-center justify-center w-12 h-12 mx-auto border rounded-md button-text"
                 style={{
                   backgroundImage:
-                    "linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)",
-                  borderColor: "rgb(93, 79, 240)",
+                    'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)',
+                  borderColor: 'rgb(93, 79, 240)',
                 }}
               >
                 <svg
@@ -111,10 +159,25 @@ function GabMarketList() {
                 </svg>
               </div>
               <h3 className="mt-6 text-gray-400">Title: {report.title}</h3>
-              {/* Display report title */}
               <p className="my-4 mb-0 font-normal leading-relaxed tracking-wide text-gray-400">
                 Description: {report.description}
               </p>
+              {!likedReports[report.id] && tokens && (
+                <button
+                  onClick={() => likeReport(report.id)}
+                  className="px-4 py-2 mt-4 font-semibold "
+                >
+                  ❤️ 
+                </button>
+              )}
+              <a
+                onClick={() =>
+                  router.push(`/routes/MarketGabDetails?id=${report.id}`)
+                }
+                className="text-blue-500 cursor-pointer hover:underline"
+              >
+                More Details
+              </a>
             </div>
           ))
         ) : (

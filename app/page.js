@@ -6,6 +6,7 @@ import HomePage from "./components/HomePage/HomePage";
 import LoginPage from "./components/Authantication/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/Auth";
+import { DragCards } from "./components/cards/DragCards";
 
 export default function Home() {
   const { tokens } = useContext(AuthContext);
@@ -18,6 +19,7 @@ export default function Home() {
         crossOrigin="anonymous" 
         referrerPolicy="no-referrer" 
       />
+      <DragCards />
       {tokens ? <HomePage /> : <LoginPage />}
     </>
   );
