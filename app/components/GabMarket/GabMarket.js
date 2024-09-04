@@ -33,7 +33,7 @@ export default function GabMarket() {
     setIsSubmitting(true);
 
     const data = {
-      owner: tokens.user.id, // Hardcoded owner ID
+      owner: tokens.user.id, 
       title: formData.title, // Include the title field
       description: formData.description,
       reasons: formData.reasons,

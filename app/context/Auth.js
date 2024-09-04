@@ -40,7 +40,7 @@ export default function AuthProvider({ children }) {
     async function register(userinfo) {
         setLoading(true);
         try {
-            const url = process.env.NEXT_PUBLIC_REGISTER_URL || "http://localhost:8000/account/api/register/";
+            const url = process.env.NEXT_PUBLIC_REGISTER_URL || "http://localhost:8001/account/api/register/";
             const res = await axios.post(url, userinfo);
             const tokens = res.data;
             // setGlobalState((prevState) => ({

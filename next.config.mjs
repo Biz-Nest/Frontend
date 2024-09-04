@@ -3,7 +3,7 @@
 
 export default {
     images: {
-      domains: ['localhost'],
+      domains: ['localhost', 'i.imgur.com'],
     },
   };
   
