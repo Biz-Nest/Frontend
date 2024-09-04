@@ -19,7 +19,7 @@ export default function Home() {
         crossOrigin="anonymous" 
         referrerPolicy="no-referrer" 
       />
-      <DragCards />
+      
       {tokens ? <HomePage /> : <LoginPage />}
     </>
   );

@@ -96,11 +96,11 @@ export default function DashProducts({ tokens }) {
     if (userProducts.length === 0) {
         return (
             <div className="container">
-                <div className="p-8 bg-gray-100 flex flex-col items-center justify-center min-h-screen">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-6">You don&apos;t have any products yet.</h1>
+                <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-gray-100">
+                    <h1 className="mb-6 text-3xl font-bold text-gray-900">You don&apos;t have any products yet.</h1>
                     <button
-                        onClick={() => router.push('/create-product')}
-                        className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+                        onClick={() => router.push('/routes/CreateProduct')}
+                        className="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600"
                     >
                         Add Product
                     </button>
@@ -112,12 +112,12 @@ export default function DashProducts({ tokens }) {
     return (
         <div className="container">
             <div className="p-8 bg-gray-100">
-                <h1 className="text-3xl font-bold text-gray-900 mb-6">Your Products</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <h1 className="mb-6 text-3xl font-bold text-gray-900">Your Products</h1>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {userProducts.map((product) => (
                         <div
                             key={product.id}
-                            className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 cursor-pointer hover:bg-gray-50 transition duration-300"
+                            className="p-6 transition duration-300 bg-white border border-gray-200 rounded-lg shadow-lg cursor-pointer hover:bg-gray-50"
                             onClick={() => handleProductClick(product)}
                         >
                             {product.product_image && (
@@ -126,27 +126,27 @@ export default function DashProducts({ tokens }) {
                                     height={200}
                                     src={product.product_image}
                                     alt={`${product.name} image`}
-                                    className="w-full h-48 object-cover mb-4"
+                                    className="object-cover w-full h-48 mb-4"
                                 />
                             )}
-                            <h2 className="text-2xl font-bold text-gray-800 mb-2">{product.name}</h2>
-                            <p className="text-gray-600 mb-2">Price: ${parseFloat(product.price).toFixed(2)}</p>
-                            <p className="text-gray-600 mb-4">Description: {product.description || "No description available"}</p>
+                            <h2 className="mb-2 text-2xl font-bold text-gray-800">{product.name}</h2>
+                            <p className="mb-2 text-gray-600">Price: ${parseFloat(product.price).toFixed(2)}</p>
+                            <p className="mb-4 text-gray-600">Description: {product.description || "No description available"}</p>
                         </div>
                     ))}
                 </div>
             </div>
 
             {isPopupOpen && selectedProduct && (
-                <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full relative">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div className="relative w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
                         <button
                             onClick={handleClosePopup}
-                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition duration-300"
+                            className="absolute text-gray-500 transition duration-300 top-2 right-2 hover:text-gray-700"
                         >
                             <i className="fas fa-times"></i>
                         </button>
-                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Edit Product</h2>
+                        <h2 className="mb-4 text-2xl font-bold text-gray-800">Edit Product</h2>
                         <div className="mb-4">
                             {selectedProduct.product_image && (
                                 <Image
@@ -154,7 +154,7 @@ export default function DashProducts({ tokens }) {
                                     height={200}
                                     src={selectedProduct.product_image}
                                     alt={`${selectedProduct.name} image`}
-                                    className="w-full h-48 object-cover mb-4"
+                                    className="object-cover w-full h-48 mb-4"
                                 />
                             )}
                             <div className="space-y-4">
@@ -164,7 +164,7 @@ export default function DashProducts({ tokens }) {
                                         type="text"
                                         value={selectedProduct.name}
                                         onChange={(e) => setSelectedProduct({ ...selectedProduct, name: e.target.value })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 <div>
@@ -173,7 +173,7 @@ export default function DashProducts({ tokens }) {
                                         type="number"
                                         value={selectedProduct.price}
                                         onChange={(e) => setSelectedProduct({ ...selectedProduct, price: e.target.value })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 <div>
@@ -181,7 +181,7 @@ export default function DashProducts({ tokens }) {
                                     <textarea
                                         value={selectedProduct.description}
                                         onChange={(e) => setSelectedProduct({ ...selectedProduct, description: e.target.value })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 <div>
@@ -189,7 +189,7 @@ export default function DashProducts({ tokens }) {
                                     <input
                                         type="file"
                                         onChange={(e) => setFile(e.target.files[0])}
-                                        className="mt-1 block w-full"
+                                        className="block w-full mt-1"
                                     />
                                 </div>
                             </div>
@@ -197,13 +197,13 @@ export default function DashProducts({ tokens }) {
                         <div className="flex justify-end space-x-4">
                             <button
                                 onClick={handleDelete}
-                                className="bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-red-600 transition duration-300"
+                                className="px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg shadow-lg hover:bg-red-600"
                             >
                                 Delete
                             </button>
                             <button
                                 onClick={handleUpdate}
-                                className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+                                className="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600"
                             >
                                 Update
                             </button>
