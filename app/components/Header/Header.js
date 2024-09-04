@@ -89,7 +89,7 @@ export default function Header() {
               } z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`}
               id="user-dropdown"
             >
-              <div className="px-4 py-3">
+              <div className="px-4 py-3 cursor-default">
                 <span className="block text-sm text-gray-900 dark:text-white">
                   {!tokens ? 'Guest': tokens.user.username}
                 </span>
@@ -167,7 +167,7 @@ export default function Header() {
             id="navbar-user"
           >
             <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
+              <li className="text-[18px]">
                 <Link
                   href="/"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -175,7 +175,7 @@ export default function Header() {
                   Home
                 </Link>
               </li>
-              <li>
+              <li className="text-[18px]">
                 <Link
                   href="/routes/about"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -183,7 +183,7 @@ export default function Header() {
                   About
                 </Link>
               </li>
-              <li>
+              <li className="text-[18px]">
                 <Link
                   href="/routes/Ideas"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -191,7 +191,7 @@ export default function Header() {
                   Ideas
                 </Link>
               </li>
-              <li>
+              <li className="text-[18px]">
                 <Link
                   href="/routes/"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -199,7 +199,7 @@ export default function Header() {
                   Stores
                 </Link>
               </li>
-              <li>
+              <li className="text-[18px]">
                 <Link
                   href="/contact"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"

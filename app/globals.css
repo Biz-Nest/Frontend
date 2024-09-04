@@ -145,8 +145,8 @@
   margin: 0;
   font-size: 35px;
 
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-weight: bold;
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold; */
   
   color: #333;
   padding-bottom: 10px;
@@ -186,3 +186,21 @@
 }
 
 /* End Main Title */
+
+
+
+
+/* Start Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Sevillana&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&family=Sevillana&display=swap');
+
+  /* font-family: "Sevillana", cursive !important; */
+  /* font-weight: 400; */
+  /* font-family: "Playwrite CU", cursive !important; */
+
+
+
+
+/* End Fonts */

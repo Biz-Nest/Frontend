@@ -71,20 +71,22 @@ export default function GabMarket() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-pink-100">
-      <div className="flex flex-col md:flex-row items-stretch bg-white rounded-3xl shadow-lg max-w-4xl w-full">
-        <div className="md:w-1/2 w-full bg-blue-200 p-8 rounded-3xl flex flex-col justify-center">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2 text-center md:text-left">
+    <div className="flex items-center justify-center min-h-screen dark:bg-gray-800">
+      <div className="flex flex-col items-stretch w-full max-w-4xl bg-white md:rounded-[90px] overflow-hidden shadow-lg md:flex-row border-[1px] border-[solid] border-[#c1c8e4]">
+        {/* Left Column */}
+        <div className="flex flex-col justify-center w-full p-8 md:w-1/2 bg-[linear-gradient(to_right,_#6190e8,_#83a0d0)] dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
+          <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
             Get Started
           </h1>
-          <p className="text-gray-600 mb-6 text-center md:text-left">
+          <p className="text-white text-xl font-semibold text-center md:text-left">
             Lets make something cool
           </p>
-          <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center md:text-left">
+          <h2 className="text-white text-xl font-semibold text-center md:text-left">
             Get started with a free quotation
           </h2>
         </div>
 
+        {/* Right Column */}
         <div className="md:w-1/2 w-full p-8">
           <form className="w-full" onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -159,22 +161,9 @@ export default function GabMarket() {
               />
             </div>
 
-            <div className="mb-6">
-              <label className="inline-flex items-center text-gray-700">
-                <input
-                  type="checkbox"
-                  className="form-checkbox"
-                  name="termsAccepted"
-                  checked={formData.termsAccepted}
-                  onChange={handleChange}
-                />
-                <span className="ml-2">I accept the Terms of Service</span>
-              </label>
-            </div>
-
             <button
               type="submit"
-              className={`w-full bg-gradient-to-r from-blue-100 to-pink-100 text-black font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 
+              className={`w-full px-4 py-2 font-semibold text-white rounded-[90px] bg-[linear-gradient(to_right,_#6190e8,_#83a0d0)] hover:hover:bg-[linear-gradient(_135deg,_#b2c3f5_0%,_#c0e0f5_25%,_#a8d5f9_50%,_#d1d9f1_75%,_#c3b8f1_100%)] focus:outline-none focus:ring focus:ring-blue-200 
               ${
                 isSubmitting
                   ? "animate-bounce"
