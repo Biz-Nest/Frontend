@@ -1,11 +1,10 @@
 "use client";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import About from "./components/About/About";
+
 import HomePage from "./components/HomePage/HomePage";
 import LoginPage from "./components/Authantication/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/Auth";
+
 
 export default function Home() {
   const { tokens } = useContext(AuthContext);
@@ -18,6 +17,7 @@ export default function Home() {
         crossOrigin="anonymous" 
         referrerPolicy="no-referrer" 
       />
+    
       {tokens ? <HomePage /> : <LoginPage />}
     </>
   );
