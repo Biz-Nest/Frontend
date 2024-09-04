@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    reactStrictMode: true,
+// next.config.mjs
+
+export default {
     images: {
-      domains: ['i.imgur.com'], // Add any other domains you need here
+      domains: ['localhost', 'i.imgur.com'],
     },
   };
-  
-  export default nextConfig;
   

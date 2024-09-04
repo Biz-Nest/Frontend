@@ -6,8 +6,8 @@ import HomePage from "./components/HomePage/HomePage";
 import LoginPage from "./components/Authantication/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/Auth";
-import AddStoreForm from "./components/Store/Store";
-import StoreList from "./components/StoreList/StoreList";
+import { DragCards } from "./components/cards/DragCards";
+
 export default function Home() {
   const { tokens } = useContext(AuthContext);
   return (
@@ -19,10 +19,8 @@ export default function Home() {
         crossOrigin="anonymous" 
         referrerPolicy="no-referrer" 
       />
-      {/* < /> */}
-      <StoreList />
-      <LoginPage /> 
-      {!tokens ? <LoginPage /> : <AddStoreForm />}
+      <DragCards />
+      {tokens ? <HomePage /> : <LoginPage />}
     </>
   );
 }
