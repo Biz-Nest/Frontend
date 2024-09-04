@@ -13,7 +13,7 @@ function StoreList() {
   useEffect(() => {
     const fetchStores = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8001/store/", {
+        const response = await fetch("http://127.0.0.1:8000/store/", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${tokens.access}`,
@@ -40,16 +40,14 @@ function StoreList() {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+ 
 
   return (
     <>
       <section className="bg-gradient-to-r from-pink-100 via-purple100 to-blue-100 dark:bg-gray-900">
         <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
           <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
               Discover the Best Local Stores with Us
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
@@ -61,7 +59,7 @@ function StoreList() {
             <div>
               <Link
                 href="#stores-section"
-                className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 bg-gray-200 rounded-lg shadow-md transform transition-transform hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
+                className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 transition-transform transform bg-gray-200 rounded-lg shadow-md hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
               >
                 Explore Our Local Stores
               </Link>
@@ -69,8 +67,8 @@ function StoreList() {
             <br />
             <div>
               <Link
-                href="/routes/store"
-                className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 bg-gray-300 rounded-lg shadow-md transform transition-transform hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
+                href="/routes/CreateStore/"
+                className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 transition-transform transform bg-gray-300 rounded-lg shadow-md hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
               >
                 Add Your Own Store
               </Link>
@@ -88,16 +86,16 @@ function StoreList() {
         id="stores-section"
         className="flex items-center justify-center min-h-screen bg-gradient-to-r from-pink-100 via-purple100 to-blue-100"
       >
-        <div className="store-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-center p-4">
+        <div className="grid items-center justify-center grid-cols-1 gap-6 p-4 store-list sm:grid-cols-2 lg:grid-cols-4">
           {stores.map((store) => (
             <div
               key={store.id}
               className="block rounded-lg bg-white shadow-lg hover:shadow-xl dark:bg-surface-dark overflow-hidden h-[500px] flex flex-col"
             >
               <div className="relative">
-                <Link href={`/routes/store/${store.id}`}>
+                <Link href={`/routes/product?id=${store.id}`}>
                 <img
-                  className="w-full h-72 object-cover"
+                  className="object-cover w-full h-72"
                   src={
                     store.logo ||
                     "https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
@@ -108,20 +106,20 @@ function StoreList() {
                 />
                 </Link>
               </div>
-              <div className="p-6 text-surface dark:text-white flex-1">
+              <div className="flex-1 p-6 text-surface dark:text-white">
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-2xl font-bold">{store.name}</h2>
                   </div>
-                  <div className="bg-gray-100 text-gray-900 rounded-full px-3 py-1 text-xs font-semibold">
+                  <div className="px-3 py-1 text-xs font-semibold text-gray-900 bg-gray-100 rounded-full">
                     {store.views}
                   </div>
                 </div>
-                <div className="text-gray-700 text-base mt-4 max-h-14 overflow-y-auto">
+                <div className="mt-4 overflow-y-auto text-base text-gray-700 max-h-14">
                   {store.description}
                 </div>
               </div>
-              <div className="px-6 pt-4 pb-6 flex justify-between">
+              <div className="flex justify-between px-6 pt-4 pb-6">
                 {store.social_links?.facebook && (
                   <a
                     href={store.social_links.facebook}

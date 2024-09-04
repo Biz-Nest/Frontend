@@ -27,7 +27,7 @@ function AddProduct() {
                         Authorization: `Bearer ${tokens.access}`,
                     },
                 });
-                const userStores = response.data.filter(store => store.id === tokens.user.id);
+                const userStores = response.data.filter(store => store.owner === tokens.user.id);
                 setStores(userStores);
             } catch (error) {
                 console.error('Error fetching stores:', error);
