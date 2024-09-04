@@ -1,30 +1,10 @@
 import { useContext, useCallback } from "react";
-import { AuthContext } from "../context/Auth";
-import useSWR from "swr";
 import { useToast } from "@chakra-ui/react";
+import { AuthContext } from "../context/Auth";
 
-export default function useResource() {
-    const { tokens } = useContext(AuthContext);
- 
+export default function useResource(baseUrl) {
+  const { tokens } = useContext(AuthContext);
   const toast = useToast();
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/`;
-
-  const fetchResource = useCallback(
-    async (url) => {
-      if (!tokens) return;
-      try {
-        const res = await fetch(url, config());
-        if (!res.ok) throw new Error("Failed to fetch resource");
-        const resJSON = await res.json();
-        return resJSON;
-      } catch (err) {
-        handleError(err);
-      }
-    },
-    [tokens]
-  );
-
-  const { data, error, mutate } = useSWR(tokens ? apiUrl : null, fetchResource);
 
   const config = useCallback(
     () => ({
@@ -46,7 +26,6 @@ export default function useResource() {
         duration: 5000,
         isClosable: true,
       });
-      // Optionally: logout();
     },
     [toast]
   );
@@ -64,80 +43,153 @@ export default function useResource() {
     [toast]
   );
 
-  const deleteResource = useCallback(
-    async (id) => {
+  const createResource = useCallback(
+    async (data) => {
+      if (!tokens) {
+        console.error("Tokens are undefined, cannot create resource.");
+        return;
+      }
       try {
-        const url = `${apiUrl}${id}`;
         const options = config();
-        options.method = "DELETE";
+        options.method = "POST";
+        options.body = JSON.stringify(data);
 
-        const res = await fetch(url, options);
-        if (!res.ok) throw new Error("Failed to delete resource");
+        const res = await fetch(baseUrl, options);
+        const responseBody = await res.text();
 
-        mutate();
-        handleSuccess("Resource deleted successfully.");
+        if (!res.ok) {
+          if (res.headers.get("content-type")?.includes("application/json")) {
+            const errorDetails = JSON.parse(responseBody);
+            throw new Error(`Failed to create resource: ${errorDetails.message}`);
+          } else {
+            throw new Error("Failed to create resource: Unexpected response format");
+          }
+        }
+
+        handleSuccess("Resource created successfully.");
       } catch (err) {
         handleError(err);
       }
     },
-    [apiUrl, config, mutate, handleSuccess, handleError]
+    [baseUrl, tokens, config, handleError, handleSuccess]
   );
 
-  const createResource = useCallback(
-    async (url, data) => {  // Removed tokens from parameters
-        if (!tokens) {
-            console.error("Tokens are undefined, cannot create resource.");
-            return;
-        }
-        try {
-            const options = config();
-            options.method = "POST";
-            options.body = JSON.stringify(data);
-
-            const res = await fetch(url, options);
-            console.log("Response status:", res.status);
-
-            if (!res.ok) {
-                const errorDetails = await res.json();
-                throw new Error(`Failed to create resource: ${errorDetails.message}`);
-            }
-
-            handleSuccess("Resource created successfully.");
-        } catch (err) {
-            console.error("Error creating resource:", err);
-            handleError(err);
-        }
-    },
-    [tokens, handleError, handleSuccess]
-);
-
-
   const updateResource = useCallback(
-    async (data) => {
-      if (!tokens) return;
+    async (id, data) => {
+      if (!tokens) {
+        console.error("Tokens are undefined, cannot update resource.");
+        return;
+      }
       try {
-        const url = `${apiUrl}${data.id}`;
         const options = config();
         options.method = "PUT";
         options.body = JSON.stringify(data);
 
-        const res = await fetch(url, options);
-        if (!res.ok) throw new Error("Failed to update resource");
+        const res = await fetch(`${baseUrl}/${id}`, options);
+        const responseBody = await res.text();
 
-        mutate();
+        if (!res.ok) {
+          if (res.headers.get("content-type")?.includes("application/json")) {
+            const errorDetails = JSON.parse(responseBody);
+            throw new Error(`Failed to update resource: ${errorDetails.message}`);
+          } else {
+            throw new Error("Failed to update resource: Unexpected response format");
+          }
+        }
+
         handleSuccess("Resource updated successfully.");
       } catch (err) {
         handleError(err);
       }
     },
-    [apiUrl, config, mutate, handleSuccess, handleError, tokens]
+    [baseUrl, tokens, config, handleError, handleSuccess]
+  );
+
+  const deleteResource = useCallback(
+    async (id) => {
+      if (!tokens) {
+        console.error("Tokens are undefined, cannot delete resource.");
+        return;
+      }
+      try {
+        const options = config();
+        options.method = "DELETE";
+
+        const res = await fetch(`${baseUrl}/${id}`, options);
+        const responseBody = await res.text();
+
+        if (!res.ok) {
+          if (res.headers.get("content-type")?.includes("application/json")) {
+            const errorDetails = JSON.parse(responseBody);
+            throw new Error(`Failed to delete resource: ${errorDetails.message}`);
+          } else {
+            throw new Error("Failed to delete resource: Unexpected response format");
+          }
+        }
+
+        handleSuccess("Resource deleted successfully.");
+      } catch (err) {
+        handleError(err);
+      }
+    },
+    [baseUrl, tokens, config, handleError, handleSuccess]
+  );
+
+  const getResource = useCallback(
+    async (id) => {
+      if (!tokens) {
+        console.error("Tokens are undefined, cannot retrieve resource.");
+        return;
+      }
+      try {
+        const options = config();
+        options.method = "GET";
+
+        const res = await fetch(`${baseUrl}/${id}`, options);
+        const responseBody = await res.json();
+
+        if (!res.ok) {
+          throw new Error(`Failed to retrieve resource: ${responseBody.message}`);
+        }
+
+        return responseBody;
+      } catch (err) {
+        handleError(err);
+      }
+    },
+    [baseUrl, tokens, config, handleError]
+  );
+
+  const listResources = useCallback(
+    async () => {
+      if (!tokens) {
+        console.error("Tokens are undefined, cannot list resources.");
+        return;
+      }
+      try {
+        const options = config();
+        options.method = "GET";
+
+        const res = await fetch(baseUrl, options);
+        const responseBody = await res.json();
+
+        if (!res.ok) {
+          throw new Error(`Failed to list resources: ${responseBody.message}`);
+        }
+
+        return responseBody;
+      } catch (err) {
+        handleError(err);
+      }
+    },
+    [baseUrl, tokens, config, handleError]
   );
 
   return {
-    resource: data,
-    deleteResource,
     createResource,
     updateResource,
-    loading: !!tokens && !error && !data,
+    deleteResource,
+    getResource,
+    listResources,
   };
 }

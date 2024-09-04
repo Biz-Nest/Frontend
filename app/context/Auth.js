@@ -43,12 +43,11 @@ export default function AuthProvider({ children }) {
             const url = process.env.NEXT_PUBLIC_REGISTER_URL || "http://localhost:8001/account/api/register/";
             const res = await axios.post(url, userinfo);
             const tokens = res.data;
-            localStorage.setItem("tokens", JSON.stringify(tokens));
-            setGlobalState((prevState) => ({
-                ...prevState,
-                tokens,
-                username: userinfo.username,
-            }));
+            // setGlobalState((prevState) => ({
+            //     ...prevState,
+            //     tokens,
+            //     username: userinfo.username,
+            // }));
             toast({
                 title: "Registration Successful",
                 description: "You have successfully registered.",
@@ -56,7 +55,8 @@ export default function AuthProvider({ children }) {
                 duration: 1000,
                 isClosable: true,
             });
-            router.push("/");
+            // Optional: Navigate to another page if needed
+            // router.push("/");
         } catch (error) {
             if (error.response && error.response.status === 400) {
                 toast({
@@ -114,7 +114,7 @@ export default function AuthProvider({ children }) {
             tokens: null,
             username: null,
         }));
-        router.push("/login");
+    router.push('/')
     }
 
     return (

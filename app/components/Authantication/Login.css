@@ -183,6 +183,9 @@ body {
 .toggle-section {
     height: 100%;
     background: linear-gradient(to right, #5c6bc0, #d3aaaa);
+    /* background: linear-gradient(to right, #404c5c, #213046);
+    background: linear-gradient(to right, #404c5c, #213046); */
+    /* background: radial-gradient(circle, rgba(64, 72, 92, 1) 23%, rgba(33, 46, 70, 1) 77%); */
     color: #fff;
     position: relative;
     left: -100%;
