@@ -17,7 +17,7 @@ export default function DashStore({ tokens, onAddStore }) {
         if (data) {
             const filteredStores = data.filter(store => store.owner === tokens.user.id);
             setUserStores(filteredStores);
-            console.log(data[0].logo)
+           
         }
     }, [data, tokens.user.id]);
 
@@ -27,11 +27,11 @@ export default function DashStore({ tokens, onAddStore }) {
     if (!userStores.length) {
         return (
             <div className="container">
-                <div className="p-8 bg-gray-100 flex flex-col items-center justify-center min-h-screen">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-6">You don&apos;t have any stores yet.</h1>
+                <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-gray-100">
+                    <h1 className="mb-6 text-3xl font-bold text-gray-900">You don&apos;t have any stores yet.</h1>
                     <button
                         onClick={() => router.push('/routes/addIdea/')}
-                        className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+                        className="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600"
                     >
                         Add Store
                     </button>
@@ -102,12 +102,12 @@ export default function DashStore({ tokens, onAddStore }) {
     return (
         <div className="container">
             <div className="p-8 bg-gray-100">
-                <h1 className="text-3xl font-bold text-gray-900 mb-6">Your Stores</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <h1 className="mb-6 text-3xl font-bold text-gray-900">Your Stores</h1>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {userStores.map((store) => (
                         <div
                             key={store.id}
-                            className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 cursor-pointer hover:bg-gray-50 transition duration-300"
+                            className="p-6 transition duration-300 bg-white border border-gray-200 rounded-lg shadow-lg cursor-pointer hover:bg-gray-50"
                             onClick={() => handleStoreClick(store)}
                         >
                             <div className="flex flex-col items-center">
@@ -118,21 +118,21 @@ export default function DashStore({ tokens, onAddStore }) {
                                         height={200}
                                         src={store.logo}
                                         alt={`${store.name} logo`}
-                                        className="w-32 h-32 mb-4 rounded-full border border-gray-300"
+                                        className="w-32 h-32 mb-4 border border-gray-300 rounded-full"
                                     />
                                 )}
-                                <h2 className="text-2xl font-bold text-gray-800 mb-2">{store.name}</h2>
-                                <p className="text-gray-600 mb-2">{store.description || "No description available"}</p>
-                                <p className="text-gray-600 mb-4">Views: {store.views}</p>
+                                <h2 className="mb-2 text-2xl font-bold text-gray-800">{store.name}</h2>
+                                <p className="mb-2 text-gray-600">{store.description || "No description available"}</p>
+                                <p className="mb-4 text-gray-600">Views: {store.views}</p>
 
                                 {store.social_links && (
-                                    <div className="flex space-x-4 mt-2">
+                                    <div className="flex mt-2 space-x-4">
                                         {store.social_links.facebook && (
                                             <a
                                                 href={store.social_links.facebook}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-500 hover:text-blue-600 transition duration-300"
+                                                className="text-blue-500 transition duration-300 hover:text-blue-600"
                                             >
                                                 <i className="fab fa-facebook-f"></i>
                                             </a>
@@ -142,7 +142,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                                 href={store.social_links.twitter}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-400 hover:text-blue-500 transition duration-300"
+                                                className="text-blue-400 transition duration-300 hover:text-blue-500"
                                             >
                                                 <i className="fab fa-twitter"></i>
                                             </a>
@@ -152,7 +152,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                                 href={store.social_links.instagram}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-pink-600 hover:text-pink-700 transition duration-300"
+                                                className="text-pink-600 transition duration-300 hover:text-pink-700"
                                             >
                                                 <i className="fab fa-instagram"></i>
                                             </a>
@@ -167,15 +167,15 @@ export default function DashStore({ tokens, onAddStore }) {
 
             {/* Popup Component */}
             {isPopupOpen && selectedStore && (
-                <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full relative">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div className="relative w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
                         <button
                             onClick={handleClosePopup}
-                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition duration-300"
+                            className="absolute text-gray-500 transition duration-300 top-2 right-2 hover:text-gray-700"
                         >
                             <i className="fas fa-times"></i>
                         </button>
-                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Edit Store</h2>
+                        <h2 className="mb-4 text-2xl font-bold text-gray-800">Edit Store</h2>
                         <div className="mb-4">
                             {/* Uncomment to display store logo */}
                             {selectedStore.logo && (
@@ -184,7 +184,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                     height={200}
                                     src={selectedStore.logo}
                                     alt={`${selectedStore.name} logo`}
-                                    className="w-32 h-32 mb-4 rounded-full border border-gray-300"
+                                    className="w-32 h-32 mb-4 border border-gray-300 rounded-full"
                                 />
                             )}
                             <div className="space-y-4">
@@ -194,7 +194,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                         type="text"
                                         value={selectedStore.name}
                                         onChange={(e) => setSelectedStore({ ...selectedStore, name: e.target.value })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 <div>
@@ -202,7 +202,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                     <textarea
                                         value={selectedStore.description}
                                         onChange={(e) => setSelectedStore({ ...selectedStore, description: e.target.value })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 <div>
@@ -212,7 +212,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                         type="number"
                                         value={selectedStore.views}
                                         onChange={(e) => setSelectedStore({ ...selectedStore, views: e.target.value })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 <div>
@@ -220,7 +220,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                     <input
                                         type="file"
                                         onChange={(e) => setFile(e.target.files[0])}
-                                        className="mt-1 block w-full"
+                                        className="block w-full mt-1"
                                     />
                                 </div>
                                 <div>
@@ -235,7 +235,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                                 facebook: e.target.value
                                             }
                                         })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 <div>
@@ -250,7 +250,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                                 twitter: e.target.value
                                             }
                                         })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 <div>
@@ -265,7 +265,7 @@ export default function DashStore({ tokens, onAddStore }) {
                                                 instagram: e.target.value
                                             }
                                         })}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>
                             </div>
@@ -273,13 +273,13 @@ export default function DashStore({ tokens, onAddStore }) {
                         <div className="flex justify-end space-x-4">
                             <button
                                 onClick={handleDelete}
-                                className="bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-red-600 transition duration-300"
+                                className="px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg shadow-lg hover:bg-red-600"
                             >
                                 Delete
                             </button>
                             <button
                                 onClick={handleUpdate}
-                                className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+                                className="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600"
                             >
                                 Update
                             </button>
