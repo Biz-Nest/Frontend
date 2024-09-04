@@ -1,5 +1,7 @@
 nav.header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
 #user-dropdown-parent {
@@ -10,12 +12,46 @@ nav.header {
     position: absolute;
     top: calc(100% + 5px);
     right: 5px;
-    z-index: 100000;
+    z-index: 100000000;
+    cursor: pointer;
 }
 
-#navbar-user ul li {
-    margin-bottom: 5px;
+/* Start Main Header li */
+
+@media(min-width: 767px) {
+    #navbar-user ul li {
+        position: relative;
+    }
+    
+    #navbar-user ul li::before {
+        content: "";
+        position: absolute;
+    
+        bottom: -10px;
+        left: 0;
+        width: 0%;
+        height: 5px;
+        border-radius: 2.5px;
+
+        transition: width 0.3s;
+
+        background-color: rgb(59 130 246);
+    }
+
+    #navbar-user ul li:hover::before {
+        width: 100%;
+    }
+    
 }
+
+
+@media(max-width: 768px) {
+    #navbar-user ul li {
+        margin-bottom: 5px;
+    }
+}
+
+/* End Main Header li */
 
 #dark-toggle {
     font-size: 30px;

@@ -1,13 +1,13 @@
 .about-us {
-  margin-bottom: 300px;
+  margin-bottom: 100px;
 }
 
-.about-us .main-title {
+.about-us .team-members h2.main-title {
   width: fit-content;
   margin: 50px auto;
 }
 
-.about-us h2.main-title span {
+.about-us .team-members h2.main-title span {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -23,8 +23,8 @@
 }
 
 .team-members .container .member {
-  /* background-color: lightgrey; */
-  /* border: 1px solid grey; */
+  z-index: 0;
+
   border-radius: 10px;
   padding: 15px;
 
@@ -57,11 +57,11 @@
 .team-members .container .member .pic {
   min-height: 225px;
   /* background-color: lightpink; */
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 
-  /* animation: rotate 10s linear infinite; */
-  /* transform-origin: center; */
 }
 
 .team-members .container .member .pic img {
@@ -82,11 +82,13 @@
 }
 
 .team-members .container .member .pic .helper {
-  position: absolute;
+  /* position: absolute;
+  left: 50%;
+  top: 50%; */
 
-  /* background-color: lightblue; */
-  width: 185px;
-  height: 185px;
+  position: relative;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
   border: 1px solid var(--color-four);
 
@@ -99,60 +101,125 @@
 
 .team-members .container .member .pic:hover .helper {
   animation: none;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  
-
-
 }
 
 @keyframes rotate {
   from {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 .team-members .container .member .pic .helper i {
   font-size: 25px;
   line-height: 1;
+  transition: color 0.3s;
+}
 
+.team-members .container .member .pic .helper a {
   position: absolute;
 }
 
-.team-members .container .member .pic .helper i.one {
+.team-members .container .member .pic .helper a:hover i {
+  color: goldenrod;
+}
+
+.team-members .container .member .pic .helper a.one {
   bottom: 5px;
   left: 50%;
   transform: translate(-50%, 0);
   color: var(--color-one);
   color: #0a66c2;
 }
-.team-members .container .member .pic .helper i.two {
+.team-members .container .member .pic .helper a.two {
   right: 5px;
   top: 50%;
   transform: translate(0, -50%);
   color: var(--color-two);
   color: #333;
 }
-.team-members .container .member .pic .helper i.three {
+.team-members .container .member .pic .helper a.three {
   top: 5px;
   left: 50%;
   transform: translate(-50%, 0);
   color: var(--color-three);
   color: #1877f2;
 }
-.team-members .container .member .pic .helper i.four {
+.team-members .container .member .pic .helper a.four {
   left: 5px;
   top: 50%;
   transform: translate(0, -50%);
   color: var(--color-four);
   color: #e01563;
 }
+
+/* Start Infinite Line */
+
+.infinite-line .container {
+  mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 0)
+  );
+}
+
+.infinite-line .container .content{
+  display: flex;
+  gap: 20px;
+  user-select: none;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+
+.infinite-line .container .content ul{
+  list-style: none;
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+
+  gap: 20px;
+
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  to{
+      transform: translateX(-100%);
+  }
+}
+
+.infinite-line .container .content.middle ul{
+  animation-direction: reverse;
+}
+
+.infinite-line .container .content:hover ul{
+  animation-play-state: paused;
+}
+
+
+.infinite-line .container .content ul li{
+  background: #fff;
+  color: #000;
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.infinite-line .container .content ul li:hover{
+  cursor: pointer;
+  background: gold;
+  transition: 0.4s;
+}
+
+/* End Infinite Line */
