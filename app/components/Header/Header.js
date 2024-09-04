@@ -9,7 +9,6 @@ import { AuthContext } from "@/app/context/Auth";
 export default function Header() {
   const { isDarktheme, toggleThemeHandler } = useContext(ThemeContext);
   const { tokens, logout } = useContext(AuthContext);
-  console.log(tokens)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -29,7 +28,6 @@ export default function Header() {
   // to handle sign out
   function handleSignOut() {
     logout();
-    console.log("sign out");
   }
 
   return (
