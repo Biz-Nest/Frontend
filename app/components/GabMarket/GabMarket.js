@@ -5,7 +5,7 @@ import useResource from "@/app/hooks/useResource";
 
 export default function GabMarket() {
   const { tokens } = useContext(AuthContext);
-    const baseUrl = 'http://127.0.0.1:8000/reports/';
+    const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/reports/`;
     const { createResource } = useResource(baseUrl);
 
   const [formData, setFormData] = useState({

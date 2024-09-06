@@ -25,7 +25,7 @@ function GabMarketList() {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/reports/', {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reports/`, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -48,7 +48,7 @@ function GabMarketList() {
 
   // Fetch likes without token
   const { data: likes, error } = useSWR(
-    'http://127.0.0.1:8000/like/',
+    `${process.env.NEXT_PUBLIC_API_URL}/like/`,
     (url) => fetcher(url, null)
   );
 
@@ -57,7 +57,7 @@ function GabMarketList() {
     if (likes) {
       const updatedLikedReports = {};
       reports.forEach((report) => {
-        const userLiked = likes.some((like) => like.object_id === report.id);
+        const userLiked = likes.some((like) => like.object_id === report.id && like.user === tokens.user.id);
         updatedLikedReports[report.id] = userLiked;
       });
       setLikedReports(updatedLikedReports);
@@ -66,7 +66,7 @@ function GabMarketList() {
 
   const likeReport = async (reportId) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/like/', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/like/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ function GabMarketList() {
         },
         body: JSON.stringify({
           "user": tokens.user.id,  // Use tokens to get the user ID
-          "content_type": 10,  // Replace with the actual content type ID for Report
+          "content_type": 11,  // Replace with the actual content type ID for Report
           "object_id": reportId,
         }),
       });
@@ -84,7 +84,7 @@ function GabMarketList() {
       }
 
       // Revalidate the SWR cache for likes
-      mutate('http://127.0.0.1:8000/like/');
+      mutate(`${process.env.NEXT_PUBLIC_API_URL}/like/`);
     } catch (error) {
       console.error('Error liking report:', error);
     }

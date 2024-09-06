@@ -34,9 +34,9 @@ export default function StoreDetail() {
         setId(identifier)
         const fetchStore = async () => {
             try {
-                const data = await fetcher(`http://127.0.0.1:8000/store/${id}/`, tokens.access);
+                const data = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}/store/${id}/`, tokens.access);
                 setStore(data)
-                const relatedData = await fetcher('http://127.0.0.1:8000/product/', tokens.access);
+                const relatedData = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}/product/`, tokens.access);
                 const filteredRelated = relatedData
                     .filter(currentIdea => currentIdea.store == id);
                 setProducts(filteredRelated)
@@ -49,20 +49,20 @@ export default function StoreDetail() {
     return (
         <div>
             <section>
-                <div class="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
-                    <div class="absolute inset-0">
-                        <img src={store.logo} alt="Store Logo" class="object-cover object-center w-full h-full" />
-                        <div class="absolute inset-0 bg-black opacity-50"></div>
+                <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
+                    <div className="absolute inset-0">
+                        <img src={store.logo} alt="Store Logo" className="object-cover object-center w-full h-full" />
+                        <div className="absolute inset-0 bg-black opacity-50"></div>
                     </div>
-                    <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
-                        <h1 class="text-5xl font-bold leading-tight mb-4">Welcome to Our Awesome {store.name} store</h1>
-                        <p class="text-lg text-gray-300 mb-8">  {store.description} </p>
-                        <a href="#Projects" class="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Get Started</a>
+                    <div className="relative flex flex-col justify-center items-center h-full text-center">
+                        <h1 className="text-5xl font-bold leading-tight mb-4">Welcome to Our Awesome {store.name} store</h1>
+                        <p className="text-lg text-gray-300 mb-8">  {store.description} </p>
+                        <a href="#Projects" className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Get Started</a>
                     </div>
                 </div>
             </section>
             <section id="Projects"
-                class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+                className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
                 {products.map(product => (
                     <div key={product.id} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                         <a  onClick={() => router.push(`/routes/productDetails?id=${product.id}`)}>

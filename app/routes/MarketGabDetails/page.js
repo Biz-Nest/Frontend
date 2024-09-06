@@ -36,7 +36,7 @@ function MarketGabDetails() {
     if (!id || !tokens || !tokens.access) return;
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/reports/${id}/`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reports/${id}/`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${tokens.access}`,
@@ -70,7 +70,7 @@ function MarketGabDetails() {
 
     try {
       // Fetch all reports
-      const response = await fetch(`http://127.0.0.1:8000/reports/`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reports/`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${tokens.access}`,

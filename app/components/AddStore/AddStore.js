@@ -60,7 +60,7 @@ export default function AddStore() {
     submitData.append("social_links", JSON.stringify(formData.social_links));
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/store/", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store/`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${tokens.access}`,

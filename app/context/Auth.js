@@ -9,7 +9,7 @@ export const AuthContext = createContext();
 export default function AuthProvider({ children }) {
     const router = useRouter();
     const toast = useToast();
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
+    const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
     const [loading, setLoading] = useState(false);
     const [globalState, setGlobalState] = useState({
         tokens: null,
@@ -40,7 +40,8 @@ export default function AuthProvider({ children }) {
     async function register(userinfo) {
         setLoading(true);
         try {
-            const url = process.env.NEXT_PUBLIC_REGISTER_URL || "http://localhost:8001/account/api/register/";
+            console.log('11111111111111111111',process.env.NEXT_PUBLIC_API_URL)
+            const url = `${process.env.NEXT_PUBLIC_API_URL}/account/api/register/` ;
             const res = await axios.post(url, userinfo);
             const tokens = res.data;
             // setGlobalState((prevState) => ({
@@ -75,7 +76,7 @@ export default function AuthProvider({ children }) {
     async function login(userinfo) {
         setLoading(true);
         try {
-            const url = `${baseUrl}token/`;
+            const url = `${process.env.NEXT_PUBLIC_API_URL}/api/token/`;
             const res = await axios.post(url, userinfo);
             const tokens = res.data;
             localStorage.setItem("tokens", JSON.stringify(tokens));

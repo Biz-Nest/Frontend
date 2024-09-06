@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react';
 
 function AddIdea() {
     const { tokens } = useContext(AuthContext);
-    const baseUrl = 'http://localhost:8000/idea/';
+    const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/idea/`;
     const { createResource } = useResource(baseUrl);
     const [formData, setFormData] = useState({
         name: '',

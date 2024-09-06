@@ -17,7 +17,7 @@ const IdeaList = () => {
 
     // Use SWR to fetch ideas
     const { data: ideas, error } = useSWR(
-        'http://127.0.0.1:8000/idea/',  // No need for tokens here
+        `${process.env.NEXT_PUBLIC_API_URL}/idea/`,  // No need for tokens here
         fetcher
     );
 

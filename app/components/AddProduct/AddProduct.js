@@ -7,7 +7,7 @@ import { useToast } from '@chakra-ui/react'; // Import useToast from Chakra UI
 
 function AddProduct() {
     const { tokens } = useContext(AuthContext);
-    const baseUrl = 'http://localhost:8000/product/';
+    const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/product/`;
     const [formData, setFormData] = useState({
         name: '',
         price: '',
@@ -22,7 +22,7 @@ function AddProduct() {
     useEffect(() => {
         const fetchStores = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/store/', {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/store/`, {
                     headers: {
                         Authorization: `Bearer ${tokens.access}`,
                     },
@@ -139,7 +139,7 @@ function AddProduct() {
                         Add New Product
                     </h1>
                     <p className="mb-6 text-center text-gray-600 md:text-left">
-                        Let's add your amazing product.
+                        Let&lsquo;s add your amazing product.
                     </p>
                     <h2 className="mb-4 text-xl font-semibold text-center text-gray-800 md:text-left">
                         Get started by filling out the form
