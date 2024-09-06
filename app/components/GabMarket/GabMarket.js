@@ -2,8 +2,10 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "@/app/context/Auth";
 import useResource from "@/app/hooks/useResource";
+import { useRouter } from "next/navigation";
 
 export default function GabMarket() {
+  const router = useRouter()
   const { tokens } = useContext(AuthContext);
     const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/reports/`;
     const { createResource } = useResource(baseUrl);
@@ -32,7 +34,8 @@ export default function GabMarket() {
     setIsSubmitting(true);
 
     const data = {
-      owner: tokens.user.id, // Hardcoded owner ID
+      owner: tokens.user.id, 
+      title: formData.title, // Include the title field
       description: formData.description,
       reasons: formData.reasons,
       funding_required: formData.funding_required,
@@ -40,35 +43,31 @@ export default function GabMarket() {
       termsAccepted: formData.termsAccepted,
     };
 
-    
     await createResource(data);
 
     setIsSubmitting(false);
     setFormData({
+      title: "", // Reset title field
       description: "",
       reasons: "",
       funding_required: "",
       location: "",
       termsAccepted: false,
     });
+    router.push('/routes/Gab_Market/')
   };
 
+
   if (!tokens) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-pink-100">
-        <div className="flex flex-col items-stretch w-full max-w-4xl bg-white rounded-full shadow-lg md:flex-row">
-          <div className="flex flex-col justify-center w-full p-8 bg-blue-200 rounded-l-full md:w-1/2">
-            <h1 className="mb-2 text-3xl font-bold text-center text-gray-800 md:text-left">
-              Error: No Token Found
-            </h1>
-            <p className="mb-6 text-center text-gray-600 md:text-left">
-              Please log in to add a new idea.
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    toast({
+        title: "Error: Something Went Wrong ",
+        description: "Please log in to add a new product.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "bottom",
+    });
+}
 
   return (
     <div className="flex items-center justify-center min-h-screen dark:bg-gray-800">
@@ -89,6 +88,23 @@ export default function GabMarket() {
         {/* Right Column */}
         <div className="md:w-1/2 w-full p-8">
           <form className="w-full" onSubmit={handleSubmit}>
+          <div className="mb-4">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="title"
+              >
+                Title
+              </label>
+              <input
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+                id="title"
+                name="title"
+                type="text"
+                placeholder="Enter the title"
+                value={formData.title}
+                onChange={handleChange}
+              />
+            </div>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"

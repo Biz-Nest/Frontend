@@ -3,6 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
+import { Spinner } from '@chakra-ui/react';
 
 export default function ProductDetail() {
     const [tokens, setTokens] = useState(null);
@@ -112,7 +113,22 @@ export default function ProductDetail() {
     };
 
     if (loading) {
-        return <div className="text-center py-4">Loading...</div>;
+        return <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+        }}>
+            <Spinner
+                color='red.500'
+                size='xl'
+                style={{
+                    width: '100px',  // Adjust size as needed
+                    height: '100px', // Adjust size as needed
+                    borderWidth: '12px', // Make the spinner thicker
+                }}
+            />
+        </div>;
     }
 
     if (error) {

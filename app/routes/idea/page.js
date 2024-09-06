@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Spinner } from '@chakra-ui/react';
 
 
 export default function IdeaDetail() {
@@ -188,7 +189,22 @@ export default function IdeaDetail() {
     }, [id]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+        }}>
+            <Spinner
+                color='red.500'
+                size='xl'
+                style={{
+                    width: '100px',  // Adjust size as needed
+                    height: '100px', // Adjust size as needed
+                    borderWidth: '12px', // Make the spinner thicker
+                }}
+            />
+        </div>;
     }
     if (!idea) {
         return <div>Idea not found.</div>;

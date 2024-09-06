@@ -1,25 +1,30 @@
-'use client';
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import useSWR, { mutate } from 'swr';
-import { AuthContext } from '@/app/context/Auth';
-import { useRouter } from 'next/navigation';  // Added import for navigation
+"use client";
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import useSWR, { mutate } from "swr";
+import { AuthContext } from "@/app/context/Auth";
+import { useRouter } from "next/navigation"; // Added import for navigation
+import Image from "next/image";
+import "./GabMarketList.css";
+import Link from "next/link";
+import { useToast, Spinner } from "@chakra-ui/react";
 
 // Fetcher function for SWR
 const fetcher = (url, token) =>
   fetch(url, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: token ? `Bearer ${token}` : undefined,
     },
   }).then((res) => res.json());
 
 function GabMarketList() {
+  const toast = useToast();
   const [reports, setReports] = useState([]);
   const { tokens } = useContext(AuthContext);
   const [likedReports, setLikedReports] = useState({});
-  const router = useRouter();  // Initialize router
+  const router = useRouter(); // Initialize router
 
   // Fetch reports
   useEffect(() => {
@@ -27,18 +32,18 @@ function GabMarketList() {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reports/`, {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
 
         if (Array.isArray(response.data)) {
           setReports(response.data);
         } else {
-          console.error('Unexpected data format:', response.data);
+          console.error("Unexpected data format:", response.data);
           setReports([]);
         }
       } catch (error) {
-        console.error('Error fetching reports:', error);
+        console.error("Error fetching reports:", error);
         setReports([]);
       }
     };
@@ -57,7 +62,7 @@ function GabMarketList() {
     if (likes) {
       const updatedLikedReports = {};
       reports.forEach((report) => {
-        const userLiked = likes.some((like) => like.object_id === report.id && like.user === tokens.user.id);
+        const userLiked = likes.some((like) => like.object_id === report.id && like.user === tokens?.user?.id);
         updatedLikedReports[report.id] = userLiked;
       });
       setLikedReports(updatedLikedReports);
@@ -69,7 +74,7 @@ function GabMarketList() {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/like/`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${tokens?.access}`,
         },
         body: JSON.stringify({
@@ -80,18 +85,48 @@ function GabMarketList() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to like the report');
+        throw new Error("Failed to like the report");
       }
 
       // Revalidate the SWR cache for likes
       mutate(`${process.env.NEXT_PUBLIC_API_URL}/like/`);
     } catch (error) {
-      console.error('Error liking report:', error);
+      console.error("Error liking report:", error);
+    }
+  };
+
+  const handleDetailsClick = (reportId) => {
+    if (!tokens) {
+      toast({
+        title: "Please log in",
+        description: "You need to be logged in to view this report's details.",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+        position: "bottom",
+      });
+    } else {
+      router.push(`/routes/MarketGabDetails?id=${reportId}`);
     }
   };
 
   if (!reports) {
-    return <div>Loading...</div>;
+    return <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
+    }}>
+      <Spinner
+        color='red.500'
+        size='xl'
+        style={{
+          width: '100px',  // Adjust size as needed
+          height: '100px', // Adjust size as needed
+          borderWidth: '12px', // Make the spinner thicker
+        }}
+      />
+    </div>;
   }
 
   if (error) {
@@ -99,90 +134,92 @@ function GabMarketList() {
   }
 
   return (
-    <div>
-      {/* Intro Section */}
-      <div className="bg-black">
-        <section
-          id="features"
-          className="relative block px-6 py-10 border-t border-b md:py-20 md:px-10 border-neutral-900 bg-neutral-900/30"
-        >
-          <div className="relative max-w-5xl mx-auto text-center">
-            <span className="flex items-center justify-center my-3 font-medium tracking-wider text-gray-400 uppercase">
-              Why Invest in Our Market
-            </span>
-            <h2 className="block w-full text-3xl font-bold text-transparent bg-gradient-to-b from-white to-gray-400 bg-clip-text sm:text-4xl">
-              Uncover Untapped Opportunities in Your Area
-            </h2>
-            <p className="w-full max-w-xl mx-auto my-4 font-medium leading-relaxed tracking-wide text-center text-gray-400 bg-transparent">
-              Gap Market provides insights into the missing markets in your
-              location, helping you identify lucrative opportunities for
-              investment. Explore our platform to find the gaps and invest where
-              it matters most.
-            </p>
-          </div>
-        </section>
+    <div className="gab-market-section">
+      {/* Start Landing */}
+      <div className="landing relative bg-gradient-to-r from-purple-600 to-blue-600 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/marketgap-sec.jpg"
+            alt="Background Image"
+            className="object-cover object-center w-full h-full"
+            width={1000}
+            height={1000}
+          />
+          <div className="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+
+        <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
+          <p className="text-lg text-gray-300 mb-8">Why Invest in Our Market</p>
+          <h1 className="text-5xl font-bold leading-tight mb-4">
+            Uncover Untapped Opportunities in Your Area
+          </h1>
+          <p className="text-lg text-gray-300 mb-8">
+            Gap Market provides insights into the missing markets in your
+            location, helping you identify lucrative opportunities for
+            investment. Explore our platform to find the gaps and invest where
+            it matters most.
+          </p>
+          <Link
+            className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+            href="#"
+          >
+            Start Exploring
+          </Link>
+        </div>
       </div>
+      {/* End Landing */}
 
       {/* Reports List Section */}
-      <div className="relative z-10 grid grid-cols-1 gap-10 mx-auto mb-32 max-w-7xl pt-14 sm:grid-cols-2 lg:grid-cols-3">
-        {reports.length > 0 ? (
-          reports.map((report) => (
-            <div
-              key={report.id}
-              className="p-8 text-center border rounded-md shadow border-neutral-800 bg-neutral-900/50"
-            >
+      <div className="market-list">
+        <div className="container">
+          {reports.length > 0 ? (
+            reports.map((report) => (
+              // Start Card
               <div
-                className="flex items-center justify-center w-12 h-12 mx-auto border rounded-md button-text"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)',
-                  borderColor: 'rgb(93, 79, 240)',
-                }}
+                className="idea-card dark:!bg-gray-900 dark:!text-white dark:!border-[transparent]"
+                key={report.id}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-color-swatch"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path>
-                  <path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path>
-                  <path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path>
-                  <line x1="17" y1="17" x2="17" y2="17.01"></line>
-                </svg>
+                <i className="ri-store-2-line light dark:after:!bg-[#0b4661]"></i>
+
+                <div className="info">
+                  <p>
+                    <strong>Title: </strong>
+                    {report.title}
+                  </p>
+                  <p>
+                    <strong>Funding: </strong>
+                    {report.funding_required}
+                  </p>
+                  <p>
+                    <strong>Location: </strong>
+                    {report.location}
+                  </p>
+
+                  <span
+                    onClick={() => handleDetailsClick(report.id)} // Use the new handler
+                  >
+                    {" "}
+                    More Details <i className="ri-arrow-right-line"></i>
+                  </span>
+                </div>
+
+                {!tokens ? null : !likedReports[report.id] ? (
+                  <i
+                    className="ri-thumb-up-fill abs"
+                    onClick={() => likeReport(report.id)}
+                  ></i>
+                ) : (
+                  <i
+                    className="ri-thumb-up-line abs"
+                    onClick={() => likeReport(report.id)}
+                  ></i>
+                )}
               </div>
-              <h3 className="mt-6 text-gray-400">Title: {report.title}</h3>
-              <p className="my-4 mb-0 font-normal leading-relaxed tracking-wide text-gray-400">
-                Description: {report.description}
-              </p>
-              {!likedReports[report.id] && tokens && (
-                <button
-                  onClick={() => likeReport(report.id)}
-                  className="px-4 py-2 mt-4 font-semibold "
-                >
-                  ❤️ 
-                </button>
-              )}
-              <a
-                onClick={() =>
-                  router.push(`/routes/MarketGabDetails?id=${report.id}`)
-                }
-                className="text-blue-500 cursor-pointer hover:underline"
-              >
-                More Details
-              </a>
-            </div>
-          ))
-        ) : (
-          <div className="text-gray-400">No reports available</div>
-        )}
+            ))
+          ) : (
+            <div className="text-gray-400">No reports available</div>
+          )}
+        </div>
       </div>
     </div>
   );

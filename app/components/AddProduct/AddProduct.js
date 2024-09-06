@@ -4,8 +4,10 @@ import useResource from '@/app/hooks/useResource';
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'; // Import useToast from Chakra UI
+import { useRouter } from 'next/navigation';
 
 function AddProduct() {
+    const router = useRouter()
     const { tokens } = useContext(AuthContext);
     const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/product/`;
     const [formData, setFormData] = useState({
@@ -111,41 +113,38 @@ function AddProduct() {
         } finally {
             setIsSubmitting(false);
             setFile(null);
+            router.push('/routes/dashboard/')
         }
     };
 
     if (!tokens) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-pink-100">
-                <div className="flex flex-col items-stretch w-full max-w-4xl bg-white rounded-lg shadow-lg md:flex-row">
-                    <div className="flex flex-col justify-center w-full p-8 bg-blue-200 rounded-l-lg md:w-1/2">
-                        <h1 className="mb-2 text-3xl font-bold text-center text-gray-800 md:text-left">
-                            Error: No Token Found
-                        </h1>
-                        <p className="mb-6 text-center text-gray-600 md:text-left">
-                            Please log in to add a new product.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        );
+        toast({
+            title: "Error: Something Went Wrong ",
+            description: "Please log in to add a new product.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "bottom",
+        });
     }
 
+
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-pink-100">
-            <div className="flex flex-col items-stretch w-full max-w-4xl bg-white rounded-lg shadow-lg md:flex-row">
-                <div className="flex flex-col justify-center w-full p-8 bg-blue-200 rounded-l-lg md:w-1/2">
-                    <h1 className="mb-2 text-3xl font-bold text-center text-gray-800 md:text-left">
+        <div className="flex items-center justify-center min-h-screen dark:bg-gray-800">
+            <div className="flex flex-col items-stretch w-full max-w-4xl bg-white md:rounded-[90px] overflow-hidden shadow-lg md:flex-row border-[1px] border-[solid] border-[#c1c8e4]">
+                {/* Left Column */}
+                <div className="flex flex-col justify-center w-full p-8 md:w-1/2 bg-[linear-gradient(to_right,_#6190e8,_#83a0d0)] dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
+                    <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
                         Add New Product
                     </h1>
                     <p className="mb-6 text-center text-gray-600 md:text-left">
                         Let&lsquo;s add your amazing product.
                     </p>
-                    <h2 className="mb-4 text-xl font-semibold text-center text-gray-800 md:text-left">
+                    <h2 className="text-white text-xl font-semibold text-center md:text-left">
                         Get started by filling out the form
                     </h2>
                 </div>
-
+                {/* Right Column */}
                 <div className="w-full p-8 md:w-1/2">
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
@@ -227,7 +226,7 @@ function AddProduct() {
                         </div>
                         <div className="flex items-center justify-center">
                             <button
-                                className={`w-full px-4 py-2 font-semibold text-black rounded-lg bg-gradient-to-r from-blue-100 to-pink-100 hover:from-pink-100 hover:to-blue-100 focus:outline-none focus:ring focus:ring-blue-200 ${
+                                className={`w-full px-4 py-2 font-semibold text-white rounded-[90px] bg-[linear-gradient(to_right,_#6190e8,_#83a0d0)] hover:hover:bg-[linear-gradient(_135deg,_#b2c3f5_0%,_#c0e0f5_25%,_#a8d5f9_50%,_#d1d9f1_75%,_#c3b8f1_100%)] focus:outline-none focus:ring focus:ring-blue-200 ${
                                     isSubmitting ? "animate-bounce" : ""
                                 }`}
                                 type="submit"

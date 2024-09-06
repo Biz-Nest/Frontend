@@ -4,6 +4,7 @@ import DashStore from "@/app/components/dashboard/dash_store";
 import DashIdea from "@/app/components/dashboard/dash_idea";
 import DashProducts from "@/app/components/dashboard/dash_products";
 import DashMarket from "@/app/components/dashboard/dash_market";
+import { Spinner } from "@chakra-ui/react";
 
 export default function Dashboard() {
     const [tokens, setTokens] = useState(null);
@@ -17,7 +18,22 @@ export default function Dashboard() {
     }, []);
 
     if (!tokens) {
-        return <div>Loading...</div>; // Or some other loading state
+        return <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+        }}>
+            <Spinner
+                color='red.500'
+                size='xl'
+                style={{
+                    width: '100px',  // Adjust size as needed
+                    height: '100px', // Adjust size as needed
+                    borderWidth: '12px', // Make the spinner thicker
+                }}
+            />
+        </div>; // Or some other loading state
     }
 
     return (
