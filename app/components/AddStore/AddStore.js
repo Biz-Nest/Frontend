@@ -103,20 +103,21 @@ export default function AddStore() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-pink-100">
-      <div className="flex flex-col items-stretch w-full max-w-4xl bg-white shadow-lg md:flex-row rounded-3xl">
-        <div className="flex flex-col justify-center w-full p-8 bg-blue-200 md:w-1/2 rounded-3xl">
-          <h1 className="mb-2 text-3xl font-bold text-center text-gray-800 md:text-left">
+    <div className="flex items-center justify-center min-h-screen dark:bg-gray-800">
+      <div className="flex flex-col items-stretch w-full max-w-4xl bg-white md:rounded-[90px] overflow-hidden shadow-lg md:flex-row border-[1px] border-[solid] border-[#c1c8e4]">
+        {/* Left Column */}
+        <div className="flex flex-col justify-center w-full p-8 md:w-1/2 bg-[linear-gradient(to_right,_#6190e8,_#83a0d0)] dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
+          <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
             Add Store
           </h1>
-          <p className="mb-6 text-center text-gray-600 md:text-left">
+          <p className="text-white text-xl font-semibold text-center md:text-left">
             Start by providing your store details
           </p>
-          <h2 className="mb-4 text-xl font-semibold text-center text-gray-800 md:text-left">
+          <h2 className="text-white text-xl font-semibold text-center md:text-left">
             Add your store information to get started
           </h2>
         </div>
-
+        {/* Right Column */}
         <div className="w-full p-8 md:w-1/2">
           <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-4">
@@ -198,7 +199,7 @@ export default function AddStore() {
             </div>
             <button
               type="submit"
-              className={`w-full bg-gradient-to-r from-blue-100 to-pink-100 text-black font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 
+              className={`w-full px-4 py-2 font-semibold text-white rounded-[90px] bg-[linear-gradient(to_right,_#6190e8,_#83a0d0)] hover:hover:bg-[linear-gradient(_135deg,_#b2c3f5_0%,_#c0e0f5_25%,_#a8d5f9_50%,_#d1d9f1_75%,_#c3b8f1_100%)] focus:outline-none focus:ring focus:ring-blue-200 
               ${
                 isSubmitting
                   ? "animate-bounce"

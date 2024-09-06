@@ -32,7 +32,8 @@ export default function GabMarket() {
     setIsSubmitting(true);
 
     const data = {
-      owner: tokens.user.id, // Hardcoded owner ID
+      owner: tokens.user.id, 
+      title: formData.title, // Include the title field
       description: formData.description,
       reasons: formData.reasons,
       funding_required: formData.funding_required,
@@ -40,11 +41,11 @@ export default function GabMarket() {
       termsAccepted: formData.termsAccepted,
     };
 
-    
     await createResource(data);
 
     setIsSubmitting(false);
     setFormData({
+      title: "", // Reset title field
       description: "",
       reasons: "",
       funding_required: "",
@@ -52,6 +53,7 @@ export default function GabMarket() {
       termsAccepted: false,
     });
   };
+
 
   if (!tokens) {
     return (
@@ -89,6 +91,23 @@ export default function GabMarket() {
         {/* Right Column */}
         <div className="md:w-1/2 w-full p-8">
           <form className="w-full" onSubmit={handleSubmit}>
+          <div className="mb-4">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="title"
+              >
+                Title
+              </label>
+              <input
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+                id="title"
+                name="title"
+                type="text"
+                placeholder="Enter the title"
+                value={formData.title}
+                onChange={handleChange}
+              />
+            </div>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
