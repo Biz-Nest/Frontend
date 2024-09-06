@@ -42,7 +42,7 @@ const itim = Itim({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`dark:bg-gray-800 ${cairo.className}`}>
+      <body className={`dark:!bg-gray-800 ${cairo.className} `}>
         <ChakraProvider>
           <AuthProvider>
             <ThemeWrapper>

@@ -2,33 +2,35 @@ import "./HomePage.css";
 import Link from "next/link";
 import Image from "next/image";
 // import Head from "next/head";
-import { Itim } from 'next/font/google'
-import { Lemon } from 'next/font/google'
+import { Itim } from "next/font/google";
+import { Lemon } from "next/font/google";
 
 const itim = Itim({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--itim-font'
-})
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--itim-font",
+});
 const lemon = Lemon({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--itim-font'
-})
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--itim-font",
+});
 
 export default function HomePage() {
   return (
     <>
       <div className={`home-page`}>
-
         <div className="landing">
-
           <div className="container">
-            <div className={`info ${lemon.className}`}>Creative & <br />Sophisticated</div>
+            <div className={`info ${lemon.className}`}>
+              Creative & <br />
+              Sophisticated
+            </div>
 
-          <div className="icon"><i class="ri-lightbulb-flash-line"></i></div>
+            <div className="icon">
+              <i class="ri-lightbulb-flash-line"></i>
+            </div>
           </div>
-
         </div>
 
         <div className="routing-section">
@@ -39,9 +41,9 @@ export default function HomePage() {
                   Explore Ideas<span></span>
                 </h2>
                 <p className="dark:!text-[#c1c8e4]">
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+                  Unlock a world of creativity and forward-thinking solutions.
+                  Browse through a collection of groundbreaking ideas designed
+                  to inspire innovation and push boundaries across industries.
                 </p>
                 <Link href="/routes/Ideas">
                   <button className="animated-button">
@@ -65,9 +67,9 @@ export default function HomePage() {
                 </Link>
               </div>
               <Image
-                src="/images/explore_ideas.png"
-                width={100}
-                height={100}
+                src="/images/explore_idea.png"
+                width={1000}
+                height={1000}
                 alt="img"
               />
               <i className="fa-brands fa-wpexplorer one"></i>
@@ -79,9 +81,9 @@ export default function HomePage() {
                   Explore Stores<span></span>
                 </h2>
                 <p className="dark:!text-[#c1c8e4]">
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+                  Discover a diverse array of stores offering tailored products
+                  and services. Explore high-quality solutions that cater to
+                  both personal and professional needs, all in one place.
                 </p>
                 <Link href="/routes/about">
                   <button className="animated-button">
@@ -106,8 +108,8 @@ export default function HomePage() {
               </div>
               <Image
                 src="/images/store.png"
-                width={100}
-                height={100}
+                width={1000}
+                height={1000}
                 alt="img"
               />
               <i className="fa-solid fa-store two"></i>
@@ -119,9 +121,10 @@ export default function HomePage() {
                   New Ideas<span></span>
                 </h2>
                 <p className="dark:!text-[#c1c8e4]">
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+                  Contribute your own innovative ideas to the platform. Share
+                  your unique perspective, collaborate with like-minded
+                  professionals, and help drive progress by submitting new
+                  concepts for others to explore.
                 </p>
                 <Link href="/routes/addIdea">
                   <button className="animated-button">
@@ -146,8 +149,8 @@ export default function HomePage() {
               </div>
               <Image
                 src="/images/new_ideas.png"
-                width={100}
-                height={100}
+                width={1000}
+                height={1000}
                 alt="img"
               />
               <i className="fa-solid fa-lightbulb three"></i>
@@ -159,9 +162,10 @@ export default function HomePage() {
                   Market Gap<span></span>
                 </h2>
                 <p className="dark:!text-[#c1c8e4]">
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-                  lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+                  Identify and bridge gaps in the market by sharing your
+                  observations. Submit insights into unmet needs, emerging
+                  trends, and opportunities for innovation that can lead to
+                  impactful business solutions.
                 </p>
                 <Link href="/routes/MarketGap">
                   <button className="animated-button">
@@ -186,8 +190,8 @@ export default function HomePage() {
               </div>
               <Image
                 src="/images/market_gap.png"
-                width={100}
-                height={100}
+                width={1000}
+                height={1000}
                 alt="img"
               />
               <i className="fa-solid fa-shop-slash four"></i>

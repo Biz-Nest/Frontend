@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import useSWR, { mutate } from "swr";
 import { AuthContext } from "@/app/context/Auth";
+import "./Idea.css";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 // Fetcher function for SWR
 const fetcher = (url, token) =>
@@ -15,6 +18,8 @@ const fetcher = (url, token) =>
 const IdeaCard = ({ idea }) => {
   const { tokens } = useContext(AuthContext);
   const [liked, setLiked] = useState(false); // Track if idea is liked
+
+  const router = useRouter();
 
   // Fetch likes without token
   const { data: likes, error } = useSWR(
@@ -60,31 +65,35 @@ const IdeaCard = ({ idea }) => {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 m-4 max-w-sm relative">
-      <h3 className="text-xl font-bold mb-2">{idea.name}</h3>
-      <p className="text-gray-600 mb-2">
-        <strong>Category:</strong> {idea.category}
-      </p>
-      <p className="text-gray-600 mb-2">
-        <strong>Cost:</strong> ${idea.cost}
-      </p>
-      <p className="text-gray-600 mb-2">
-        <strong>Location:</strong> {idea.location}
-      </p>
+    <div className="idea-card dark:!bg-gray-900 dark:!text-white dark:!border-[transparent]">
+      <i class="ri-lightbulb-flash-line light dark:after:!bg-[#0b4661]"></i>
+
+      <div className="info">
+        <p>
+          <strong>Title:</strong> {idea.name}
+        </p>
+        <p>
+          <strong>Category:</strong> {idea.category}
+        </p>
+        <p>
+          <strong>Cost:</strong> ${idea.cost}
+        </p>
+        <p>
+          <strong>Location:</strong> {idea.location}
+        </p>
+
+        <span onClick={() => router.push(`/routes/idea?id=${idea.id}`)}>
+          More Details <i class="ri-arrow-right-line"></i>
+        </span>
+      </div>
 
       {!tokens ? (
-        ''
+        ""
       ) : !liked ? (
-        <button
-          onClick={likeIdea}
-          className={`absolute top-2 right-2 text-red-500 transform transition-transform`}>
-          heartbeat
-        </button>
+        <i className="ri-thumb-up-fill abs" onClick={likeIdea}></i>
       ) : (
-        <span>Like is clicked</span>
+        <i className="ri-thumb-up-line abs"></i>
       )}
-
-      <a className="">More Details</a>
     </div>
   );
 };
