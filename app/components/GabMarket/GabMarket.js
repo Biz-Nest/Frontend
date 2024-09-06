@@ -2,10 +2,12 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "@/app/context/Auth";
 import useResource from "@/app/hooks/useResource";
+import { useRouter } from "next/navigation";
 
 export default function GabMarket() {
+  const router = useRouter()
   const { tokens } = useContext(AuthContext);
-    const baseUrl = 'http://127.0.0.1:8000/reports/';
+    const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/reports/`;
     const { createResource } = useResource(baseUrl);
 
   const [formData, setFormData] = useState({
@@ -52,25 +54,20 @@ export default function GabMarket() {
       location: "",
       termsAccepted: false,
     });
+    router.push('/routes/Gab_Market/')
   };
 
 
   if (!tokens) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-pink-100">
-        <div className="flex flex-col items-stretch w-full max-w-4xl bg-white rounded-full shadow-lg md:flex-row">
-          <div className="flex flex-col justify-center w-full p-8 bg-blue-200 rounded-l-full md:w-1/2">
-            <h1 className="mb-2 text-3xl font-bold text-center text-gray-800 md:text-left">
-              Error: No Token Found
-            </h1>
-            <p className="mb-6 text-center text-gray-600 md:text-left">
-              Please log in to add a new idea.
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    toast({
+        title: "Error: Something Went Wrong ",
+        description: "Please log in to add a new product.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "bottom",
+    });
+}
 
   return (
     <div className="flex items-center justify-center min-h-screen dark:bg-gray-800">

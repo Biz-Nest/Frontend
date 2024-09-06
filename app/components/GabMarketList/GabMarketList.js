@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"; // Added import for navigation
 import Image from "next/image";
 import "./GabMarketList.css";
 import Link from "next/link";
+import { useToast, Spinner } from "@chakra-ui/react";
 
 // Fetcher function for SWR
 const fetcher = (url, token) =>
@@ -19,6 +20,7 @@ const fetcher = (url, token) =>
   }).then((res) => res.json());
 
 function GabMarketList() {
+  const toast = useToast();
   const [reports, setReports] = useState([]);
   const { tokens } = useContext(AuthContext);
   const [likedReports, setLikedReports] = useState({});
@@ -28,7 +30,7 @@ function GabMarketList() {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/reports/", {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reports/`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -50,8 +52,9 @@ function GabMarketList() {
   }, []);
 
   // Fetch likes without token
-  const { data: likes, error } = useSWR("http://127.0.0.1:8000/like/", (url) =>
-    fetcher(url, null)
+  const { data: likes, error } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/like/`,
+    (url) => fetcher(url, null)
   );
 
   // Update likedReports state when likes data is available
@@ -59,7 +62,7 @@ function GabMarketList() {
     if (likes) {
       const updatedLikedReports = {};
       reports.forEach((report) => {
-        const userLiked = likes.some((like) => like.object_id === report.id);
+        const userLiked = likes.some((like) => like.object_id === report.id && like.user === tokens?.user?.id);
         updatedLikedReports[report.id] = userLiked;
       });
       setLikedReports(updatedLikedReports);
@@ -68,16 +71,16 @@ function GabMarketList() {
 
   const likeReport = async (reportId) => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/like/", {
-        method: "POST",
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/like/`, {
+        method: 'POST',
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${tokens?.access}`,
         },
         body: JSON.stringify({
-          user: tokens.user.id, // Use tokens to get the user ID
-          content_type: 10, // Replace with the actual content type ID for Report
-          object_id: reportId,
+          "user": tokens.user.id,  // Use tokens to get the user ID
+          "content_type": 11,  // Replace with the actual content type ID for Report
+          "object_id": reportId,
         }),
       });
 
@@ -86,14 +89,44 @@ function GabMarketList() {
       }
 
       // Revalidate the SWR cache for likes
-      mutate("http://127.0.0.1:8000/like/");
+      mutate(`${process.env.NEXT_PUBLIC_API_URL}/like/`);
     } catch (error) {
       console.error("Error liking report:", error);
     }
   };
 
+  const handleDetailsClick = (reportId) => {
+    if (!tokens) {
+      toast({
+        title: "Please log in",
+        description: "You need to be logged in to view this report's details.",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+        position: "bottom",
+      });
+    } else {
+      router.push(`/routes/MarketGabDetails?id=${reportId}`);
+    }
+  };
+
   if (!reports) {
-    return <div>Loading...</div>;
+    return <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
+    }}>
+      <Spinner
+        color='red.500'
+        size='xl'
+        style={{
+          width: '100px',  // Adjust size as needed
+          height: '100px', // Adjust size as needed
+          borderWidth: '12px', // Make the spinner thicker
+        }}
+      />
+    </div>;
   }
 
   if (error) {
@@ -103,33 +136,29 @@ function GabMarketList() {
   return (
     <div className="gab-market-section">
       {/* Start Landing */}
-      <div class="landing relative bg-gradient-to-r from-purple-600 to-blue-600 text-white overflow-hidden">
-        <div class="absolute inset-0">
+      <div className="landing relative bg-gradient-to-r from-purple-600 to-blue-600 text-white overflow-hidden">
+        <div className="absolute inset-0">
           <Image
             src="/images/marketgap-sec.jpg"
             alt="Background Image"
-            class="object-cover object-center w-full h-full"
+            className="object-cover object-center w-full h-full"
             width={1000}
             height={1000}
           />
-
-          <div class="absolute inset-0 bg-black opacity-50"></div>
+          <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
 
-        <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
-          <p class="text-lg text-gray-300 mb-8">Why Invest in Our Market</p>
-
-          <h1 class="text-5xl font-bold leading-tight mb-4">
+        <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
+          <p className="text-lg text-gray-300 mb-8">Why Invest in Our Market</p>
+          <h1 className="text-5xl font-bold leading-tight mb-4">
             Uncover Untapped Opportunities in Your Area
           </h1>
-
-          <p class="text-lg text-gray-300 mb-8">
+          <p className="text-lg text-gray-300 mb-8">
             Gap Market provides insights into the missing markets in your
             location, helping you identify lucrative opportunities for
             investment. Explore our platform to find the gaps and invest where
             it matters most.
           </p>
-
           <Link
             className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
             href="#"
@@ -141,10 +170,7 @@ function GabMarketList() {
       {/* End Landing */}
 
       {/* Reports List Section */}
-
-      {/* Start Market List */}
       <div className="market-list">
-        {/* Start Container of ML */}
         <div className="container">
           {reports.length > 0 ? (
             reports.map((report) => (
@@ -153,8 +179,7 @@ function GabMarketList() {
                 className="idea-card dark:!bg-gray-900 dark:!text-white dark:!border-[transparent]"
                 key={report.id}
               >
-                {/* <i class="ri-lightbulb-flash-line light dark:after:!bg-[#0b4661]"></i> */}
-                <i class="ri-store-2-line light dark:after:!bg-[#0b4661]"></i>
+                <i className="ri-store-2-line light dark:after:!bg-[#0b4661]"></i>
 
                 <div className="info">
                   <p>
@@ -171,12 +196,10 @@ function GabMarketList() {
                   </p>
 
                   <span
-                    onClick={() =>
-                      router.push(`/routes/MarketGabDetails?id=${report.id}`)
-                    }
+                    onClick={() => handleDetailsClick(report.id)} // Use the new handler
                   >
                     {" "}
-                    More Details <i class="ri-arrow-right-line"></i>
+                    More Details <i className="ri-arrow-right-line"></i>
                   </span>
                 </div>
 
@@ -197,9 +220,7 @@ function GabMarketList() {
             <div className="text-gray-400">No reports available</div>
           )}
         </div>
-        {/* End Container of ML */}
       </div>
-      {/* End Market List */}
     </div>
   );
 }

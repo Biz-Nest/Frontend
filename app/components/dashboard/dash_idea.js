@@ -8,8 +8,8 @@ export default function DashIdea({ tokens }) {
     const fetcher = (url) => fetch(url).then((response) => response.json());
 
     // Use SWR to fetch ideas and likes data
-    const { data: ideasData, error: ideasError, mutate: mutateIdeas } = useSWR("http://localhost:8000/idea/", fetcher);
-    const { data: likesData, error: likesError } = useSWR("http://localhost:8000/like/", fetcher);
+    const { data: ideasData, error: ideasError, mutate: mutateIdeas } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/idea/`, fetcher);
+    const { data: likesData, error: likesError } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/like/`, fetcher);
 
     const router = useRouter(); // Initialize useRouter
 
@@ -41,7 +41,7 @@ export default function DashIdea({ tokens }) {
     const handleDelete = async () => {
         if (!selectedIdea) return;
         try {
-            await fetch(`http://localhost:8000/idea/${selectedIdea.id}/`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/idea/${selectedIdea.id}/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`,
@@ -69,7 +69,7 @@ export default function DashIdea({ tokens }) {
             formData.append('expenses', selectedIdea.expenses);
             if (file) formData.append('idea_image', file);
 
-            await fetch(`http://localhost:8000/idea/${selectedIdea.id}/`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/idea/${selectedIdea.id}/`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`,
@@ -92,7 +92,7 @@ export default function DashIdea({ tokens }) {
                 <div className="p-8 bg-gray-100 flex flex-col items-center justify-center min-h-screen">
                     <h1 className="text-3xl font-bold text-gray-900 mb-6">You don&apos;t have any ideas yet.</h1>
                     <button
-                        onClick={() => router.push('/create-idea')}
+                        onClick={() => router.push('/routes/addIdea')}
                         className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
                     >
                         Add Idea

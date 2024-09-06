@@ -85,7 +85,7 @@ export default function HomePage() {
                   and services. Explore high-quality solutions that cater to
                   both personal and professional needs, all in one place.
                 </p>
-                <Link href="/routes/about">
+                <Link href="/routes/Store_List/">
                   <button className="animated-button">
                     <svg
                       viewBox="0 0 24 24"

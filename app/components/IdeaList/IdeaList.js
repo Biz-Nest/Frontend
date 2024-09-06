@@ -19,11 +19,11 @@ const fetcher = (url) =>
 const IdeaList = () => {
   const { tokens } = useContext(AuthContext);
 
-  // Use SWR to fetch ideas
-  const { data: ideas, error } = useSWR(
-    "http://127.0.0.1:8000/idea/", // No need for tokens here
-    fetcher
-  );
+    // Use SWR to fetch ideas
+    const { data: ideas, error } = useSWR(
+        `${process.env.NEXT_PUBLIC_API_URL}/idea/`,  // No need for tokens here
+        fetcher
+    );
 
   if (error) return <div>Error loading ideas.</div>;
   if (!ideas)

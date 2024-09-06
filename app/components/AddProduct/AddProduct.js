@@ -4,10 +4,12 @@ import useResource from '@/app/hooks/useResource';
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'; // Import useToast from Chakra UI
+import { useRouter } from 'next/navigation';
 
 function AddProduct() {
+    const router = useRouter()
     const { tokens } = useContext(AuthContext);
-    const baseUrl = 'http://localhost:8000/product/';
+    const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/product/`;
     const [formData, setFormData] = useState({
         name: '',
         price: '',
@@ -22,7 +24,7 @@ function AddProduct() {
     useEffect(() => {
         const fetchStores = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/store/', {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/store/`, {
                     headers: {
                         Authorization: `Bearer ${tokens.access}`,
                     },
@@ -111,25 +113,21 @@ function AddProduct() {
         } finally {
             setIsSubmitting(false);
             setFile(null);
+            router.push('/routes/dashboard/')
         }
     };
 
     if (!tokens) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-pink-100">
-                <div className="flex flex-col items-stretch w-full max-w-4xl bg-white rounded-lg shadow-lg md:flex-row">
-                    <div className="flex flex-col justify-center w-full p-8 bg-blue-200 rounded-l-lg md:w-1/2">
-                        <h1 className="mb-2 text-3xl font-bold text-center text-gray-800 md:text-left">
-                            Error: No Token Found
-                        </h1>
-                        <p className="mb-6 text-center text-gray-600 md:text-left">
-                            Please log in to add a new product.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        );
+        toast({
+            title: "Error: Something Went Wrong ",
+            description: "Please log in to add a new product.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "bottom",
+        });
     }
+
 
     return (
         <div className="flex items-center justify-center min-h-screen dark:bg-gray-800">
@@ -139,8 +137,8 @@ function AddProduct() {
                     <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
                         Add New Product
                     </h1>
-                    <p className="text-white text-xl font-semibold text-center md:text-left">
-                        Let us add your amazing product.
+                    <p className="mb-6 text-center text-gray-600 md:text-left">
+                        Let&lsquo;s add your amazing product.
                     </p>
                     <h2 className="text-white text-xl font-semibold text-center md:text-left">
                         Get started by filling out the form

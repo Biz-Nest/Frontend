@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 export default function DashStore({ tokens, onAddStore }) {
     const fetcher = (url) => fetch(url).then((response) => response.json());
-    const { data, error } = useSWR("http://localhost:8000/store/", fetcher);
+    const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/store/`, fetcher);
     const router = useRouter();
     const [selectedStore, setSelectedStore] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function DashStore({ tokens, onAddStore }) {
                 <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-gray-100">
                     <h1 className="mb-6 text-3xl font-bold text-gray-900">You don&apos;t have any stores yet.</h1>
                     <button
-                        onClick={() => router.push('/routes/addIdea/')}
+                        onClick={() => router.push('/routes/CreateStore/')}
                         className="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600"
                     >
                         Add Store
@@ -54,7 +54,7 @@ export default function DashStore({ tokens, onAddStore }) {
     const handleDelete = async () => {
         if (!selectedStore) return;
         try {
-            await fetch(`http://localhost:8000/store/${selectedStore.id}/`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store/${selectedStore.id}/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`,
@@ -79,7 +79,7 @@ export default function DashStore({ tokens, onAddStore }) {
                 formData.append(`social_links[${key}]`, selectedStore.social_links[key] || '');
             });
 
-            await fetch(`http://localhost:8000/store/${selectedStore.id}/`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store/${selectedStore.id}/`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`,

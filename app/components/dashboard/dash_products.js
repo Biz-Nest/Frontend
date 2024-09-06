@@ -8,10 +8,10 @@ export default function DashProducts({ tokens }) {
     const fetcher = (url) => fetch(url).then((response) => response.json());
 
     // Fetch user's stores
-    const { data: storesData, error: storesError } = useSWR("http://localhost:8000/store/", fetcher);
+    const { data: storesData, error: storesError } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/store/`, fetcher);
 
     // Fetch all products
-    const { data: productsData, error: productsError, mutate } = useSWR("http://localhost:8000/product/", fetcher);
+    const { data: productsData, error: productsError, mutate } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/product/`, fetcher);
 
     const router = useRouter();
 
@@ -47,7 +47,7 @@ export default function DashProducts({ tokens }) {
     const handleDelete = async () => {
         if (!selectedProduct) return;
         try {
-            await fetch(`http://localhost:8000/product/${selectedProduct.id}/`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/${selectedProduct.id}/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`,
@@ -73,7 +73,7 @@ export default function DashProducts({ tokens }) {
             formData.append('description', selectedProduct.description);
             if (file) formData.append('product_image', file);
 
-            await fetch(`http://localhost:8000/product/${selectedProduct.id}/`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/${selectedProduct.id}/`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`,
@@ -111,9 +111,12 @@ export default function DashProducts({ tokens }) {
 
     return (
         <div className="container">
+
             <div className="p-8 bg-gray-100">
                 <h1 className="mb-6 text-3xl font-bold text-gray-900">Your Products</h1>
+                <button onClick={() => router.push('/routes/CreateProduct')} className="p-6 transition duration-300 bg-white border border-gray-200 rounded-lg shadow-lg cursor-pointer hover:bg-gray-50">Add More Products</button>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    
                     {userProducts.map((product) => (
                         <div
                             key={product.id}

@@ -2,11 +2,15 @@
 import { AuthContext } from '@/app/context/Auth';
 import useResource from '@/app/hooks/useResource';
 import React, { useContext, useState } from 'react';
+import { useToast } from '@chakra-ui/react'; // Import useToast
+import { useRouter } from 'next/navigation';
 
 function AddIdea() {
+    const router = useRouter()
     const { tokens } = useContext(AuthContext);
-    const baseUrl = 'http://localhost:8000/idea/';
+    const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/idea/`;
     const { createResource } = useResource(baseUrl);
+    const toast = useToast(); // Initialize toast
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -21,7 +25,7 @@ function AddIdea() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
     
         const data = {
@@ -34,24 +38,50 @@ function AddIdea() {
             expenses: formData.expenses,
         };
     
-        createResource(data);
+        try {
+            await createResource(data);
+
+            // Show toast notification
+            toast({
+                title: "Idea added.",
+                description: "Your idea has been successfully added.",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+            });
+
+            // Clear form after submission
+            setFormData({
+                name: '',
+                description: '',
+                category: 'TECH',
+                cost: '',
+                location: '',
+                expenses: ''
+            });
+            router.push('/routes/Ideas/')
+
+        } catch (error) {
+            // Show error toast in case of failure
+            toast({
+                title: "Error adding idea.",
+                description: "There was an issue adding your idea.",
+                status: "error",
+                duration: 2000,
+                isClosable: true,
+            });
+        }
     };
 
     if (!tokens) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-pink-100">
-                <div className="flex flex-col items-stretch w-full max-w-4xl bg-white rounded-lg shadow-lg md:flex-row">
-                    <div className="flex flex-col justify-center w-full p-8 bg-blue-200 rounded-l-lg md:w-1/2">
-                        <h1 className="mb-2 text-3xl font-bold text-center text-gray-800 md:text-left">
-                            Error: No Token Found
-                        </h1>
-                        <p className="mb-6 text-center text-gray-600 md:text-left">
-                            Please log in to add a new idea.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        );
+        toast({
+            title: "Error: Something Went Wrong ",
+            description: "Please log in to add a new product.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "bottom",
+        });
     }
 
     return (

@@ -111,7 +111,7 @@ export default function Header() {
                     href="/settings"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    Settings
+                    Cart w/logo
                   </Link>
                 </li>
                 <li>
@@ -119,7 +119,7 @@ export default function Header() {
                     href="/earnings"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    Earnings
+                    Liked w/logo
                   </Link>
                 </li>
                 <li>
@@ -127,7 +127,7 @@ export default function Header() {
                     onClick={handleSignOut}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    Sign out
+                    {tokens? 'Sign out':'Sing in'}
                   </a>
                 </li>
               </ul>

@@ -3,6 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
+import { Spinner } from '@chakra-ui/react';
 
 export default function ProductDetail() {
     const [tokens, setTokens] = useState(null);
@@ -34,7 +35,7 @@ export default function ProductDetail() {
         const fetchProduct = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:8000/product/${id}`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/${id}`, {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${tokens.access}`,
@@ -49,7 +50,7 @@ export default function ProductDetail() {
                 const data = await response.json();
                 setProduct(data);
 
-                const storeResponse = await fetch(`http://localhost:8000/store/`, {
+                const storeResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store/`, {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${tokens.access}`,
@@ -79,7 +80,7 @@ export default function ProductDetail() {
         if (!product || !tokens) return;
 
         try {
-            const response = await fetch('http://localhost:8000/cart/', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -112,7 +113,22 @@ export default function ProductDetail() {
     };
 
     if (loading) {
-        return <div className="text-center py-4">Loading...</div>;
+        return <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+        }}>
+            <Spinner
+                color='red.500'
+                size='xl'
+                style={{
+                    width: '100px',  // Adjust size as needed
+                    height: '100px', // Adjust size as needed
+                    borderWidth: '12px', // Make the spinner thicker
+                }}
+            />
+        </div>;
     }
 
     if (error) {

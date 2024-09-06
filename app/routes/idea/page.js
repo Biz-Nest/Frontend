@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Spinner } from '@chakra-ui/react';
 
 
 export default function IdeaDetail() {
@@ -41,7 +42,7 @@ export default function IdeaDetail() {
         try {
             if (!id) throw new Error("ID not available for deletion");
 
-            await fetcher(`http://127.0.0.1:8000/idea/${id}/`, tokens.access, "DELETE");
+            await fetcher(`${process.env.NEXT_PUBLIC_API_URL}/idea/${id}/`, tokens.access, "DELETE");
          
             router.push('/routes/Ideas'); // Redirect to another page after deletion
         } catch (error) {
@@ -53,7 +54,7 @@ export default function IdeaDetail() {
     const handleUpdate = async (updatedData) => {
         const token = tokens.access;
         try {
-            const updatedIdea = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, token, 'PATCH', updatedData);
+            const updatedIdea = await fetcher(`${process.env.NEXT_PUBLIC_REGISTER_URL}/idea/${id}/`, token, 'PATCH', updatedData);
             setIdea(updatedIdea);  // Update the idea state with the new data
             alert('Idea updated successfully');
             setShowUpdateForm(false);
@@ -168,10 +169,10 @@ export default function IdeaDetail() {
             if (!id || !storedTokens || !storedTokens.access) return;
 
             try {
-                const data = await fetcher(`http://127.0.0.1:8000/idea/${id}/`, storedTokens.access);
+                const data = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}/idea/${id}/`, storedTokens.access);
                 setIdea(data);
 
-                const relatedData = await fetcher('http://127.0.0.1:8000/idea/', storedTokens.access);
+                const relatedData = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}/idea/`, storedTokens.access);
                 const filteredRelated = relatedData
                     .filter(currentIdea => currentIdea.category === data.category && currentIdea.id !== data.id);
 
@@ -188,7 +189,22 @@ export default function IdeaDetail() {
     }, [id]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+        }}>
+            <Spinner
+                color='red.500'
+                size='xl'
+                style={{
+                    width: '100px',  // Adjust size as needed
+                    height: '100px', // Adjust size as needed
+                    borderWidth: '12px', // Make the spinner thicker
+                }}
+            />
+        </div>;
     }
     if (!idea) {
         return <div>Idea not found.</div>;
@@ -215,7 +231,7 @@ export default function IdeaDetail() {
                             onClick={async () => {
                                 const token = tokens.access || '';
                                 try {
-                                    await fetch(`http://127.0.0.1:8000/idea/${id}/`, {
+                                    await fetch(`${process.env.NEXT_PUBLIC_REGISTER_URL}/idea/${id}/`, {
                                         method: 'DELETE',
                                         headers: {
                                             "Authorization": `Bearer ${token}`,

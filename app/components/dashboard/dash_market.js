@@ -8,7 +8,7 @@ export default function DashMarket({ tokens }) {
     const fetcher = (url) => fetch(url).then((response) => response.json());
 
     // Fetch reports data
-    const { data: reportsData, error: reportsError, mutate } = useSWR("http://localhost:8000/reports/", fetcher);
+    const { data: reportsData, error: reportsError, mutate } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/reports/`, fetcher);
 
     const router = useRouter();
 
@@ -37,7 +37,7 @@ export default function DashMarket({ tokens }) {
     const handleDelete = async () => {
         if (!selectedReport) return;
         try {
-            await fetch(`http://localhost:8000/reports/${selectedReport.id}/`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reports/${selectedReport.id}/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`,
@@ -65,7 +65,7 @@ export default function DashMarket({ tokens }) {
             formData.append('location', selectedReport.location);
             if (file) formData.append('report_image', file);
 
-            await fetch(`http://localhost:8000/reports/${selectedReport.id}/`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reports/${selectedReport.id}/`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`,
@@ -91,7 +91,7 @@ export default function DashMarket({ tokens }) {
                 <div className="p-8 bg-gray-100 flex flex-col items-center justify-center min-h-screen">
                     <h1 className="text-3xl font-bold text-gray-900 mb-6">You don&apos;t have any reports yet.</h1>
                     <button
-                        onClick={() => router.push('/create-report')}
+                        onClick={() => router.push('/routes/MarketGap')}
                         className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
                     >
                         Add Report

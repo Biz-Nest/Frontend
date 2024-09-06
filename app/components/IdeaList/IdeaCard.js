@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import useSWR, { mutate } from "swr";
 import { AuthContext } from "@/app/context/Auth";
 import "./Idea.css";
-import { Router } from "next/router";
 import { useRouter } from "next/navigation";
+import { useToast } from "@chakra-ui/react"; // Import useToast
 
 // Fetcher function for SWR
 const fetcher = (url, token) =>
@@ -18,33 +18,35 @@ const fetcher = (url, token) =>
 const IdeaCard = ({ idea }) => {
   const { tokens } = useContext(AuthContext);
   const [liked, setLiked] = useState(false); // Track if idea is liked
-
   const router = useRouter();
+  const toast = useToast(); // Initialize toast
 
   // Fetch likes without token
   const { data: likes, error } = useSWR(
-    "http://127.0.0.1:8000/like/", // No token needed here
+    `${process.env.NEXT_PUBLIC_API_URL}/like/`, // No token needed here
     (url) => fetcher(url, null) // Pass null for token
   );
 
-  // Determine if the idea is liked
+  // Determine if the idea is liked by the current user
   useEffect(() => {
-    if (likes) {
-      const userLiked = likes.some((like) => like.object_id === idea.id);
+    if (likes && tokens?.user?.id) {
+      const userLiked = likes.some(
+        (like) => like.object_id === idea.id && like.user === tokens.user.id
+      );
       setLiked(userLiked);
     }
-  }, [likes, idea.id]);
+  }, [likes, idea.id, tokens?.user?.id]);
 
   const likeIdea = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/like/", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/like/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${tokens?.access}`,
         },
         body: JSON.stringify({
-          user: idea.owner, // assuming idea.owner is the user ID
+          user: tokens.user.id, // assuming idea.owner is the user ID
           content_type: 9, // replace with the actual content type ID for Idea
           object_id: idea.id,
         }),
@@ -58,15 +60,30 @@ const IdeaCard = ({ idea }) => {
       setLiked(true);
 
       // Revalidate the SWR cache for likes
-      mutate("http://127.0.0.1:8000/like/");
+      mutate(`${process.env.NEXT_PUBLIC_API_URL}/like/`);
     } catch (error) {
       console.error("Error liking idea:", error);
     }
   };
 
+  const handleLinkClick = () => {
+    if (!tokens) {
+      toast({
+        title: "Please log in",
+        description: "You need to be logged in to view this idea's details.",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+        position: "bottom",
+      });
+    } else {
+      router.push(`/routes/idea?id=${idea.id}`);
+    }
+  };
+
   return (
     <div className="idea-card dark:!bg-gray-900 dark:!text-white dark:!border-[transparent]">
-      <i class="ri-lightbulb-flash-line light dark:after:!bg-[#0b4661]"></i>
+      <i className="ri-lightbulb-flash-line light dark:after:!bg-[#0b4661]"></i>
 
       <div className="info">
         <p>
@@ -82,8 +99,8 @@ const IdeaCard = ({ idea }) => {
           <strong>Location:</strong> {idea.location}
         </p>
 
-        <span onClick={() => router.push(`/routes/idea?id=${idea.id}`)}>
-          More Details <i class="ri-arrow-right-line"></i>
+        <span onClick={handleLinkClick}>
+          More Details <i className="ri-arrow-right-line"></i>
         </span>
       </div>
 
