@@ -5,7 +5,6 @@ import LoginPage from "./components/Authantication/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/Auth";
 
-
 export default function Home() {
   const { tokens } = useContext(AuthContext);
   return (
