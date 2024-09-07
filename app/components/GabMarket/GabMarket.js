@@ -3,12 +3,15 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "@/app/context/Auth";
 import useResource from "@/app/hooks/useResource";
 import { useRouter } from "next/navigation";
+import { useToast } from "@chakra-ui/react";
 
 export default function GabMarket() {
   const router = useRouter()
   const { tokens } = useContext(AuthContext);
     const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/reports/`;
     const { createResource } = useResource(baseUrl);
+
+  const toast = useToast();
 
   const [formData, setFormData] = useState({
     description: "",
@@ -77,16 +80,16 @@ export default function GabMarket() {
           <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
             Get Started
           </h1>
-          <p className="text-white text-xl font-semibold text-center md:text-left">
+          <p className="text-xl font-semibold text-center text-white md:text-left">
             Lets make something cool
           </p>
-          <h2 className="text-white text-xl font-semibold text-center md:text-left">
+          <h2 className="text-xl font-semibold text-center text-white md:text-left">
             Get started with a free quotation
           </h2>
         </div>
 
         {/* Right Column */}
-        <div className="md:w-1/2 w-full p-8">
+        <div className="w-full p-8 md:w-1/2">
           <form className="w-full" onSubmit={handleSubmit}>
           <div className="mb-4">
               <label
@@ -107,13 +110,13 @@ export default function GabMarket() {
             </div>
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block mb-2 text-sm font-bold text-gray-700"
                 htmlFor="description"
               >
                 Description
               </label>
               <textarea
-                className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
                 id="description"
                 name="description"
                 rows="3"
@@ -125,13 +128,13 @@ export default function GabMarket() {
 
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block mb-2 text-sm font-bold text-gray-700"
                 htmlFor="reasons"
               >
                 Reasons
               </label>
               <textarea
-                className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
                 id="reasons"
                 name="reasons"
                 rows="3"
@@ -143,13 +146,13 @@ export default function GabMarket() {
 
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block mb-2 text-sm font-bold text-gray-700"
                 htmlFor="funding_required"
               >
                 Funding Required
               </label>
               <input
-                className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
                 id="funding_required"
                 name="funding_required"
                 type="number"
@@ -161,13 +164,13 @@ export default function GabMarket() {
 
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block mb-2 text-sm font-bold text-gray-700"
                 htmlFor="location"
               >
                 Location
               </label>
               <input
-                className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
                 id="location"
                 name="location"
                 type="text"
