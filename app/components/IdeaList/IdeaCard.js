@@ -98,11 +98,11 @@ const IdeaCard = ({ idea }) => {
         <p>
           <strong>Location:</strong> {idea.location}
         </p>
+      </div>
 
-        <span onClick={handleLinkClick}>
+      <span onClick={handleLinkClick}>
           More Details <i className="ri-arrow-right-line"></i>
         </span>
-      </div>
 
       {!tokens ? (
         ""

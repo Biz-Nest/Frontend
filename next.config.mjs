@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
-// next.config.mjs
-
 export default {
-    images: {
-      domains: ['localhost', 'i.imgur.com'],
-    },
-  };
-  
+  images: {
+    domains: ['backend-iw90.onrender.com', 'i.imgur.com'],
+  },
+};

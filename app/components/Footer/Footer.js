@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="container">
         <Image
             className="h-8 w-auto"
-            src="/images/logo.png"
+            src="/images/logo2.png"
             width={1000}
             height={1000}
             alt="logo"

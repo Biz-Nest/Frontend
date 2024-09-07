@@ -145,7 +145,7 @@ function StoreList() {
             <div>
               <Link
                 href="#stores-section"
-                className="w-[210px] inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 transition-transform transform bg-gray-200 rounded-lg shadow-md hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
+                className="w-[235px] inline-flex items-center justify-center px-4 py-3 text-base font-medium text-center text-gray-900 transition-transform transform bg-gray-200 rounded-lg shadow-md hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
               >
                 Explore Our Local Stores
               </Link>
@@ -155,7 +155,7 @@ function StoreList() {
               <div>
                 <Link
                   href="/login"
-                  className="w-[210px] inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white transition-transform transform bg-blue-500 rounded-lg shadow-md hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
+                  className="w-[235px] mt-[10px] inline-flex items-center justify-center px-4 py-3 text-base font-medium text-center text-white transition-transform transform bg-blue-500 rounded-lg shadow-md hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
                 >
                   Log In to Add Your Own Store
                 </Link>
@@ -166,7 +166,7 @@ function StoreList() {
               <div>
                 <Link
                   href="/routes/CreateStore/"
-                  className="w-[210px] inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white transition-transform transform bg-blue-500 rounded-lg shadow-md hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
+                  className="w-[235px] mt-[10px] inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white transition-transform transform bg-blue-500 rounded-lg shadow-md hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700"
                 >
                   Add Your Own Store
                 </Link>

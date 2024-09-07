@@ -30,6 +30,8 @@ export default function Header() {
     logout();
   }
 
+  const [activeTab, setActiveTab] = useState("home");
+
   return (
     <>
       <link
@@ -44,7 +46,7 @@ export default function Header() {
         <div className="container flex flex-wrap items-center justify-between p-4 mx-auto">
           <Image
             className="w-auto h-8"
-            src="/images/logo.png"
+            src="/images/logo2.png"
             width={1000}
             height={1000}
             alt="logo"
@@ -54,13 +56,26 @@ export default function Header() {
             className="flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
             id="user-dropdown-parent"
           >
-            <div onClick={() => { toggleThemeHandler(); toggleDarkIcon(); }} className="dark-toggle-parent">
+            <div
+              onClick={() => {
+                toggleThemeHandler();
+                toggleDarkIcon();
+              }}
+              className="dark-toggle-parent"
+            >
               <div id="dark-toggle">
                 <i
-                  className={`${isDarkIcon ? '' : 'active'} ri-sun-line dark:text-white`}
+                  className={`${
+                    isDarkIcon ? "" : "active"
+                  } ri-sun-line dark:text-white`}
                   id="sun"
                 ></i>
-                <i className={`${isDarkIcon ? 'active' : ''} fa-solid fa-moon dark:text-white`} id="moon"></i>
+                <i
+                  className={`${
+                    isDarkIcon ? "active" : ""
+                  } fa-solid fa-moon dark:text-white`}
+                  id="moon"
+                ></i>
               </div>
             </div>
 
@@ -89,29 +104,31 @@ export default function Header() {
             >
               <div className="px-4 py-3 cursor-default">
                 <span className="block text-sm text-gray-900 dark:text-white">
-                  {!tokens ? 'Guest': tokens.user.username}
+                  {!tokens ? "Guest" : tokens.user.username}
                 </span>
                 <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
-                  {!tokens ? '': tokens.user.email}
-                  
+                  {!tokens ? "" : tokens.user.email}
                 </span>
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>
-                  {tokens ? <Link
-                    href="/routes/dashboard/"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Dashboard
-                  </Link>: ''}
-                  
+                  {tokens ? (
+                    <Link
+                      href="/routes/dashboard/"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      <i class="ri-dashboard-2-line"></i> Dashboard
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </li>
                 <li>
                   <Link
                     href="/settings"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    Cart w/logo
+                    <i class="ri-shopping-cart-2-line"></i> Cart
                   </Link>
                 </li>
                 <li>
@@ -119,7 +136,7 @@ export default function Header() {
                     href="/earnings"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    Liked w/logo
+                    <i class="ri-thumb-up-line"></i> Liked
                   </Link>
                 </li>
                 <li>
@@ -127,7 +144,17 @@ export default function Header() {
                     onClick={handleSignOut}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    {tokens? 'Sign out':'Sing in'}
+                    <span>
+                      {tokens ? (
+                        <span>
+                          <i class="ri-logout-box-line"></i> Sign out
+                        </span>
+                      ) : (
+                        <span>
+                          <i class="ri-login-box-line"></i> Sign in
+                        </span>
+                      )}
+                    </span>
                   </a>
                 </li>
               </ul>
@@ -166,7 +193,12 @@ export default function Header() {
             id="navbar-user"
           >
             <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li className="text-[18px]">
+              <li
+                className={`text-[18px] ${
+                  activeTab === "home" ? "active" : ""
+                }`}
+                onClick={() => setActiveTab("home")}
+              >
                 <Link
                   href="/"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -174,7 +206,12 @@ export default function Header() {
                   Home
                 </Link>
               </li>
-              <li className="text-[18px]">
+              <li
+                className={`text-[18px] ${
+                  activeTab === "about" ? "active" : ""
+                }`}
+                onClick={() => setActiveTab("about")}
+              >
                 <Link
                   href="/routes/about"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -182,7 +219,12 @@ export default function Header() {
                   About
                 </Link>
               </li>
-              <li className="text-[18px]">
+              <li
+                className={`text-[18px] ${
+                  activeTab === "ideas" ? "active" : ""
+                }`}
+                onClick={() => setActiveTab("ideas")}
+              >
                 <Link
                   href="/routes/Ideas"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -190,7 +232,12 @@ export default function Header() {
                   Ideas
                 </Link>
               </li>
-              <li className="text-[18px]">
+              <li
+                className={`text-[18px] ${
+                  activeTab === "stores" ? "active" : ""
+                }`}
+                onClick={() => setActiveTab("stores")}
+              >
                 <Link
                   href="/routes/Store_List"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -198,7 +245,12 @@ export default function Header() {
                   Stores
                 </Link>
               </li>
-              <li className="text-[18px]">
+              <li
+                className={`text-[18px] ${
+                  activeTab === "marketgab" ? "active" : ""
+                }`}
+                onClick={() => setActiveTab("marketgab")}
+              >
                 <Link
                   href="/routes/Gab_Market"
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
