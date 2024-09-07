@@ -1,10 +1,15 @@
-'use client';
-import { AuthContext } from '@/app/context/Auth';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useContext, useState, useEffect } from 'react';
-import { useToast, Spinner } from '@chakra-ui/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+"use client";
+import { AuthContext } from "@/app/context/Auth";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useContext, useState, useEffect } from "react";
+import { useToast, Spinner } from "@chakra-ui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTwitter,
+  faFacebook,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+import "./page.css";
 
 function MarketGabDetails() {
   const { tokens } = useContext(AuthContext);
@@ -13,19 +18,19 @@ function MarketGabDetails() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const id = searchParams.get('id');
+  const id = searchParams.get("id");
   const toast = useToast();
 
   useEffect(() => {
     if (!tokens || !tokens.access) {
       toast({
-        title: 'Not Signed In',
-        description: 'You need to sign in to access this page.',
-        status: 'warning',
+        title: "Not Signed In",
+        description: "You need to sign in to access this page.",
+        status: "warning",
         duration: 3000,
         isClosable: true,
       });
-      router.push('/');
+      router.push("/");
       return;
     }
 
@@ -36,27 +41,30 @@ function MarketGabDetails() {
     if (!id || !tokens || !tokens.access) return;
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reports/${id}/`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${tokens.access}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/reports/${id}/`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${tokens.access}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to fetch the report');
+        throw new Error("Failed to fetch the report");
       }
 
       const data = await response.json();
       setReport(data);
       fetchNearbyReports(data.location); // Fetch nearby reports with the same location
     } catch (error) {
-      console.error('Error fetching report:', error);
+      console.error("Error fetching report:", error);
       toast({
-        title: 'Error Fetching Report',
-        description: 'There was an issue fetching the report data.',
-        status: 'error',
+        title: "Error Fetching Report",
+        description: "There was an issue fetching the report data.",
+        status: "error",
         duration: 5000,
         isClosable: true,
       });
@@ -70,29 +78,34 @@ function MarketGabDetails() {
 
     try {
       // Fetch all reports
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reports/`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${tokens.access}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/reports/`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${tokens.access}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to fetch reports');
+        throw new Error("Failed to fetch reports");
       }
 
       const allReports = await response.json();
 
       // Filter reports based on the same location
-      const filteredReports = allReports.filter(report => report.location === location);
+      const filteredReports = allReports.filter(
+        (report) => report.location === location
+      );
       setNearbyReports(filteredReports);
     } catch (error) {
-      console.error('Error fetching nearby reports:', error);
+      console.error("Error fetching nearby reports:", error);
       toast({
-        title: 'Error Fetching Nearby Reports',
-        description: 'There was an issue fetching nearby report data.',
-        status: 'error',
+        title: "Error Fetching Nearby Reports",
+        description: "There was an issue fetching nearby report data.",
+        status: "error",
         duration: 5000,
         isClosable: true,
       });
@@ -101,19 +114,21 @@ function MarketGabDetails() {
 
   if (loading) {
     return (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh'
-      }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
         <Spinner
-          color='red.500'
-          size='xl'
+          color="red.500"
+          size="xl"
           style={{
-            width: '100px',  // Adjust size as needed
-            height: '100px', // Adjust size as needed
-            borderWidth: '12px', // Make the spinner thicker
+            width: "100px", // Adjust size as needed
+            height: "100px", // Adjust size as needed
+            borderWidth: "12px", // Make the spinner thicker
           }}
         />
       </div>
@@ -125,89 +140,112 @@ function MarketGabDetails() {
   }
 
   // Ensure tokens is not null and user is defined
-  const username = tokens?.user?.username || 'No Owner Information Available';
+  const username = tokens?.user?.username || "No Owner Information Available";
 
   return (
-    <>
-      <div className="flex items-center justify-center h-screen dark:bg-gray-800">
-        <section className="grid w-full max-w-5xl gap-6 p-4 mx-auto md:grid-cols-2 md:p-8">
-          <div className="p-6 bg-white shadow rounded-2xl dark:bg-gray-900">
-            <dl className="space-y-4">
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Title:
-              </dt>
-              <dd className="text-3xl font-light md:text-4xl dark:text-white">
-                {report.title || 'No Title Available'}
-              </dd>
+    <div className="marketgab-details dark:bg-gray-800">
+      <div className="container">
+        <div className="content dark:text-white">
+          {/* Details */}
+          <section className="full-details">
+            <h2 className="">Full Details</h2>
+            <div className="info">
+              <div className="row">
+                <span>Title</span>
+                <p>{report.title || "No Title Available"}</p>
+              </div>
 
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Description:
-              </dt>
-              <dd className="text-xl font-light md:text-2xl dark:text-white">
-                {report.description || 'No Description Available'}
-              </dd>
+              {/* <div className="row">
+                <span>Description</span>
+                <p>{report.description || "No Description Available"}</p>
+              </div> */}
 
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Reasons:
-              </dt>
-              <dd className="text-xl font-light md:text-2xl dark:text-white">
-                {report.reasons || 'No Reasons Available'}
-              </dd>
+              {/* <div className="row">
+                <span>Reason</span>
+                <p>{report.reasons || "No Reasons Available"}</p>
+              </div> */}
 
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Funding Required:
-              </dt>
-              <dd className="text-2xl font-light md:text-3xl dark:text-white">
-                {report.funding_required || 'No Funding Information Available'}
-              </dd>
+              <div className="row">
+                <span>Funding Required</span>
+                <p>
+                  {report.funding_required ||
+                    "No Funding Information Available"}
+                </p>
+              </div>
 
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Location:
-              </dt>
-              <dd className="text-xl font-light md:text-2xl dark:text-white">
-                {report.location || 'No Location Information Available'}
-              </dd>
+              <div className="row">
+                <span>Location</span>
+                <p>{report.location || "No Location Information Available"}</p>
+              </div>
 
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Owner:
-              </dt>
-              <dd className="text-xl font-light md:text-2xl dark:text-white">
-                {username}
-              </dd>
-            </dl>
-
-            <div className="flex mt-6 space-x-3">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faTwitter} className="text-2xl text-blue-400" />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faFacebook} className="text-2xl text-blue-600" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faLinkedin} className="text-2xl text-blue-700" />
-              </a>
+              <div className="row">
+                <span>Owner</span>
+                <p>{username}</p>
+              </div>
             </div>
-          </div>
-        </section>
 
-        {/* Nearby Reports Section */}
-        <section className="w-full max-w-5xl p-4 mx-auto">
-          <h2 className="mb-4 text-2xl font-bold text-black dark:text-white">Nearby Reports</h2>
-          {nearbyReports.length === 0 ? (
-            <div>No nearby reports available</div>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2">
-              {nearbyReports.map((nearbyReport) => (
-                <div key={nearbyReport.id} className="p-4 bg-white shadow rounded-2xl dark:bg-gray-900">
-                  <h3 className="text-xl font-semibold text-black dark:text-white">{nearbyReport.title}</h3>
-                  <p className='text-black dark:text-white'>{nearbyReport.description}</p>
+            <div className="social">
+              <h2>Contact Owner</h2>
+              <div className="social-links">
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="ri-twitter-fill twitter dark:bg-white"></i>
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="ri-facebook-circle-fill facebook dark:bg-white"></i>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="ri-linkedin-box-fill linkedin dark:bg-white"></i>
+              </a>
+              </div>
+            </div>
+          </section>
+
+          {/* Nearby Reports Section */}
+          <section className="nearby-markets">
+            <div className="description">
+              <h2>Description</h2>
+              <p>{ report.description || "Not Found!"}</p>
+            </div>
+
+            <div className="reason">
+              <h2>Reason</h2>
+              <p>{ report.reasons || "Not Found!"}</p>
+            </div>
+
+            <div className="nearby-section">
+              <h2 className="">Nearby Reports</h2>
+              {nearbyReports.length === 0 ? (
+                <div>No nearby reports available</div>
+              ) : (
+                <div className="nearby-reports">
+                  {nearbyReports.map((nearbyReport) => (
+                    <div
+                      key={nearbyReport.id}
+                      className="report dark:text-[#333]"
+                    >
+                      <p><strong>Title:</strong>{nearbyReport.title}</p>
+                      <p><strong>Funding:</strong>{nearbyReport.funding_required}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
-          )}
-        </section>
+          </section>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

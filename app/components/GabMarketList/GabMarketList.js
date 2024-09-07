@@ -194,6 +194,7 @@ function GabMarketList() {
                     <strong>Location: </strong>
                     {report.location}
                   </p>
+                </div>
 
                   <span
                     onClick={() => handleDetailsClick(report.id)} // Use the new handler
@@ -201,7 +202,6 @@ function GabMarketList() {
                     {" "}
                     More Details <i className="ri-arrow-right-line"></i>
                   </span>
-                </div>
 
                 {!tokens ? null : !likedReports[report.id] ? (
                   <i

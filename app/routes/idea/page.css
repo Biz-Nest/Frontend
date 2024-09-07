@@ -1,0 +1,141 @@
+.marketgab-details {
+    padding: 100px 0;
+}
+
+.marketgab-details .container .content {
+    border: 1px solid #ddd;
+    display: flex;
+}
+
+.marketgab-details .container .content .full-details {
+    /* margin-bottom: 150px; */
+
+    min-width: 300px;
+    padding: 25px;
+    /* background-color: lightblue; */
+
+    border-right: 1px solid #ddd;
+}
+
+@media(max-width: 768px) {
+    .marketgab-details .container .content {
+        flex-wrap: wrap;
+    }
+    .marketgab-details .container .content .full-details {
+        width: 100%;
+        border: none;
+        min-width: unset;
+    }
+}
+
+.marketgab-details .container .content .full-details h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.marketgab-details .container .content .full-details .info .row {
+    /* background-color: lightsalmon; */
+    background-color: rgba(59, 131, 246, 0.25);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.marketgab-details .container .content .full-details .info .row span {
+    font-weight: bold;
+}
+
+
+/* ----------- Start Nearby Markets ----------- */
+
+.marketgab-details .container .content .nearby-markets {
+    /* background-color: lightgrey; */
+    flex-grow: 1;
+
+    padding: 25px;
+}
+
+.marketgab-details .container .content .nearby-markets h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.marketgab-details .container .content .nearby-markets .nearby-reports {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+
+    /* background-color: red; */
+}
+
+.marketgab-details .container .content .nearby-markets .nearby-reports .report {
+    padding: 10px;
+    /* background-color: grey; */
+    background-color: #dce6f1;
+    border-radius: 10px;
+}
+
+.marketgab-details .container .content .nearby-markets .description {
+    margin-bottom: 25px;
+}
+
+.marketgab-details .container .content .nearby-markets .description p {
+
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    line-height: 1.9;
+    /* background-color: red; */
+}
+.marketgab-details .container .content .nearby-markets .reason {
+    margin-bottom: 25px;
+}
+
+.marketgab-details .container .content .nearby-markets .reason p {
+
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    line-height: 1.9;
+    /* background-color: red; */
+}
+
+.marketgab-details .container .content .nearby-markets .nearby-section strong {
+    display: inline-block;
+    width: 65px;
+}
+
+.marketgab-details .container .content .full-details .social {
+    margin-top: 25px;
+}
+
+.marketgab-details .container .content .social .social-links {
+
+    /* background-color: lightgrey; */
+    /* padding: 10px; */
+}
+
+.marketgab-details .container .content .social-links a:not(:last-child) {
+    margin-right: 30px;
+}
+
+.marketgab-details .container .content .social-links a i {
+    font-size: 30px;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+
+.marketgab-details .container .content .social-links a i.facebook {
+    color: #1877f2;
+}
+.marketgab-details .container .content .social-links a i.twitter {
+    color: #1da1f2;
+}
+.marketgab-details .container .content .social-links a i.linkedin {
+    color: #0a66c2;
+}
+
+/* ----------- End Nearby Markets ----------- */

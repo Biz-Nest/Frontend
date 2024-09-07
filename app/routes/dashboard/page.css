@@ -1,0 +1,107 @@
+
+/* Start Landing */
+
+/* Start Landing */
+.dashboard > .landing {
+    /* min-height: calc(100vh - 64px); */
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+  }
+  
+  .dashboard > .landing::after {
+    content: "";
+    position: absolute;
+  
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  
+
+    /* backdrop-filter: blur(10px); */
+  }
+  
+  .dashboard > .landing h1 {
+    margin: 0;
+  }
+  
+  .dashboard > .landing p {
+    max-width: 700px;
+    margin: 0;
+  }
+
+  
+  /* End Landing */
+
+/* End Landing */
+
+/* Start Dashboard  */
+.dashboard > .dashboard-content {
+    /* display: flex; */
+    /* justify-content: center; */
+    margin-top: 100px;
+    margin-bottom: 100px;
+    /* width: 100%; */
+    /* min-height: 100vh; */
+}
+
+.dashboard > .dashboard-content .nav-switch {
+    /* border-radius: 25px;
+    overflow: hidden;
+    background-color: grey; */
+    /* min-width: 150px; */
+    display: flex;
+
+    position: sticky;
+    top: 0;
+}
+
+.dashboard > .dashboard-content .nav-switch button {
+    color: white;
+    display: block;
+    width: 100%;
+    text-align: left;
+    
+    background-color: #ddd;
+
+    /* border-bottom: 1px solid white; */
+    padding: 10px 10px 10px 25px;
+    border-left: 5px solid transparent;
+
+    transition: 0.3s;
+}
+
+.dashboard > .dashboard-content .nav-switch button:hover {
+    background-color: #0f161d;
+    border-left-color: #09abd2;
+    color: white;
+}
+
+.dashboard > .dashboard-content .nav-switch button.active {
+    color: white;
+    background-color: #0f161d;
+    border-left-color: #09abd2;
+}
+
+
+/*  */
+
+.dashboard > .dashboard-content .component {
+    /* max-height: 500px; */
+    display: flex;
+
+
+    /* overflow-x: hidden; */
+
+    /* border-top: 3px solid #333;
+    border-bottom: 3px solid #333;
+    border-right: 3px solid #333; */
+}
+
+/* .dashboard > .dashboard-content .component .container {
+    padding: 0;
+    margin: 0;
+} */

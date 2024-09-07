@@ -137,7 +137,7 @@ function AddProduct() {
                     <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
                         Add New Product
                     </h1>
-                    <p className="mb-6 text-center text-gray-600 md:text-left">
+                    <p className="text-white text-xl font-semibold text-center md:text-left">
                         Let&lsquo;s add your amazing product.
                     </p>
                     <h2 className="text-white text-xl font-semibold text-center md:text-left">
