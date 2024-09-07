@@ -2,7 +2,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { AuthContext } from '@/app/context/Auth';
-import { Spinner, useToast } from '@chakra-ui/react'; // Import Spinner and useToast
+import { Spinner, useToast } from '@chakra-ui/react';
 
 export default function StoreDetail() {
     const searchParams = useSearchParams();
@@ -92,7 +92,6 @@ export default function StoreDetail() {
             </div>
         );
     }
-
     return (
         <div>
             <section>
