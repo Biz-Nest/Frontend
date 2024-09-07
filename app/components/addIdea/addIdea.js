@@ -92,10 +92,10 @@ function AddIdea() {
                     <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
                         Add New Idea
                     </h1>
-                    <p className="text-white text-xl font-semibold text-center md:text-left">
+                    <p className="text-xl font-semibold text-center text-white md:text-left">
                         Lets make something cool
                     </p>
-                    <h2 className="text-white text-xl font-semibold text-center md:text-left">
+                    <h2 className="text-xl font-semibold text-center text-white md:text-left">
                         Get started by adding your idea
                     </h2>
                 </div>

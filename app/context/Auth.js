@@ -115,7 +115,7 @@ export default function AuthProvider({ children }) {
             tokens: null,
             username: null,
         }));
-    router.push('/')
+    router.push('/routes/LogIn');
     }
 
     return (

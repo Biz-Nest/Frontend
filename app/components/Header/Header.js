@@ -124,20 +124,28 @@ export default function Header() {
                   )}
                 </li>
                 <li>
+                  {tokens ? (
+                    
+                  
                   <Link
                     href="/routes/cart_list/"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     <i class="ri-shopping-cart-2-line"></i> Cart
                   </Link>
+                ) : ("")}
                 </li>
                 <li>
+                  {tokens ? (
+                    
+                  
                   <Link
                     href="/routes/Liked/"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     <i class="ri-thumb-up-line"></i> Liked
                   </Link>
+                  ):("")}
                 </li>
                 <li>
                   <a

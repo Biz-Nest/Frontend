@@ -31,7 +31,7 @@ const IdeaCard = ({ idea }) => {
   useEffect(() => {
     if (likes && tokens?.user?.id) {
       const userLiked = likes.some(
-        (like) => like.object_id === idea.id && like.user === tokens.user.id
+        (like) => like.object_id === idea.id && like.user === tokens.user.id && like.content_type === 9
       );
       setLiked(userLiked);
     }
