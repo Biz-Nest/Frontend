@@ -62,7 +62,7 @@ function GabMarketList() {
     if (likes) {
       const updatedLikedReports = {};
       reports.forEach((report) => {
-        const userLiked = likes.some((like) => like.object_id === report.id && like.user === tokens?.user?.id);
+        const userLiked = likes.some((like) => like.object_id === report.id && like.user === tokens?.user?.id && like.content_type === 11);
         updatedLikedReports[report.id] = userLiked;
       });
       setLikedReports(updatedLikedReports);

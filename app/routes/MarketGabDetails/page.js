@@ -30,7 +30,7 @@ function MarketGabDetails() {
         duration: 3000,
         isClosable: true,
       });
-      router.push("/");
+      router.push("/routes/Login");
       return;
     }
 
