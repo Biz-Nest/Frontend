@@ -1,7 +1,10 @@
 nav.header {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     position: relative;
     z-index: 1;
+
+    background-color: #eee;
+    border-bottom: 1px solid lightgrey;
 }
 
 #user-dropdown-parent {
@@ -39,7 +42,7 @@ nav.header {
         content: "";
         position: absolute;
     
-        bottom: -10px;
+        bottom: -8px;
         left: 0;
         width: 0%;
         height: 5px;
@@ -61,6 +64,9 @@ nav.header {
 @media(max-width: 768px) {
     #navbar-user ul li {
         margin-bottom: 5px;
+    }
+    #navbar-user ul li.active {
+        background-color: rgb(219 234 254);
     }
 }
 

@@ -59,7 +59,7 @@ export default function HomePage() {
           <div className="container">
             <div className="home-section">
               <div className="info">
-                <h2 className="main-title dark:!text-white">Explore Ideas</h2>
+                <h2 className="main-title dark:!text-white">Explore Ideas <span></span></h2>
                 <p className="dark:!text-[#c1c8e4]">
                   Unlock a world of creativity and forward-thinking solutions.
                   Browse through a collection of groundbreaking ideas designed
@@ -97,7 +97,7 @@ export default function HomePage() {
 
             <div className="home-section">
               <div className="info">
-                <h2 className="main-title dark:!text-white">Explore Stores</h2>
+                <h2 className="main-title dark:!text-white">Explore Stores  <span></span></h2>
                 <p className="dark:!text-[#c1c8e4]">
                   Discover a diverse array of stores offering tailored products
                   and services. Explore high-quality solutions that cater to
@@ -135,7 +135,7 @@ export default function HomePage() {
 
             <div className="home-section">
               <div className="info">
-                <h2 className="main-title dark:!text-white">New Ideas</h2>
+                <h2 className="main-title dark:!text-white">New Ideas  <span></span></h2>
                 <p className="dark:!text-[#c1c8e4]">
                   Contribute your own innovative ideas to the platform. Share
                   your unique perspective, collaborate with like-minded
@@ -175,7 +175,7 @@ export default function HomePage() {
 
             <div className="home-section">
               <div className="info">
-                <h2 className="main-title dark:!text-white">Market Gap</h2>
+                <h2 className="main-title dark:!text-white">Market Gap  <span></span></h2>
                 <p className="dark:!text-[#c1c8e4]">
                   Identify and bridge gaps in the market by sharing your
                   observations. Submit insights into unmet needs, emerging

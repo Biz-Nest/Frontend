@@ -12,8 +12,10 @@ footer {
   /* color: #1D4ED8; ; */
   /* background-color: #1d2f5e; */
   padding: 20px 0;
-  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); */
   /* color: white; */
+  background-color: #eee;
+  border-top: 1px solid lightgrey;
 }
 
 footer .container {
