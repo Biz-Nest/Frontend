@@ -3,9 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Spinner, useToast } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
-import "./Cart_List.css"
-
-
+import "./Cart_List.css";
 
 export default function Cart_List() {
   const { tokens } = useContext(AuthContext);
@@ -143,9 +141,16 @@ export default function Cart_List() {
 
   return (
     <div className="cart-page">
+      <h2 className="main-title dark:text-white">
+        Cart List<span></span>
+      </h2>
+
       <div className="container">
         {products.map((product) => (
-          <div key={product.id} className="cart-card dark:!border-[transparent]">
+          <div
+            key={product.id}
+            className="cart-card dark:!border-[transparent]"
+          >
             <i class="ri-shopping-cart-fill"></i>
             <div className="">
               <Link href={`/routes/productDetails?id=${product.product.id}`}>
@@ -162,6 +167,7 @@ export default function Cart_List() {
               <div className="">
                 <h2 className="">{product.product.name}</h2>
                 <p className="">${product.product.price}</p>
+                <p className="">{product.quantity}</p>
               </div>
             </div>
             <button

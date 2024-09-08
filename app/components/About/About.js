@@ -5,6 +5,196 @@ import Link from "next/link";
 export default function About() {
   return (
     <>
+      <div class="infinite-line">
+        <div className="container">
+          <div class="content">
+            <ul>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Dev...
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Venture Capital
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Private Equity
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Financial Markets
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Investment Banking
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Wealth Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Asset Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Valuation
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Economic Growth
+              </li>
+            </ul>
+
+            <ul>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Dev...
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Venture Capital
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Private Equity
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Financial Markets
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Investment Banking
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Wealth Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Asset Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Valuation
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Economic Growth
+              </li>
+            </ul>
+          </div>
+
+          <div class="content middle">
+            <ul>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Strategy
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Market Analysis
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Financial Planning
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Risk Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Investment Portfolio
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Stock Market
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Capital Allocation
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Corporate Governance
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Entrepreneurship
+              </li>
+            </ul>
+
+            <ul>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Strategy
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Market Analysis
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Financial Planning
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Risk Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Investment Portfolio
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Stock Market
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Capital Allocation
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Corporate Governance
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Entrepreneurship
+              </li>
+            </ul>
+          </div>
+
+          <div class="content">
+            <ul>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Dev...
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Venture Capital
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Private Equity
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Financial Markets
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Investment Banking
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Wealth Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Asset Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Valuation
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Economic Growth
+              </li>
+            </ul>
+
+            <ul>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Dev...
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Venture Capital
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Private Equity
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Financial Markets
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Investment Banking
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Wealth Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Asset Management
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Business Valuation
+              </li>
+              <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
+                Economic Growth
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div className="about-us">
         <div className="team-members">
           <h2 className="main-title dark:text-white">
@@ -12,20 +202,21 @@ export default function About() {
           </h2>
 
           <div className="container">
-            <div className="member">
+            <div className="member dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
               <div className="pic">
                 <Image
+                  className="dark:!outline-[white]"
                   src="/images/assad.jpg"
                   width={100}
                   height={100}
                   alt="img"
                 />
-                <div className="helper">
+                <div className="helper dark:![border-right-color:white]">
                   <Link href="/" className="one">
                     <i className="ri-linkedin-box-fill one"></i>
                   </Link>
 
-                  <Link href="/" className="two">
+                  <Link href="/" className="two dark:!text-white">
                     <i className="ri-github-fill two"></i>
                   </Link>
 
@@ -43,20 +234,21 @@ export default function About() {
                 <p>Full-Stack Web Developer</p>
               </div>
             </div>
-            <div className="member">
+            <div className="member dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
               <div className="pic">
                 <Image
+                  className="dark:!outline-[white]"
                   src="/images/yaman.png"
                   width={100}
                   height={100}
                   alt="img"
                 />
-                <div className="helper">
+                <div className="helper dark:![border-right-color:white]">
                   <Link href="/" className="one">
                     <i className="ri-linkedin-box-fill one"></i>
                   </Link>
 
-                  <Link href="/" className="two">
+                  <Link href="/" className="two dark:!text-white">
                     <i className="ri-github-fill two"></i>
                   </Link>
 
@@ -74,20 +266,21 @@ export default function About() {
                 <p>Full-Stack Web Developer</p>
               </div>
             </div>
-            <div className="member">
+            <div className="member dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
               <div className="pic">
                 <Image
+                  className="dark:!outline-[white]"
                   src="/images/bird.png"
                   width={100}
                   height={100}
                   alt="img"
                 />
-                <div className="helper">
+                <div className="helper dark:![border-right-color:white]">
                   <Link href="/" className="one">
                     <i className="ri-linkedin-box-fill one"></i>
                   </Link>
 
-                  <Link href="/" className="two">
+                  <Link href="/" className="two dark:!text-white">
                     <i className="ri-github-fill two"></i>
                   </Link>
 
@@ -106,20 +299,21 @@ export default function About() {
                 <p>Full-Stack Web Developer</p>
               </div>
             </div>
-            <div className="member">
+            <div className="member dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
               <div className="pic">
                 <Image
+                  className="dark:!outline-[white]"
                   src="/images/soud.png"
                   width={100}
                   height={100}
                   alt="img"
                 />
-                <div className="helper">
+                <div className="helper dark:![border-right-color:white]">
                   <Link href="/" className="one">
                     <i className="ri-linkedin-box-fill one"></i>
                   </Link>
 
-                  <Link href="/" className="two">
+                  <Link href="/" className="two dark:!text-white">
                     <i className="ri-github-fill two"></i>
                   </Link>
 
@@ -138,20 +332,21 @@ export default function About() {
                 <p>Full-Stack Web Developer</p>
               </div>
             </div>
-            <div className="member">
+            <div className="member dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
               <div className="pic">
                 <Image
+                  className="dark:!outline-[white]"
                   src="/images/qdad.png"
                   width={100}
                   height={100}
                   alt="img"
                 />
-                <div className="helper">
+                <div className="helper dark:![border-right-color:white]">
                   <Link href="/" className="one">
                     <i className="ri-linkedin-box-fill one"></i>
                   </Link>
 
-                  <Link href="/" className="two">
+                  <Link href="/" className="two dark:!text-white">
                     <i className="ri-github-fill two"></i>
                   </Link>
 
@@ -170,89 +365,6 @@ export default function About() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="infinite-line">
-        <div className="container">
-          <div class="content">
-            <ul>
-              <li>Business Dev...</li>
-              <li>Venture Capital</li>
-              <li>Private Equity</li>
-              <li>Financial Markets</li>
-              <li>Investment Banking</li>
-              <li>Wealth Management</li>
-              <li>Asset Management</li>
-              <li>Business Valuation</li>
-              <li>Economic Growth</li>
-            </ul>
-
-            <ul>
-              <li>Business Dev...</li>
-              <li>Venture Capital</li>
-              <li>Private Equity</li>
-              <li>Financial Markets</li>
-              <li>Investment Banking</li>
-              <li>Wealth Management</li>
-              <li>Asset Management</li>
-              <li>Business Valuation</li>
-              <li>Economic Growth</li>
-            </ul>
-          </div>
-
-          <div class="content middle">
-            <ul>
-              <li>Business Strategy</li>
-              <li>Market Analysis</li>
-              <li>Financial Planning</li>
-              <li>Risk Management</li>
-              <li>Investment Portfolio</li>
-              <li>Stock Market</li>
-              <li>Capital Allocation</li>
-              <li>Corporate Governance</li>
-              <li>Entrepreneurship</li>
-            </ul>
-
-            <ul>
-              <li>Business Strategy</li>
-              <li>Market Analysis</li>
-              <li>Financial Planning</li>
-              <li>Risk Management</li>
-              <li>Investment Portfolio</li>
-              <li>Stock Market</li>
-              <li>Capital Allocation</li>
-              <li>Corporate Governance</li>
-              <li>Entrepreneurship</li>
-            </ul>
-          </div>
-
-          <div class="content">
-            <ul>
-              <li>Business Dev...</li>
-              <li>Venture Capital</li>
-              <li>Private Equity</li>
-              <li>Financial Markets</li>
-              <li>Investment Banking</li>
-              <li>Wealth Management</li>
-              <li>Asset Management</li>
-              <li>Business Valuation</li>
-              <li>Economic Growth</li>
-            </ul>
-
-            <ul>
-              <li>Business Dev...</li>
-              <li>Venture Capital</li>
-              <li>Private Equity</li>
-              <li>Financial Markets</li>
-              <li>Investment Banking</li>
-              <li>Wealth Management</li>
-              <li>Asset Management</li>
-              <li>Business Valuation</li>
-              <li>Economic Growth</li>
-            </ul>
-          </div>
-
         </div>
       </div>
     </>

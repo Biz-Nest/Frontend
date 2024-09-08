@@ -253,10 +253,13 @@ export default function ProductDetail() {
                                     className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 flex items-center"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-4 8h14l4-8M7 13h2m-3 4h2m-3-4h2m7-4h-2M7 13h2m7-4h2m-2-4h2" />
                                     </svg>
                                     Add to Cart
                                 </button>
+                            </div>
+                            <div className="text-lg font-bold text-gray-900">
+                                Total: ${quantity * product.price}
                             </div>
                         </div>
                     </div>

@@ -42,7 +42,7 @@ export default function Header() {
         referrerPolicy="no-referrer"
       />
 
-      <nav className="bg-white border-gray-200 dark:bg-gray-900 header">
+      <nav className="bg-white border-gray-200 dark:!bg-gray-900 header">
         <div className="container flex flex-wrap items-center justify-between p-4 mx-auto">
           <Image
             className="w-auto h-8"
@@ -200,10 +200,10 @@ export default function Header() {
             } items-center justify-between w-full md:flex md:w-auto md:order-1`}
             id="navbar-user"
           >
-            <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:dark:bg-gray-900 dark:border-gray-700">
               <li
                 className={`text-[18px] ${
-                  activeTab === "home" ? "active" : ""
+                  activeTab === "home" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
                 }`}
                 onClick={() => setActiveTab("home")}
               >
@@ -216,7 +216,7 @@ export default function Header() {
               </li>
               <li
                 className={`text-[18px] ${
-                  activeTab === "about" ? "active" : ""
+                  activeTab === "about" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
                 }`}
                 onClick={() => setActiveTab("about")}
               >
@@ -229,7 +229,7 @@ export default function Header() {
               </li>
               <li
                 className={`text-[18px] ${
-                  activeTab === "ideas" ? "active" : ""
+                  activeTab === "ideas" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
                 }`}
                 onClick={() => setActiveTab("ideas")}
               >
@@ -242,7 +242,7 @@ export default function Header() {
               </li>
               <li
                 className={`text-[18px] ${
-                  activeTab === "stores" ? "active" : ""
+                  activeTab === "stores" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
                 }`}
                 onClick={() => setActiveTab("stores")}
               >
@@ -255,7 +255,7 @@ export default function Header() {
               </li>
               <li
                 className={`text-[18px] ${
-                  activeTab === "marketgab" ? "active" : ""
+                  activeTab === "marketgab" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
                 }`}
                 onClick={() => setActiveTab("marketgab")}
               >
