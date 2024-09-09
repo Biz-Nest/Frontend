@@ -176,7 +176,7 @@ function GabMarketList() {
             reports.map((report) => (
               // Start Card
               <div
-                className="idea-card dark:!bg-gray-900 dark:!text-white dark:!border-[transparent]"
+                className="idea-card dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white dark:!border-[transparent]"
                 key={report.id}
               >
                 <i className="ri-store-2-line light dark:after:!bg-[#0b4661]"></i>

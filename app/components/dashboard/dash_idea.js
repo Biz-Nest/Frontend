@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Spinner } from "@chakra-ui/react";
 
 export default function DashIdea({ tokens }) {
     // Define fetcher function for SWR
@@ -17,8 +18,24 @@ export default function DashIdea({ tokens }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [file, setFile] = useState(null);
 
-    if (!ideasData || !likesData) return <div className="p-8 bg-gray-100">Loading...</div>;
-    if (ideasError || likesError) return <div className="p-8 bg-gray-100">Error loading data.</div>;
+    if (!ideasData || !likesData) return <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+        width: '100%',
+      }}>
+        <Spinner
+          color='red.500'
+          size='xl'
+          style={{
+            width: '100px',  // Adjust size as needed
+            height: '100px', // Adjust size as needed
+            borderWidth: '12px', // Make the spinner thicker
+          }}
+        />
+      </div>;
+    if (ideasError || likesError) return <div className="p-8 container">Error loading data.</div>;
 
     const userIdeas = ideasData.filter(idea => idea.owner === tokens.user.id);
 

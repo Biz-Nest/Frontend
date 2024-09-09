@@ -4,6 +4,8 @@ import { useToast,Spinner } from "@chakra-ui/react";  // Add Toast for user feed
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";  // Import useRouter for navigation
+import Image from "next/image";
+import "./StoreList.css";
 
 
 function StoreList() {
@@ -130,6 +132,7 @@ function StoreList() {
 
   return (
     <>
+      {/* Start Landing */}
       <section className="dark:bg-gray-800">
         <div className="container grid px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
           <div className="mr-auto place-self-center lg:col-span-7">
@@ -181,12 +184,12 @@ function StoreList() {
           </div>
         </div>
       </section>
-
+      {/* End Landing */}
       <div
         id="stores-section"
-        className="flex items-center justify-center min-h-screen bg-gradient-to-r from-pink-100 via-purple100 to-blue-100"
+        className="flex items-center justify-center min-h-screen"
       >
-        <div className="grid items-center justify-center grid-cols-1 gap-6 p-4 store-list sm:grid-cols-2 lg:grid-cols-4">
+        <div className="store-list container">
           {stores.length > 0 ? (
             stores.map((store) => (
               <div
@@ -195,7 +198,7 @@ function StoreList() {
                 className="cursor-pointer block rounded-lg bg-white shadow-lg hover:shadow-xl dark:bg-surface-dark overflow-hidden h-[500px] flex flex-col"
               >
                 <div className="relative">
-                  <img
+                  <Image
                     className="object-cover w-full h-72"
                     src={
                       store.logo ||
@@ -209,7 +212,7 @@ function StoreList() {
                 <div className="flex-1 p-6 text-surface dark:text-white">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h2 className="text-2xl font-bold">{store.name}</h2>
+                      <h2 className="text-2xl font-bold text-black">{store.name}</h2>
                     </div>
                     <div className="px-3 py-1 text-xs font-semibold text-gray-900 bg-gray-100 rounded-full">
                       {store.views}

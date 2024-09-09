@@ -3,6 +3,7 @@ import useSWR from "swr";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { Spinner } from "@chakra-ui/react";
 
 export default function DashStore({ tokens, onAddStore }) {
     const fetcher = (url) => fetch(url).then((response) => response.json());
@@ -21,8 +22,24 @@ export default function DashStore({ tokens, onAddStore }) {
         }
     }, [data, tokens.user.id]);
 
-    if (!data) return <div className="p-8 bg-gray-100">Loading...</div>;
-    if (error) return <div className="p-8 bg-gray-100">Error loading stores.</div>;
+    if (!data) return <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+        width: '100%',
+      }}>
+        <Spinner
+          color='red.500'
+          size='xl'
+          style={{
+            width: '100px',  // Adjust size as needed
+            height: '100px', // Adjust size as needed
+            borderWidth: '12px', // Make the spinner thicker
+          }}
+        />
+      </div>;
+    if (error) return <div className="p-8 container">Error loading stores.</div>;
 
     if (!userStores.length) {
         return (

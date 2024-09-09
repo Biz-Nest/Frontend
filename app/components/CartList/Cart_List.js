@@ -149,7 +149,7 @@ export default function Cart_List() {
         {products.map((product) => (
           <div
             key={product.id}
-            className="cart-card dark:!border-[transparent]"
+            className="cart-card dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:text-white"
           >
             <i class="ri-shopping-cart-fill"></i>
             <div className="">

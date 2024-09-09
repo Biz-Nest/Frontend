@@ -207,8 +207,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/assad.jpg"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">
@@ -239,8 +239,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/yaman.png"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">
@@ -271,8 +271,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/bird.png"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">
@@ -304,8 +304,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/soud.png"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">
@@ -337,8 +337,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/qdad.png"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">

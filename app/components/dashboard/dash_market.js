@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Spinner } from "@chakra-ui/react";
 
 export default function DashMarket({ tokens }) {
     // Fetcher function for SWR
@@ -17,8 +18,24 @@ export default function DashMarket({ tokens }) {
     const [file, setFile] = useState(null);
 
     // Handle loading and error states for reports
-    if (!reportsData) return <div className="p-8 bg-gray-100">Loading reports...</div>;
-    if (reportsError) return <div className="p-8 bg-gray-100">Error loading reports.</div>;
+    if (!reportsData) return <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+        width: '100%',
+      }}>
+        <Spinner
+          color='red.500'
+          size='xl'
+          style={{
+            width: '100px',  // Adjust size as needed
+            height: '100px', // Adjust size as needed
+            borderWidth: '12px', // Make the spinner thicker
+          }}
+        />
+      </div>;
+    if (reportsError) return <div className="p-8 container">Error loading reports.</div>;
 
     // Filter reports based on the user's ID
     const userReports = reportsData.filter(report => report.owner === tokens.user.id);

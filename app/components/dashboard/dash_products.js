@@ -3,6 +3,8 @@ import useSWR from "swr";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Spinner } from "@chakra-ui/react";
+
 
 export default function DashProducts({ tokens }) {
     const fetcher = (url) => fetch(url).then((response) => response.json());
@@ -20,8 +22,24 @@ export default function DashProducts({ tokens }) {
     const [file, setFile] = useState(null);
 
     // Handle loading and error states for stores
-    if (!storesData) return <div className="p-8 bg-gray-100">Loading stores...</div>;
-    if (storesError) return <div className="p-8 bg-gray-100">Error loading stores.</div>;
+    if (!storesData) return<div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+        width: '100%',
+      }}>
+        <Spinner
+          color='red.500'
+          size='xl'
+          style={{
+            width: '100px',  // Adjust size as needed
+            height: '100px', // Adjust size as needed
+            borderWidth: '12px', // Make the spinner thicker
+          }}
+        />
+      </div>;
+    if (storesError) return <div className="p-8 container">Error loading stores.</div>;
 
     // Handle loading and error states for products
     if (!productsData) return <div className="p-8 bg-gray-100">Loading products...</div>;
