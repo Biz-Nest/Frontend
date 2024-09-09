@@ -206,16 +206,17 @@ function StoreList() {
                     height={300}
                   />
                 </div>
-                <div className="flex-1 p-6 text-surface dark:text-white">
+                <div className="flex-1 p-6 text-black text-surface dark:text-white">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h2 className="text-2xl font-bold">{store.name}</h2>
+                      <h2 className="text-2xl font-bold">Store:{store.name}</h2>
                     </div>
                     <div className="px-3 py-1 text-xs font-semibold text-gray-900 bg-gray-100 rounded-full">
                       {store.views}
                     </div>
                   </div>
                   <div className="mt-4 text-base text-gray-700">
+                    Description:
                     {store.description.length > 75
                       ? store.description.substring(0, 40) + "..."
                       : store.description}
