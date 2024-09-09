@@ -212,7 +212,7 @@ function StoreList() {
                     height={300}
                   />
                 </div>
-                <div className="flex-1 p-6 text-surface dark:text-white">
+                <div className="flex-1 p-6 text-black text-surface dark:text-white">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="dark:text-white text-2xl font-bold text-black">{store.name}</h2>

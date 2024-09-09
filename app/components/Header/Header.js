@@ -148,6 +148,16 @@ export default function Header() {
                   ):("")}
                 </li>
                 <li>
+                  {tokens ? (
+                  <Link
+                    href="/routes/Analytics/"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
+                  >
+                    <i class="ri-pie-chart-line"></i> Analytics
+                  </Link>
+                  ):("")}
+                </li>
+                <li>
                   <a
                     onClick={handleSignOut}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
