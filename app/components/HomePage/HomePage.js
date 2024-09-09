@@ -1,8 +1,7 @@
 import "./HomePage.css";
 import Link from "next/link";
 import Image from "next/image";
-import { Itim } from "next/font/google";
-import { Lemon } from "next/font/google";
+import { Lemon, EB_Garamond, Itim, Saira_Condensed, Ubuntu } from "next/font/google";
 import { AuthContext } from "@/app/context/Auth";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
@@ -15,6 +14,21 @@ const itim = Itim({
 });
 const lemon = Lemon({
   weight: "400",
+  subsets: ["latin"],
+  variable: "--lemon-font",
+});
+const garamond = EB_Garamond({
+  weight: "800",
+  subsets: ["latin"],
+  variable: "--lemon-font",
+});
+const saira_condensed = Saira_Condensed({
+  weight: "900",
+  subsets: ["latin"],
+  variable: "--lemon-font",
+});
+const ubuntu = Ubuntu({
+  weight: "700",
   subsets: ["latin"],
   variable: "--lemon-font",
 });
@@ -44,9 +58,9 @@ export default function HomePage() {
       <div className="home-page">
         <div className="landing">
           <div className="container">
-            <div className={`info ${lemon.className}`}>
-              Creative & <br />
-              Sophisticated
+            <div className={`info`}>
+              <h1 className={`${lemon.className}`}>Invest-Era</h1>
+              <p>Here is where your investment begins</p>
             </div>
 
             <div className="icon">

@@ -17,9 +17,9 @@
     position: relative;
     padding: 25px;
     background-color: #f2f6fa;
-    /* border-radius: 10px; */
+    border-radius: 10px;
     text-align: center;
-    border: 3px solid #ddd;
+    border: 2px solid #ddd;
 
     transition: transform 0.3s;
 }
@@ -36,6 +36,8 @@
 
 .cart-page .container .cart-card img {
     border-radius: 50%;
+    width: 100px;
+    height: 100px;
 }
 
 .cart-page .container .cart-card i {
@@ -59,7 +61,7 @@
     color: white;
     font-weight: bold;
     padding: 5px 10px;
-    /* border-radius: 5px; */
+    border-radius: 5px;
     margin-top: 20px;
 
     transition: background-color 0.3s;

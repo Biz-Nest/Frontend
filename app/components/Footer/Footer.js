@@ -6,7 +6,7 @@ export default function Footer() {
       <footer className="dark:bg-gray-900 text-gray-900 dark:text-white">
         <div className="container">
         <Image
-            className="h-8 w-auto"
+            className="h-10 w-auto"
             src="/images/logo2.png"
             width={1000}
             height={1000}

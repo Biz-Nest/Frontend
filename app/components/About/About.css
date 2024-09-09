@@ -99,7 +99,7 @@
   z-index: 1;
 }
 
-.team-members .container .member .pic:hover .helper {
+.team-members .container .member:hover .pic .helper {
   animation: none;
 }
 
@@ -116,11 +116,47 @@
   font-size: 25px;
   line-height: 1;
   transition: color 0.3s;
+
 }
+
 
 .team-members .container .member .pic .helper a {
   position: absolute;
 }
+
+@keyframes rotate-icon-one {
+  from {
+    transform: translate(-50%, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, 0) rotate(-360deg);
+  }
+}
+@keyframes rotate-icon-two {
+  from {
+    transform: translate(0, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(0, -50%) rotate(-360deg);
+  }
+}
+@keyframes rotate-icon-three {
+  from {
+    transform: translate(-50%, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, 0) rotate(-360deg);
+  }
+}
+@keyframes rotate-icon-four {
+  from {
+    transform: translate(0, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(0, -50%) rotate(-360deg);
+  }
+}
+
 
 .team-members .container .member .pic .helper a:hover i {
   color: goldenrod;
@@ -132,6 +168,9 @@
   transform: translate(-50%, 0);
   color: var(--color-one);
   color: #0a66c2;
+
+  animation: rotate-icon-one 10s linear infinite;
+
 }
 .team-members .container .member .pic .helper a.two {
   right: 5px;
@@ -139,6 +178,8 @@
   transform: translate(0, -50%);
   color: var(--color-two);
   color: #333;
+  animation: rotate-icon-two 10s linear infinite;
+
 }
 .team-members .container .member .pic .helper a.three {
   top: 5px;
@@ -146,6 +187,8 @@
   transform: translate(-50%, 0);
   color: var(--color-three);
   color: #1877f2;
+  animation: rotate-icon-three 10s linear infinite;
+
 }
 .team-members .container .member .pic .helper a.four {
   left: 5px;
@@ -153,6 +196,12 @@
   transform: translate(0, -50%);
   color: var(--color-four);
   color: #e01563;
+  animation: rotate-icon-four 10s linear infinite;
+
+}
+
+.team-members .container .member:hover .pic .helper a {
+  animation: none;
 }
 
 /* Start Infinite Line */
@@ -190,7 +239,7 @@
 
   gap: 20px;
 
-  animation: scroll 20s linear infinite;
+  animation: scroll 50s linear infinite;
 }
 
 @keyframes scroll {
@@ -222,7 +271,7 @@
 
 .infinite-line .container .content ul li:hover{
   cursor: pointer;
-  background: goldenrod;
+  background: goldenrod !important;
   transition: 0.4s;
 }
 

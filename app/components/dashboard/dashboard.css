@@ -1,0 +1,39 @@
+.main-title.ondashboard {
+    text-align: center;
+    margin: 0px auto 50px;
+    width: fit-content;
+
+    z-index: 0;
+}
+
+.main-title.ondashboard span {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* =-=-=-=-=-= */
+
+.dashboard-button {
+    background-color: rgb(59 130 246);
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto 30px;
+
+    transition: 0.3s;
+}
+
+.dashboard-button:hover {
+    background-color: rgb(21, 83, 182);
+}
+
+
+/* Start Store */
+
+.modal-store {
+    
+}
+
+/* End Store */

@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Spinner } from "@chakra-ui/react";
 
 export default function DashMarket({ tokens }) {
     // Fetcher function for SWR
@@ -17,8 +18,24 @@ export default function DashMarket({ tokens }) {
     const [file, setFile] = useState(null);
 
     // Handle loading and error states for reports
-    if (!reportsData) return <div className="p-8 bg-gray-100">Loading reports...</div>;
-    if (reportsError) return <div className="p-8 bg-gray-100">Error loading reports.</div>;
+    if (!reportsData) return <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+        width: '100%',
+      }}>
+        <Spinner
+          color='red.500'
+          size='xl'
+          style={{
+            width: '100px',  // Adjust size as needed
+            height: '100px', // Adjust size as needed
+            borderWidth: '12px', // Make the spinner thicker
+          }}
+        />
+      </div>;
+    if (reportsError) return <div className="p-8 container">Error loading reports.</div>;
 
     // Filter reports based on the user's ID
     const userReports = reportsData.filter(report => report.owner === tokens.user.id);
@@ -103,20 +120,20 @@ export default function DashMarket({ tokens }) {
 
     return (
         <div className="container">
-            <div className="p-8 bg-gray-100">
-                <h1 className="text-3xl font-bold text-gray-900 mb-6">Your Market Gaps</h1>
+            <div className="p-8">
+                <h2 className="main-title ondashboard dark:text-white">Your Market Gaps<span></span></h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {userReports.map((report) => (
                         <div
                             key={report.id}
-                            className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 cursor-pointer hover:bg-gray-50 transition duration-300"
+                            className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!border-[transparent] shadow-lg rounded-lg p-6 border border-gray-200 cursor-pointer hover:bg-gray-50 transition duration-300"
                             onClick={() => handleReportClick(report)}
                         >
-                            <h2 className="text-2xl font-bold text-gray-800 mb-2">Title: {report.title || "No title available"}</h2>
-                            <p className="text-gray-600 mb-2">Description: {report.description || "No description available"}</p>
-                            <p className="text-gray-600 mb-2">Reasons: {report.reasons || "Not specified"}</p>
-                            <p className="text-gray-600 mb-2">Funding Required: ${parseFloat(report.funding_required).toFixed(2)}</p>
-                            <p className="text-gray-600 mb-2">Location: {report.location || "Not specified"}</p>
+                            <h2 className="dark:text-white text-2xl font-bold text-gray-800 mb-2">Title: {report.title || "No title available"}</h2>
+                            <p className="dark:text-[#ddd] text-gray-600">Description: {report.description || "No description available"}</p>
+                            <p className="dark:text-[#ddd] text-gray-600">Reasons: {report.reasons || "Not specified"}</p>
+                            <p className="dark:text-[#ddd] text-gray-600">Funding Required: ${parseFloat(report.funding_required).toFixed(2)}</p>
+                            <p className="dark:text-[#ddd] text-gray-600">Location: {report.location || "Not specified"}</p>
                         </div>
                     ))}
                 </div>

@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { AuthContext } from '@/app/context/Auth';
 import { Spinner, useToast } from '@chakra-ui/react';
+import Image from "next/image";
 
 export default function StoreDetail() {
     const searchParams = useSearchParams();
@@ -95,9 +96,9 @@ export default function StoreDetail() {
     return (
         <div>
             <section>
-                <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
+                <div className="relative pt-20 pb-20 bg-gradient-to-r from-purple-600 to-blue-600 text-white overflow-hidden">
                     <div className="absolute inset-0">
-                        <img src={store.logo} alt="Store Logo" className="object-cover object-center w-full h-full" />
+                        <Image width={1000} height={1000} src={store.logo} alt="Store Logo" className="object-cover object-center w-full h-full" />
                         <div className="absolute inset-0 bg-black opacity-50"></div>
                     </div>
                     <div className="relative flex flex-col justify-center items-center h-full text-center">
@@ -109,20 +110,22 @@ export default function StoreDetail() {
             </section>
             <section id="Projects" className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
                 {products.map(product => (
-                    <div key={product.id} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+                    <div key={product.id} className="product-card mb-10 mt-10 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
                         <a onClick={() => router.push(`/routes/productDetails?id=${product.id}`)}>
-                            <img
+                            <Image
                                 src={product.product_image}
                                 alt="Product"
                                 className="h-80 w-72 object-cover rounded-t-xl"
+                                width={1000}
+                                height={1000}
                             />
-                            <div className="px-4 py-3 w-72">
-                                <span className="text-gray-400 mr-3 uppercase text-xs">{store.name}</span>
-                                <p className="text-lg font-bold text-black truncate block capitalize">{product.name}</p>
+                            <div className="px-4 py-3 w-72 dark:text-white">
+                                <span className="text-gray-400 mr-3 uppercase text-xs dark:text-white">{store.name}</span>
+                                <p className="text-lg font-bold text-black truncate block capitalize dark:text-white">{product.name}</p>
                                 <div className="flex items-center">
-                                    <p className="text-lg font-semibold text-black cursor-auto my-3">${product.price}</p>
+                                    <p className="text-lg font-semibold text-black cursor-auto my-3 dark:text-white">${product.price}</p>
                                     <del>
-                                        <p className="text-sm text-gray-600 cursor-auto ml-2">
+                                        <p className="text-sm text-gray-600 cursor-auto ml-2 dark:text-[#ddd]">
                                             ${(parseFloat(product.price) * 1.3).toFixed(2)}
                                         </p>
                                     </del>

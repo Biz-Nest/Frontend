@@ -192,8 +192,16 @@
 
 /* End Main Title */
 
+/* Start Main Form */
 
+@media(min-width: 768px) {
+  .main-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
 
+/* End Main Form */
 
 /* Start Fonts */
 

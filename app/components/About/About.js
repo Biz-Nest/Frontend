@@ -5,9 +5,9 @@ import Link from "next/link";
 export default function About() {
   return (
     <>
-      <div class="infinite-line">
+      <div className="infinite-line">
         <div className="container">
-          <div class="content">
+          <div className="content">
             <ul>
               <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
                 Business Dev...
@@ -69,7 +69,7 @@ export default function About() {
             </ul>
           </div>
 
-          <div class="content middle">
+          <div className="content middle">
             <ul>
               <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
                 Business Strategy
@@ -131,7 +131,7 @@ export default function About() {
             </ul>
           </div>
 
-          <div class="content">
+          <div className="content">
             <ul>
               <li className="dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:!text-white">
                 Business Dev...
@@ -207,8 +207,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/assad.jpg"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">
@@ -239,8 +239,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/yaman.png"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">
@@ -271,8 +271,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/bird.png"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">
@@ -304,8 +304,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/soud.png"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">
@@ -337,8 +337,8 @@ export default function About() {
                 <Image
                   className="dark:!outline-[white]"
                   src="/images/qdad.png"
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                   alt="img"
                 />
                 <div className="helper dark:![border-right-color:white]">

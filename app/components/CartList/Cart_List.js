@@ -28,72 +28,73 @@ export default function Cart_List() {
     return res.json();
   };
 
-  const handleDelete = async (id) => {
-    toast({
-      title: "Confirm Deletion",
-      description: "Are you sure you want to remove this item from your cart?",
-      status: "warning",
-      duration: null, // Keep the toast open until user interacts
-      isClosable: true,
-      position: "top-right",
-      render: () => (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "white",
-            borderRadius: "8px",
-            padding: "16px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
-            maxWidth: "400px",
-          }}
-        >
-          <div style={{ flex: 1 }}>
-            <h2 className="text-lg font-semibold text-gray-800">
-              Confirm Deletion
-            </h2>
-            <p className="text-gray-600">
-              Are you sure you want to remove this item from your cart?
-            </p>
-          </div>
-          <div style={{ display: "flex", gap: "8px" }}>
-            <button
-              onClick={async () => {
-                try {
-                  // Immediately remove the item from the UI
-                  setProducts((prevProducts) =>
-                    prevProducts.filter((product) => product.id !== id)
-                  );
-                  // Close the toast
-                  toast.closeAll();
-
-                  // Proceed with deletion on the server
-                  await fetcher(
-                    `${process.env.NEXT_PUBLIC_API_URL}/cart/${id}`,
-                    tokens.access,
-                    "DELETE"
-                  );
-                } catch (error) {
-                  console.error("Error:", error);
-                  // Optionally re-add the product if the deletion fails
-                  // setProducts(prevProducts => [...prevProducts, products.find(product => product.id === id)]);
-                }
-              }}
-              className="text-white bg-red-600 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2"
-            >
-              Yes
-            </button>
-            <button
-              onClick={() => toast.closeAll()} // Close the toast
-              className="text-white bg-gray-600 hover:bg-gray-700 font-medium rounded-lg text-sm px-4 py-2"
-            >
-              Cancel
-            </button>
-          </div>
+// Handle Delete Toast
+const handleDelete = async (id) => {
+  toast({
+    title: "Confirm Deletion",
+    description: "Are you sure you want to remove this item from your cart?",
+    status: "warning",
+    duration: null, // Keep the toast open until user interacts
+    isClosable: true,
+    position: "top-right",
+    render: () => (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          backgroundColor: "white",
+          borderRadius: "8px",
+          padding: "16px",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+          maxWidth: "400px",
+        }}
+      >
+        <div style={{ flex: 1 }}>
+          <h2 className="text-lg font-semibold text-gray-800">
+            Confirm Deletion
+          </h2>
+          <p className="text-gray-600">
+            Are you sure you want to remove this item from your cart?
+          </p>
         </div>
-      ),
-    });
-  };
+        <div style={{ display: "flex", gap: "8px" }}>
+          <button
+            onClick={async () => {
+              try {
+                // Immediately remove the item from the UI
+                setProducts((prevProducts) =>
+                  prevProducts.filter((product) => product.id !== id)
+                );
+                // Close the toast
+                toast.closeAll();
+
+                // Proceed with deletion on the server
+                await fetcher(
+                  `${process.env.NEXT_PUBLIC_API_URL}/cart/${id}`,
+                  tokens.access,
+                  "DELETE"
+                );
+              } catch (error) {
+                console.error("Error:", error);
+                // Optionally re-add the product if the deletion fails
+                // setProducts(prevProducts => [...prevProducts, products.find(product => product.id === id)]);
+              }
+            }}
+            className="text-white bg-red-600 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Yes
+          </button>
+          <button
+            onClick={() => toast.closeAll()} // Close the toast
+            className="text-white bg-gray-600 hover:bg-gray-700 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ),
+  });
+};
 
   useEffect(() => {
     const fetchStore = async () => {
@@ -107,6 +108,7 @@ export default function Cart_List() {
           (currentProduct) => currentProduct.user === tokens.user.id
         );
         setProducts(filteredRelated);
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -149,9 +151,9 @@ export default function Cart_List() {
         {products.map((product) => (
           <div
             key={product.id}
-            className="cart-card dark:!border-[transparent]"
+            className="cart-card dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)] dark:text-white"
           >
-            <i class="ri-shopping-cart-fill"></i>
+            <i className="ri-shopping-cart-fill"></i>
             <div className="">
               <Link href={`/routes/productDetails?id=${product.product.id}`}>
                 <Image

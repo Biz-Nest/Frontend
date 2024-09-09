@@ -130,21 +130,21 @@ export default function IdeaDetail() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i class="ri-twitter-fill twitter dark:bg-white"></i>
+                  <i className="ri-twitter-fill twitter dark:bg-white"></i>
                 </a>
                 <a
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i class="ri-facebook-circle-fill facebook dark:bg-white"></i>
+                  <i className="ri-facebook-circle-fill facebook dark:bg-white"></i>
                 </a>
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i class="ri-linkedin-box-fill linkedin dark:bg-white"></i>
+                  <i className="ri-linkedin-box-fill linkedin dark:bg-white"></i>
                 </a>
                 </div>
               </div>
