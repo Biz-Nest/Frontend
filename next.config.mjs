@@ -1,15 +1,15 @@
-// /** @type {import('next').NextConfig} */
-// export default {
-//   images: {
-//     domains: ['backend-iw90.onrender.com', 'i.imgur.com'],
-//   },
-// };
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+export default {
   images: {
-    domains: ['127.0.0.1', 'i.imgur.com'],
+    domains: ['127.0.0.1', 'i.imgur.com', 'tecdn.b-cdn.net'],
   },
 };
 
-export default nextConfig;
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   images: {
+//     domains: ['127.0.0.1', 'i.imgur.com'],
+//   },
+// };
+
+// export default nextConfig;

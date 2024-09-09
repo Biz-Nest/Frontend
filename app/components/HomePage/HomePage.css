@@ -15,7 +15,7 @@
 
 .home-page .routing-section .container .home-section .info h2 {
     font-size: 35px;
-    width: 220px;
+    width: 230px;
     /* font-weight: 900; */
 }
 
@@ -32,6 +32,40 @@
     height: 250px;
     object-fit: contain;
     /* display: none; */
+}
+
+.home-page .routing-section .container .home-section:not(:last-child) img {
+    border-radius: 50%;
+}
+
+@media(max-width: 768px) {
+    .home-page .routing-section .container .home-section {
+        justify-content: center;
+    }
+
+    .home-page .routing-section .container .home-section .info h2 {
+        text-align: center;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .home-page .routing-section .container .home-section .info h2 span {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .home-page .routing-section .container .home-section .info p {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .home-page .routing-section .container .home-section .info button {
+        margin: auto;
+    }
+
+    .home-page .routing-section .container .home-section img {
+        margin: auto;
+    }
 }
 
 
@@ -67,7 +101,7 @@
     background-image: url('/images/landing.png');
     background-size: cover;
     /* min-height: 500px; */
-    min-height: calc(100vh - 64px);
+    /* min-height: calc(100vh - 64px); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,17 +116,17 @@
     right: 0;
     top: 0;
     bottom: 0;
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.766);
+    /* backdrop-filter: blur(10px); */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.home-page .landing .container {
+.home-page .landing > .container {
     position: relative;
 
     /* min-height: 500px; */
     /* height: 100%; */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 50px;
@@ -103,22 +137,36 @@
 }
 
 .home-page .landing .container .info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    line-height: 1;
-    font-size: 85px;
-    font-weight: 900;
-    border-radius: 10px;
-    /* padding: 20px; */
     color: white;
-    font-weight: bold;
+}
+
+.home-page .landing .container .info h1 {
+    width: fit-content;
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.home-page .landing .container .info p {
+    font-size: 30px;
 }
 
 @media(max-width: 768px) {
+    .home-page .landing > .container {
+        gap: 30px;
+    }
+
     .home-page .landing .container .info {
         font-size: 50px;
+    }
+
+    .home-page .landing .container .info h1 {
+        font-size: 50px;
+
+    }
+
+    .home-page .landing .container .info p {
+        font-size: 20px;
     }
 
 }
@@ -126,7 +174,6 @@
 
 .home-page .landing .container .icon {
     overflow: hidden;
-
     width: 350px;
     height: 350px;
 
@@ -190,6 +237,174 @@
 .home-page .landing .container .icon i {
     font-size: 250px;
     color: gold;
+}
+
+@media(max-width: 768px) {
+
+    @keyframes colorful {
+        0% {
+            color: #FF5733; /* Energetic Orange */
+        }
+        5% {
+            color: #FFBD33; /* Vibrant Yellow */
+        }
+        10% {
+            color: #75FF33; /* Fresh Green */
+        }
+        15% {
+            color: #33FF57; /* Bright Green */
+        }
+        20% {
+            color: #33FFBD; /* Aqua Blue */
+        }
+        25% {
+            color: #33C0FF; /* Sky Blue */
+        }
+        30% {
+            color: #337BFF; /* Electric Blue */
+        }
+        35% {
+            color: #6A33FF; /* Purple */
+        }
+        40% {
+            color: #A733FF; /* Bright Purple */
+        }
+        45% {
+            color: #FF33A1; /* Hot Pink */
+        }
+        50% {
+            color: #FF3366; /* Vivid Red */
+        }
+        55% {
+            color: #FF5733; /* Energetic Orange */
+        }
+        60% {
+            color: #FFBD33; /* Vibrant Yellow */
+        }
+        65% {
+            color: #75FF33; /* Fresh Green */
+        }
+        70% {
+            color: #33FF57; /* Bright Green */
+        }
+        75% {
+            color: #33FFBD; /* Aqua Blue */
+        }
+        80% {
+            color: #33C0FF; /* Sky Blue */
+        }
+        85% {
+            color: #337BFF; /* Electric Blue */
+        }
+        90% {
+            color: #6A33FF; /* Purple */
+        }
+        95% {
+            color: #A733FF; /* Bright Purple */
+        }
+        100% {
+            color: #FF33A1; /* Hot Pink */
+        }
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        } 100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes rotate-reverse {
+        0% {
+            transform: rotate(0deg);
+            border-color: #FF5733; /* Energetic Orange */
+        }
+        5% {
+            border-color: #FFBD33; /* Vibrant Yellow */
+        }
+        10% {
+            border-color: #75FF33; /* Fresh Green */
+        }
+        15% {
+            border-color: #33FF57; /* Bright Green */
+        }
+        20% {
+            border-color: #33FFBD; /* Aqua Blue */
+        }
+        25% {
+            border-color: #33C0FF; /* Sky Blue */
+        }
+        30% {
+            border-color: #337BFF; /* Electric Blue */
+        }
+        35% {
+            border-color: #6A33FF; /* Purple */
+        }
+        40% {
+            border-color: #A733FF; /* Bright Purple */
+        }
+        45% {
+            border-color: #FF33A1; /* Hot Pink */
+        }
+        50% {
+            border-color: #FF3366; /* Vivid Red */
+        }
+        55% {
+            border-color: #FF5733; /* Energetic Orange */
+        }
+        60% {
+            border-color: #FFBD33; /* Vibrant Yellow */
+        }
+        65% {
+            border-color: #75FF33; /* Fresh Green */
+        }
+        70% {
+            border-color: #33FF57; /* Bright Green */
+        }
+        75% {
+            border-color: #33FFBD; /* Aqua Blue */
+        }
+        80% {
+            border-color: #33C0FF; /* Sky Blue */
+        }
+        85% {
+            border-color: #337BFF; /* Electric Blue */
+        }
+        90% {
+            border-color: #6A33FF; /* Purple */
+        }
+        95% {
+            border-color: #A733FF; /* Bright Purple */
+        }
+        100% {
+            transform: rotate(-360deg);
+            border-color: #FF33A1; /* Hot Pink */
+        }
+    }
+
+    .home-page .landing .container .icon i {
+        /* margin: auto; */
+        font-size: 200px;
+        animation: colorful 0.5s linear infinite;
+    }
+
+    .home-page .landing .container .icon {
+        width: 250px;
+        height: 250px;
+    }
+
+    .home-page .landing .container .icon::before {
+        border-color: darksalmon;
+        animation: rotate-reverse 0.5s linear infinite;
+    }
+
+    .home-page .landing .container .icon::after {
+        border-color: transparent crimson  transparent aqua;
+        animation: rotate 0.5s linear infinite;
+
+    }
+    
 }
 
 

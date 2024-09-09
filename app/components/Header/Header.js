@@ -45,7 +45,7 @@ export default function Header() {
       <nav className="bg-white border-gray-200 dark:!bg-gray-900 header">
         <div className="container flex flex-wrap items-center justify-between p-4 mx-auto">
           <Image
-            className="w-auto h-8"
+            className="w-auto h-10"
             src="/images/logo2.png"
             width={1000}
             height={1000}

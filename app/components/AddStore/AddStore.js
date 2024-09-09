@@ -104,7 +104,7 @@ export default function AddStore() {
 
   return (
     <div className="flex items-center justify-center min-h-screen dark:bg-gray-800">
-      <div className="flex flex-col items-stretch w-full max-w-4xl bg-white md:rounded-[90px] overflow-hidden shadow-lg md:flex-row border-[1px] border-[solid] border-[#c1c8e4]">
+      <div className="main-form flex flex-col items-stretch w-full max-w-4xl bg-white md:rounded-[90px] overflow-hidden shadow-lg md:flex-row border-[1px] border-[solid] border-[#c1c8e4]">
         {/* Left Column */}
         <div className="flex flex-col justify-center w-full p-8 md:w-1/2 bg-[linear-gradient(to_right,_#6190e8,_#83a0d0)] dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
           <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
