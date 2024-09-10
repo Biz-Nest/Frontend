@@ -60,7 +60,7 @@ export default function HomePage() {
           <div className="container">
             <div className={`info`}>
               <h1 className={`${lemon.className}`}>Invest-Era</h1>
-              <p>Here is where your investment begins</p>
+              <p>Where your investment begins</p>
             </div>
 
             <div className="icon">
