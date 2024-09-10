@@ -192,7 +192,7 @@ function StoreList() {
         id="stores-section"
         className="flex items-center justify-center min-h-screen"
       >
-        <div className="mt-20 mb-20 store-list container">
+        <div className="container mt-20 mb-20 store-list">
           {stores.length > 0 ? (
             stores.map((store) => (
               <div
@@ -215,7 +215,7 @@ function StoreList() {
                 <div className="flex-1 p-6 text-black text-surface dark:text-white">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h2 className="dark:text-white text-2xl font-bold text-black">{store.name}</h2>
+                      <h2 className="text-2xl font-bold text-black dark:text-white">{store.name}</h2>
                     </div>
                     <div className="flex justify-center content-center gap-[10px] px-3 py-1 text-xs font-semibold text-gray-900 bg-gray-100 rounded-full">
                     <i className="ri-eye-line text-[15px]"></i> {store.views}
