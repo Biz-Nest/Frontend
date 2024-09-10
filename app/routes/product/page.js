@@ -97,20 +97,21 @@ export default function StoreDetail() {
         <div>
             <section>
                 <div className="relative pt-20 pb-20 overflow-hidden text-white bg-gradient-to-r from-purple-600 to-blue-600">
+                <div className="relative pt-20 pb-20 pl-[15px] pr-[15px] bg-gradient-to-r from-purple-600 to-blue-600 text-white overflow-hidden">
                     <div className="absolute inset-0">
                         <Image width={1000} height={1000} src={store.logo} alt="Store Logo" className="object-cover object-center w-full h-full" />
                         <div className="absolute inset-0 bg-black opacity-50"></div>
                     </div>
                     <div className="relative flex flex-col items-center justify-center h-full text-center">
                         <h1 className="mb-4 text-5xl font-bold leading-tight">Welcome to Our Awesome {store.name} store</h1>
-                        <p className="mb-8 text-lg text-gray-300">{store.description}</p>
+                        <p className="text-lg text-gray-300 mb-8 max-w-[1000px] backdrop-filter backdrop-blur-[10px] rounded-[15px] p-[10px]">{store.description}</p>
                         <a href="#Projects" className="px-6 py-2 text-lg font-semibold text-gray-900 transition duration-300 ease-in-out transform bg-yellow-400 rounded-full hover:bg-yellow-300 hover:scale-105 hover:shadow-lg">Get Started</a>
                     </div>
                 </div>
             </section>
             <section id="Projects" className="grid justify-center grid-cols-1 mx-auto mt-10 mb-5 w-fit lg:grid-cols-3 md:grid-cols-2 justify-items-center gap-y-20 gap-x-14">
                 {products.map(product => (
-                    <div key={product.id} className="product-card mb-10 mt-10 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
+                    <div key={product.id} className="product-card cursor-pointer mb-10 mt-10 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
                         <a onClick={() => router.push(`/routes/productDetails?id=${product.id}`)}>
                             <Image
                                 src={product.product_image}

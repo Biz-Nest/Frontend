@@ -109,11 +109,11 @@ const AnalyticsPage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-3xl font-bold text-center dark:text-gray-200">Analytics Dashboard</h1>
+      <h1 className="main-title !w-[fit-content] !pb-[15px] !mb-[50px] text-3xl font-bold text-center !ml-auto !mr-auto dark:text-gray-200">Analytics Dashboard<span className="!left-2/4 !-translate-x-1/2"></span></h1>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {/* Store Views */}
-        <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="p-6 bg-white rounded-lg shadow-lg dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
           <h2 className="mb-4 text-xl font-semibold text-center dark:text-gray-200">Most Store Views</h2>
           <div style={{ width: '300px', height: '300px', margin: 'auto' }}>
             <Pie data={storeChartData} options={{ responsive: true, plugins: { legend: { position: 'left' }}}} />
@@ -121,7 +121,7 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Ideas */}
-        <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="p-6 bg-white rounded-lg shadow-lg dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
           <h2 className="mb-4 text-xl font-semibold text-center dark:text-gray-200">Most Liked Ideas</h2>
           <div style={{ width: '300px', height: '300px', margin: 'auto' }}>
             <Pie data={ideaChartData} options={{ responsive: true, plugins: { legend: { position: 'left' }}}} />
@@ -129,7 +129,7 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Reports */}
-        <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="p-6 bg-white rounded-lg shadow-lg dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
           <h2 className="mb-4 text-xl font-semibold text-center dark:text-gray-200">Most Liked Market Gap</h2>
           <div style={{ width: '300px', height: '300px', margin: 'auto' }}>
             <Pie data={reportChartData} options={{ responsive: true, plugins: { legend: { position: 'left' }}}} />
@@ -137,7 +137,7 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Most Repeated Product */}
-        <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="p-6 bg-white rounded-lg shadow-lg dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
           <h2 className="mb-4 text-xl font-semibold text-center dark:text-gray-200">Best Selling Products</h2>
           <div style={{ width: '300px', height: '300px', margin: 'auto' }}>
             {mostRepeatedProduct.length > 0 ? (

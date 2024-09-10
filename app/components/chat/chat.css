@@ -1,0 +1,129 @@
+/* Start Chat Icon */
+
+.chat-icon {
+  cursor: pointer;
+  font-size: 50px;
+  position: fixed;
+
+  transform: translateX(500px);
+  transition: transform 0.3s, background-color 0.3s;
+
+  opacity: 0;
+  bottom: 50px;
+  right: 50px;
+
+  line-height: 1;
+  color: white;
+  background-color: rgb(59 130 246);
+  padding: 10px;
+  border-radius: 50%;
+
+  z-index: 1;
+}
+
+.chat-icon.active {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.chat-icon.active:hover {
+  background-color: #333;
+}
+
+/* End Chat Icon */
+
+.chat-box {
+  /* border: 3px solid grey; */
+  transition: transform 0.3s;
+  transform: scale(0);
+  transform-origin: bottom right;
+  width: 350px;
+
+  overflow: hidden;
+  border-radius: 10px;
+
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+}
+
+.chat-box.active {
+  transform: scale(1);
+}
+
+.chat-box .chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 25px;
+  background-color: rgb(59 130 246);
+}
+
+.chat-box .chat-header span i {
+  /* font-weight: bold; */
+  color: white;
+  font-size: 35px;
+}
+
+.chat-box .close-icon {
+  font-size: 35px;
+  right: 0;
+  top: 0;
+  line-height: 1;
+  color: white;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.chat-box .close-icon:hover {
+  color: #333;
+}
+
+.chat-box .message-box {
+  height: 150px;
+  overflow: auto;
+  padding: 15px 25px;
+  background-color: #eee;
+}
+
+.chat-box .entry-field-parent {
+  padding: 10px;
+  background-color: #eee;
+}
+
+.chat-box .entry-field {
+  /* display: flex; */
+    border-radius: 10px;
+    overflow: hidden;
+  position: relative;
+}
+
+.chat-box .entry-field input {
+  outline: none;
+  /* color: white; */
+  background-color: white;
+
+  width: 100%;
+
+  padding: 5px 75px 5px 10px;
+}
+
+.chat-box .entry-field button {
+  position: absolute;
+    outline: none;
+  background-color: rgb(59 130 246);
+  color: white;
+  font-weight: bold;
+  width: 50px;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+button i {
+    font-size: 25px;
+}
+
+.chat-box .entry-field button:hover {
+  background-color: rgb(30, 88, 181);
+}

@@ -107,9 +107,9 @@ const IdeaCard = ({ idea }) => {
       {!tokens ? (
         ""
       ) : !liked ? (
-        <i className="ri-thumb-up-fill abs" onClick={likeIdea}></i>
+        <i className="ri-thumb-up-line abs" onClick={likeIdea}></i>
       ) : (
-        <i className="ri-thumb-up-line abs"></i>
+        <i className="ri-thumb-up-fill abs"></i>
       )}
     </div>
   );
