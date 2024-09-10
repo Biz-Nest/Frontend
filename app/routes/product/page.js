@@ -96,7 +96,6 @@ export default function StoreDetail() {
     return (
         <div>
             <section>
-                <div className="relative pt-20 pb-20 overflow-hidden text-white bg-gradient-to-r from-purple-600 to-blue-600">
                 <div className="relative pt-20 pb-20 pl-[15px] pr-[15px] bg-gradient-to-r from-purple-600 to-blue-600 text-white overflow-hidden">
                     <div className="absolute inset-0">
                         <Image width={1000} height={1000} src={store.logo} alt="Store Logo" className="object-cover object-center w-full h-full" />
