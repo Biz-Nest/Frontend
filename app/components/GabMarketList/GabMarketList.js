@@ -30,11 +30,14 @@ function GabMarketList() {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reports/`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/reports/`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (Array.isArray(response.data)) {
           setReports(response.data);
@@ -62,7 +65,12 @@ function GabMarketList() {
     if (likes) {
       const updatedLikedReports = {};
       reports.forEach((report) => {
-        const userLiked = likes.some((like) => like.object_id === report.id && like.user === tokens?.user?.id && like.content_type === 11);
+        const userLiked = likes.some(
+          (like) =>
+            like.object_id === report.id &&
+            like.user === tokens?.user?.id &&
+            like.content_type === 11
+        );
         updatedLikedReports[report.id] = userLiked;
       });
       setLikedReports(updatedLikedReports);
@@ -72,15 +80,15 @@ function GabMarketList() {
   const likeReport = async (reportId) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/like/`, {
-        method: 'POST',
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${tokens?.access}`,
         },
         body: JSON.stringify({
-          "user": tokens.user.id,  // Use tokens to get the user ID
-          "content_type": 11,  // Replace with the actual content type ID for Report
-          "object_id": reportId,
+          user: tokens.user.id, // Use tokens to get the user ID
+          content_type: 11, // Replace with the actual content type ID for Report
+          object_id: reportId,
         }),
       });
 
@@ -111,22 +119,26 @@ function GabMarketList() {
   };
 
   if (!reports) {
-    return <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh'
-    }}>
-      <Spinner
-        color='red.500'
-        size='xl'
+    return (
+      <div
         style={{
-          width: '100px',  // Adjust size as needed
-          height: '100px', // Adjust size as needed
-          borderWidth: '12px', // Make the spinner thicker
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
         }}
-      />
-    </div>;
+      >
+        <Spinner
+          color="red.500"
+          size="xl"
+          style={{
+            width: "100px", // Adjust size as needed
+            height: "100px", // Adjust size as needed
+            borderWidth: "12px", // Make the spinner thicker
+          }}
+        />
+      </div>
+    );
   }
 
   if (error) {
@@ -196,23 +208,20 @@ function GabMarketList() {
                   </p>
                 </div>
 
-                  <span
-                    onClick={() => handleDetailsClick(report.id)} // Use the new handler
-                  >
-                    {" "}
-                    More Details <i className="ri-arrow-right-line"></i>
-                  </span>
+                <span
+                  onClick={() => handleDetailsClick(report.id)} // Use the new handler
+                >
+                  {" "}
+                  More Details <i className="ri-arrow-right-line"></i>
+                </span>
 
                 {!tokens ? null : !likedReports[report.id] ? (
-                  <i
-                    className="ri-thumb-up-fill abs"
-                    onClick={() => likeReport(report.id)}
-                  ></i>
-                ) : (
                   <i
                     className="ri-thumb-up-line abs"
                     onClick={() => likeReport(report.id)}
                   ></i>
+                ) : (
+                  <i className="ri-thumb-up-fill abs"></i>
                 )}
               </div>
             ))

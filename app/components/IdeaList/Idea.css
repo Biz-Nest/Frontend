@@ -1,6 +1,6 @@
 /* Start Landing */
 .ideas-section .landing {
-    min-height: calc(100vh - 64px);
+    min-height: calc(100vh - 73px);
 
     display: flex;
     justify-content: center;
@@ -162,19 +162,19 @@
 
 
 .ideas-section .idea-list .container .idea-card i.ri-thumb-up-fill {
-  transition: color 0.3s;
-
-  cursor: pointer;
-  animation: bunny 2s ease-out infinite;
+  cursor: not-allowed;
+  /* opacity: 0.5; */
+  color:#38bdf8;
 }
 
 .ideas-section .idea-list .container .idea-card i.ri-thumb-up-line {
-    /* opacity: 0.5; */
-    cursor: not-allowed;
-}
-.ideas-section .idea-list .container .idea-card i.ri-thumb-up-fill:hover {
-    color:#38bdf8;
+    transition: color 0.3s;
 
+    cursor: pointer;
+    animation: bunny 2s ease-out infinite;
+}
+.ideas-section .idea-list .container .idea-card i.ri-thumb-up-line:hover {
+    color:#38bdf8;
 }
 
 @keyframes bunny {

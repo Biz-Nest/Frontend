@@ -1,6 +1,6 @@
 /* Start Landing */
 .gab-market-section .landing {
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 73px);
 
   display: flex;
   justify-content: center;
@@ -164,21 +164,22 @@
 }
 
 .gab-market-section .market-list .container .idea-card i.ri-thumb-up-fill {
-  transition: color 0.3s;
+  cursor: not-allowed;
+  color: #38bdf8;
 
+}
+
+.gab-market-section .market-list .container .idea-card i.ri-thumb-up-line {
+  transition: color 0.3s;
   cursor: pointer;
   animation: bunny 2s ease-out infinite;
 }
 
-.gab-market-section .market-list .container .idea-card i.ri-thumb-up-line {
-  /* opacity: 0.5; */
-  cursor: not-allowed;
-}
 .gab-market-section
   .market-list
   .container
   .idea-card
-  i.ri-thumb-up-fill:hover {
+  i.ri-thumb-up-line:hover {
   color: #38bdf8;
 }
 

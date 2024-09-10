@@ -96,21 +96,21 @@ export default function StoreDetail() {
     return (
         <div>
             <section>
-                <div className="relative pt-20 pb-20 bg-gradient-to-r from-purple-600 to-blue-600 text-white overflow-hidden">
+                <div className="relative pt-20 pb-20 pl-[15px] pr-[15px] bg-gradient-to-r from-purple-600 to-blue-600 text-white overflow-hidden">
                     <div className="absolute inset-0">
                         <Image width={1000} height={1000} src={store.logo} alt="Store Logo" className="object-cover object-center w-full h-full" />
                         <div className="absolute inset-0 bg-black opacity-50"></div>
                     </div>
                     <div className="relative flex flex-col justify-center items-center h-full text-center">
                         <h1 className="text-5xl font-bold leading-tight mb-4">Welcome to Our Awesome {store.name} store</h1>
-                        <p className="text-lg text-gray-300 mb-8">{store.description}</p>
+                        <p className="text-lg text-gray-300 mb-8 max-w-[1000px] backdrop-filter backdrop-blur-[10px] rounded-[15px] p-[10px]">{store.description}</p>
                         <a href="#Projects" className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Get Started</a>
                     </div>
                 </div>
             </section>
             <section id="Projects" className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
                 {products.map(product => (
-                    <div key={product.id} className="product-card mb-10 mt-10 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
+                    <div key={product.id} className="product-card cursor-pointer mb-10 mt-10 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl dark:!bg-[radial-gradient(circle,_rgba(24,_32,_45,_1)_20%,_rgba(10,_15,_20,_1)_80%)]">
                         <a onClick={() => router.push(`/routes/productDetails?id=${product.id}`)}>
                             <Image
                                 src={product.product_image}

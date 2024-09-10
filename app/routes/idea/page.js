@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Spinner } from '@chakra-ui/react';
 import "./page.css";
+import Chat from '@/app/components/chat/chat';
 
 export default function IdeaDetail() {
     const [idea, setIdea] = useState(null);
@@ -179,6 +180,7 @@ export default function IdeaDetail() {
             </section>
           </div>
         </div>
+        <Chat />
       </div>
     );
 }
