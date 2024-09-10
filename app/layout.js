@@ -1,9 +1,10 @@
-"use client";
-import { Inter } from "next/font/google"
-import { Roboto } from 'next/font/google'
-import { Cairo } from 'next/font/google'
-import { Courgette } from 'next/font/google'
-import { Itim } from 'next/font/google'
+// app/layout.js
+
+import { Inter } from "next/font/google";
+import { Roboto } from 'next/font/google';
+import { Cairo } from 'next/font/google';
+import { Courgette } from 'next/font/google';
+import { Itim } from 'next/font/google';
 
 import { ChakraProvider } from "@chakra-ui/react";
 import AuthProvider from "./context/Auth";
@@ -11,7 +12,7 @@ import ThemeWrapper from "./context/Theme";
 import 'remixicon/fonts/remixicon.css';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Head from 'next/head'; 
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"]});
@@ -38,6 +39,13 @@ const itim = Itim({
   subsets: ['latin'],
   variable: '--sevillana-font'
 })
+
+export const metadata = {
+  title: 'Invest-era',  
+  icons: {
+    icon: '/images/logo2.png', 
+  },
+};
 
 export default function RootLayout({ children }) {
   return (

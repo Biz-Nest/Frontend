@@ -116,7 +116,7 @@ const AnalyticsPage = () => {
         <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <h2 className="mb-4 text-xl font-semibold text-center dark:text-gray-200">Most Store Views</h2>
           <div style={{ width: '300px', height: '300px', margin: 'auto' }}>
-            <Pie data={storeChartData} options={{ responsive: true, plugins: { legend: { position: 'top' }}}} />
+            <Pie data={storeChartData} options={{ responsive: true, plugins: { legend: { position: 'left' }}}} />
           </div>
         </div>
 
@@ -124,7 +124,7 @@ const AnalyticsPage = () => {
         <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <h2 className="mb-4 text-xl font-semibold text-center dark:text-gray-200">Most Liked Ideas</h2>
           <div style={{ width: '300px', height: '300px', margin: 'auto' }}>
-            <Pie data={ideaChartData} options={{ responsive: true, plugins: { legend: { position: 'top' }}}} />
+            <Pie data={ideaChartData} options={{ responsive: true, plugins: { legend: { position: 'left' }}}} />
           </div>
         </div>
 
@@ -132,7 +132,7 @@ const AnalyticsPage = () => {
         <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <h2 className="mb-4 text-xl font-semibold text-center dark:text-gray-200">Most Liked Market Gap</h2>
           <div style={{ width: '300px', height: '300px', margin: 'auto' }}>
-            <Pie data={reportChartData} options={{ responsive: true, plugins: { legend: { position: 'top' }}}} />
+            <Pie data={reportChartData} options={{ responsive: true, plugins: { legend: { position: 'left' }}}} />
           </div>
         </div>
 
@@ -141,7 +141,7 @@ const AnalyticsPage = () => {
           <h2 className="mb-4 text-xl font-semibold text-center dark:text-gray-200">Best Selling Products</h2>
           <div style={{ width: '300px', height: '300px', margin: 'auto' }}>
             {mostRepeatedProduct.length > 0 ? (
-              <Pie data={productChartData} options={{ responsive: true, plugins: { legend: { position: 'top' }}}} />
+              <Pie data={productChartData} options={{ responsive: true, plugins: { legend: { position: 'left'}}}} />
             ) : (
               <p className="text-center dark:text-gray-400">No cart data available.</p>
             )}
