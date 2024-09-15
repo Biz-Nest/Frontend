@@ -1,17 +1,21 @@
 "use client";
+import { Suspense } from "react";
 import { AuthContext } from "@/app/context/Auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useState, useEffect } from "react";
 import { useToast, Spinner } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTwitter,
-  faFacebook,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
 import "./page.css";
+import Chat from "@/app/components/chat/chat";
 
 function MarketGabDetails() {
+  return (
+    <Suspense fallback={<div>Loading MarketGabDetails...</div>}>
+      <MarketGabDetailsContent />
+    </Suspense>
+  );
+}
+
+function MarketGabDetailsContent() {
   const { tokens } = useContext(AuthContext);
   const [report, setReport] = useState(null);
   const [nearbyReports, setNearbyReports] = useState([]);
@@ -77,7 +81,6 @@ function MarketGabDetails() {
     if (!tokens || !tokens.access) return;
 
     try {
-      // Fetch all reports
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/reports/`,
         {
@@ -95,7 +98,6 @@ function MarketGabDetails() {
 
       const allReports = await response.json();
 
-      // Filter reports based on the same location
       const filteredReports = allReports.filter(
         (report) => report.location === location
       );
@@ -139,7 +141,6 @@ function MarketGabDetails() {
     return <div>No report data available</div>;
   }
 
-  // Ensure tokens is not null and user is defined
   const username = tokens?.user?.username || "No Owner Information Available";
 
   return (
@@ -148,36 +149,20 @@ function MarketGabDetails() {
         <div className="content dark:text-white">
           {/* Details */}
           <section className="full-details">
-            <h2 className="">Full Details</h2>
+            <h2>Full Details</h2>
             <div className="info">
               <div className="row">
                 <span>Title</span>
                 <p>{report.title || "No Title Available"}</p>
               </div>
-
-              {/* <div className="row">
-                <span>Description</span>
-                <p>{report.description || "No Description Available"}</p>
-              </div> */}
-
-              {/* <div className="row">
-                <span>Reason</span>
-                <p>{report.reasons || "No Reasons Available"}</p>
-              </div> */}
-
               <div className="row">
                 <span>Funding Required</span>
-                <p>
-                  {report.funding_required ||
-                    "No Funding Information Available"}
-                </p>
+                <p>{report.funding_required || "No Funding Information Available"}</p>
               </div>
-
               <div className="row">
                 <span>Location</span>
                 <p>{report.location || "No Location Information Available"}</p>
               </div>
-
               <div className="row">
                 <span>Owner</span>
                 <p>{username}</p>
@@ -187,27 +172,27 @@ function MarketGabDetails() {
             <div className="social">
               <h2>Contact Owner</h2>
               <div className="social-links">
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="ri-twitter-fill twitter dark:bg-white"></i>
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="ri-facebook-circle-fill facebook dark:bg-white"></i>
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="ri-linkedin-box-fill linkedin dark:bg-white"></i>
-              </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="ri-twitter-fill twitter dark:bg-white"></i>
+                </a>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="ri-facebook-circle-fill facebook dark:bg-white"></i>
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="ri-linkedin-box-fill linkedin dark:bg-white"></i>
+                </a>
               </div>
             </div>
           </section>
@@ -216,25 +201,22 @@ function MarketGabDetails() {
           <section className="nearby-markets">
             <div className="description">
               <h2>Description</h2>
-              <p>{ report.description || "Not Found!"}</p>
+              <p>{report.description || "Not Found!"}</p>
             </div>
 
             <div className="reason">
               <h2>Reason</h2>
-              <p>{ report.reasons || "Not Found!"}</p>
+              <p>{report.reasons || "Not Found!"}</p>
             </div>
 
             <div className="nearby-section">
-              <h2 className="">Nearby Reports</h2>
+              <h2>Nearby Reports</h2>
               {nearbyReports.length === 0 ? (
                 <div>No nearby reports available</div>
               ) : (
                 <div className="nearby-reports">
                   {nearbyReports.map((nearbyReport) => (
-                    <div
-                      key={nearbyReport.id}
-                      className="report dark:text-[#333]"
-                    >
+                    <div key={nearbyReport.id} className="report dark:text-[#333]">
                       <p><strong>Title:</strong>{nearbyReport.title}</p>
                       <p><strong>Funding:</strong>{nearbyReport.funding_required}</p>
                     </div>
@@ -245,6 +227,7 @@ function MarketGabDetails() {
           </section>
         </div>
       </div>
+      <Chat />
     </div>
   );
 }

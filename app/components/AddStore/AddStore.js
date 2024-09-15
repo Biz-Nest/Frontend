@@ -110,10 +110,10 @@ export default function AddStore() {
           <h1 className="text-white mb-2 text-5xl font-light text-center md:text-left !mb-[15px]">
             Add Store
           </h1>
-          <p className="text-white text-xl font-semibold text-center md:text-left">
+          <p className="text-xl font-semibold text-center text-white md:text-left">
             Start by providing your store details
           </p>
-          <h2 className="text-white text-xl font-semibold text-center md:text-left">
+          <h2 className="text-xl font-semibold text-center text-white md:text-left">
             Add your store information to get started
           </h2>
         </div>

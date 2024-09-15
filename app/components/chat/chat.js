@@ -11,10 +11,10 @@ export default function Chat({ sender, receiver }) {
 
   useEffect(() => {
     console.log(tokens);
-    console.log('user id', tokens.user.id);
-    
-    const ws = new WebSocket("wss://web-socket-deployment.onrender.com/ws/chat/default/");
-    
+    console.log("user id", tokens.user.id);
+
+    const ws = new WebSocket("ws://localhost:8000/ws/chat/default/");
+
     ws.onopen = () => {
       console.log("WebSocket connected");
     };
@@ -43,7 +43,7 @@ export default function Chat({ sender, receiver }) {
   const sendMessage = () => {
     if (socket && message) {
       const sender_id = tokens.user.id;
-      const msg = { 'sender_id': sender_id, message };
+      const msg = { sender_id: sender_id, message };
 
       console.log("Sending message:", msg);
       socket.send(JSON.stringify(msg));
@@ -65,13 +65,20 @@ export default function Chat({ sender, receiver }) {
   return (
     <>
       <i
-        className={`ri-chat-smile-3-fill chat-icon ${isChatBoxActive ? "" : "active"}`}
+        className={`ri-chat-smile-3-fill chat-icon ${
+          isChatBoxActive ? "" : "active"
+        }`}
         onClick={handleChatIconClick}
       ></i>
       <div className={`chat-box ${isChatBoxActive ? "active" : ""}`}>
         <div className="chat-header">
-          <span><i class="ri-message-3-line"></i></span>
-          <i className={`ri-close-line close-icon`} onClick={handleCloseIconClick}></i>
+          <span>
+            <i className="ri-message-3-line"></i>
+          </span>
+          <i
+            className={`ri-close-line close-icon`}
+            onClick={handleCloseIconClick}
+          ></i>
         </div>
         <div className="message-box">
           {chatMessages.map((msg, index) => (
@@ -97,7 +104,9 @@ export default function Chat({ sender, receiver }) {
               placeholder="Type a message..."
               className=""
             />
-            <button onClick={sendMessage}><i class="ri-send-plane-2-fill"></i></button>
+            <button onClick={sendMessage}>
+              <i className="ri-send-plane-2-fill"></i>
+            </button>
           </div>
         </div>
       </div>

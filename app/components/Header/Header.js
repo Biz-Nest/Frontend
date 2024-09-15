@@ -117,7 +117,7 @@ export default function Header() {
                       href="/routes/dashboard/"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
                     >
-                      <i class="ri-dashboard-2-line"></i> Dashboard
+                      <i className="ri-dashboard-2-line"></i> Dashboard
                     </Link>
                   ) : (
                     ""
@@ -125,37 +125,39 @@ export default function Header() {
                 </li>
                 <li>
                   {tokens ? (
-                    
-                  
-                  <Link
-                    href="/routes/cart_list/"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    <i class="ri-shopping-cart-2-line"></i> Cart
-                  </Link>
-                ) : ("")}
+                    <Link
+                      href="/routes/cart_list/"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      <i className="ri-shopping-cart-2-line"></i> Cart
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </li>
                 <li>
                   {tokens ? (
-                    
-                  
-                  <Link
-                    href="/routes/Liked/"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    <i class="ri-thumb-up-line"></i> Liked
-                  </Link>
-                  ):("")}
+                    <Link
+                      href="/routes/Liked/"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      <i className="ri-thumb-up-line"></i> Liked
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </li>
                 <li>
                   {tokens ? (
-                  <Link
-                    href="/routes/Analytics/"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    <i class="ri-pie-chart-line"></i> Analytics
-                  </Link>
-                  ):("")}
+                    <Link
+                      href="/routes/Analytics/"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      <i className="ri-pie-chart-line"></i> Analytics
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </li>
                 <li>
                   <a
@@ -165,11 +167,11 @@ export default function Header() {
                     <span>
                       {tokens ? (
                         <span>
-                          <i class="ri-logout-box-line"></i> Sign out
+                          <i className="ri-logout-box-line"></i> Sign out
                         </span>
                       ) : (
                         <span>
-                          <i class="ri-login-box-line"></i> Sign in
+                          <i className="ri-login-box-line"></i> Sign in
                         </span>
                       )}
                     </span>
@@ -213,7 +215,9 @@ export default function Header() {
             <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:dark:bg-gray-900 dark:border-gray-700">
               <li
                 className={`text-[18px] ${
-                  activeTab === "home" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
+                  activeTab === "home"
+                    ? "active dark:[@media(max-width:768px)]:!bg-blue-700"
+                    : ""
                 }`}
                 onClick={() => setActiveTab("home")}
               >
@@ -226,7 +230,9 @@ export default function Header() {
               </li>
               <li
                 className={`text-[18px] ${
-                  activeTab === "about" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
+                  activeTab === "about"
+                    ? "active dark:[@media(max-width:768px)]:!bg-blue-700"
+                    : ""
                 }`}
                 onClick={() => setActiveTab("about")}
               >
@@ -239,7 +245,9 @@ export default function Header() {
               </li>
               <li
                 className={`text-[18px] ${
-                  activeTab === "ideas" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
+                  activeTab === "ideas"
+                    ? "active dark:[@media(max-width:768px)]:!bg-blue-700"
+                    : ""
                 }`}
                 onClick={() => setActiveTab("ideas")}
               >
@@ -252,7 +260,9 @@ export default function Header() {
               </li>
               <li
                 className={`text-[18px] ${
-                  activeTab === "stores" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
+                  activeTab === "stores"
+                    ? "active dark:[@media(max-width:768px)]:!bg-blue-700"
+                    : ""
                 }`}
                 onClick={() => setActiveTab("stores")}
               >
@@ -265,7 +275,9 @@ export default function Header() {
               </li>
               <li
                 className={`text-[18px] ${
-                  activeTab === "marketgab" ? "active dark:[@media(max-width:768px)]:!bg-blue-700" : ""
+                  activeTab === "marketgab"
+                    ? "active dark:[@media(max-width:768px)]:!bg-blue-700"
+                    : ""
                 }`}
                 onClick={() => setActiveTab("marketgab")}
               >
